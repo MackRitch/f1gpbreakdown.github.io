@@ -81,20 +81,28 @@
 
 <section id="facebook" class="fb-container">
   <h2>🔗 Follow Us on Facebook</h2>
-  <div class="fb-page" 
-  data-href="https://www.facebook.com/F1GPBreakdown" 
-  data-tabs="timeline" 
-  data-width="" 
-  data-height="" 
-  data-small-header="false" 
-  data-adapt-container-width="true" 
-  data-hide-cover="false" 
-  data-show-facepile="true">
+ <!-- Load Facebook SDK -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" 
+  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" 
+  nonce="FbWidget123"></script>
+
+<!-- Facebook Page Plugin -->
+<div class="fb-page" 
+     data-href="https://www.facebook.com/F1GPBreakdown" 
+     data-tabs="timeline" 
+     data-width="" 
+     data-height="" 
+     data-small-header="false" 
+     data-adapt-container-width="true" 
+     data-hide-cover="false" 
+     data-show-facepile="true">
   <blockquote cite="https://www.facebook.com/F1GPBreakdown" 
-    class="fb-xfbml-parse-ignore">
-    <a href="https://www.facebook.com/F1GPBreakdown">Facebook</a>
+              class="fb-xfbml-parse-ignore">
+    <a href="https://www.facebook.com/F1GPBreakdown">F1 GP Breakdown</a>
   </blockquote>
 </div>
+
 
 </section>
   
@@ -102,11 +110,7 @@
     &copy; 2025 F1 GP Breakdown. All rights reserved.
   </footer>
 
-  <!-- Facebook SDK -->
-  <div id="fb-root"></div>
- <script async defer crossorigin="anonymous" 
-  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0">
-</script>
+
 
 </body>
 </html>
