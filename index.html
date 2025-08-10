@@ -4,55 +4,141 @@
   <meta charset="UTF-8">
   <title>F1 GP Breakdown</title>
   <style>
+    /* Page reset & base font */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
+      background-color: #f9f9f9;
       font-family: Arial, sans-serif;
-      margin: 20px;
+      position: relative;
+      min-height: 100vh;
     }
-    .flex-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+
+    /* Watermark */
+    .watermark {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 5rem;
+      color: rgba(0, 0, 0, 0.05);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      z-index: 1;
     }
+
+    /* Banner */
+    header {
+      background-color: #cc0000;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 2;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    #countdown {
+      font-size: 1.2rem;
+    }
+
+    /* Main content wrapper */
+    main {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 30px;
+    }
+
+    /* Race Recap */
     .recap {
-      flex: 1;
-      margin-right: 20px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .countdown {
-      text-align: right;
-      min-width: 200px;
+    .recap h2, .recap h3, .recap h4 {
+      margin-bottom: 10px;
     }
-    table {
+    .recap ul {
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    /* Driver Standings */
+    .standings {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .standings table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
     }
-    th, td {
-      border: 1px solid #ccc;
+    .standings th, .standings td {
+      border: 1px solid #ddd;
       padding: 8px;
       text-align: left;
     }
-    th {
+    .standings th {
       background-color: #f2f2f2;
+    }
+
+    /* Upcoming Races */
+    .race-cards {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .race-card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      width: 250px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .race-card h3 {
+      margin-bottom: 8px;
+    }
+    .race-card p {
+      margin-bottom: 6px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #666;
     }
   </style>
 </head>
 <body>
 
-  <h1>F1 GP Breakdown</h1>
-  <p>Your pit stop for race recaps, standings & more</p>
+  <!-- Watermark -->
+  <div class="watermark">F1 GP Breakdown</div>
 
-  <nav>
-    <a href="#recaps">Race Recaps</a> |
-    <a href="#standings">Driver Standings</a> |
-    <a href="#races">Upcoming Races</a> |
-    <a href="#social">Facebook</a>
-  </nav>
+  <!-- Red Banner -->
+  <header>
+    <h1>F1 GP Breakdown</h1>
+    <div id="countdown">Loading countdown…</div>
+  </header>
 
-  <div class="flex-container">
-    <div class="recap">
+  <main>
+    <!-- Race Recap -->
+    <section class="recap" id="recap">
       <h2>🏆 Latest Race Recap</h2>
       <h3>🇭🇺 Hungarian Grand Prix – Full Breakdown</h3>
-      <p>At the Hungaroring, Lando Norris clinched a dramatic victory for McLaren, fending off teammate Oscar Piastri by just 0.698 seconds...</p>
+      <p>At the Hungaroring, Lando Norris clinched a dramatic victory for McLaren, fending off teammate Oscar Piastri by just 0.698 seconds. Charles Leclerc’s early lead from pole faded under clever strategy calls, while George Russell completed the podium for Mercedes.</p>
+      <h4>Key Moments</h4>
       <ul>
         <li><strong>Lap 1:</strong> Leclerc holds off Piastri into Turn 1; Norris drops to P4.</li>
         <li><strong>Lap 23:</strong> McLaren split strategies—Norris on one-stop, Piastri on two-stop.</li>
@@ -65,59 +151,77 @@
         <li>Oscar Piastri (McLaren)</li>
         <li>George Russell (Mercedes)</li>
       </ul>
-    </div>
+    </section>
 
-    <div class="countdown">
-      <h3>⏳ Countdown to Belgian GP</h3>
-      <p>14d 20h 44m 43s</p>
-    </div>
-  </div>
+    <!-- Driver Standings -->
+    <section class="standings" id="standings">
+      <h2>🏁 Driver Standings</h2>
+      <table>
+        <tr>
+          <th>Position</th>
+          <th>Driver</th>
+          <th>Team</th>
+          <th>Points</th>
+        </tr>
+        <tr><td>1</td><td>Oscar Piastri</td><td>McLaren</td><td>284</td></tr>
+        <tr><td>2</td><td>Lando Norris</td><td>McLaren</td><td>275</td></tr>
+        <tr><td>3</td><td>Max Verstappen</td><td>Red Bull Racing</td><td>187</td></tr>
+        <tr><td>4</td><td>George Russell</td><td>Mercedes</td><td>172</td></tr>
+        <tr><td>5</td><td>Charles Leclerc</td><td>Ferrari</td><td>151</td></tr>
+      </table>
+    </section>
 
-  <h2 id="standings">🏁 Driver Standings</h2>
-  <table>
-    <tr>
-      <th>Position</th>
-      <th>Driver</th>
-      <th>Team</th>
-      <th>Points</th>
-    </tr>
-    <tr><td>1</td><td>Oscar Piastri</td><td>McLaren</td><td>284</td></tr>
-    <tr><td>2</td><td>Lando Norris</td><td>McLaren</td><td>275</td></tr>
-    <tr><td>3</td><td>Max Verstappen</td><td>Red Bull Racing</td><td>187</td></tr>
-    <tr><td>4</td><td>George Russell</td><td>Mercedes</td><td>172</td></tr>
-    <tr><td>5</td><td>Charles Leclerc</td><td>Ferrari</td><td>151</td></tr>
-    <tr><td>6</td><td>Lewis Hamilton</td><td>Ferrari</td><td>109</td></tr>
-    <tr><td>7</td><td>Kimi Antonelli</td><td>Mercedes</td><td>64</td></tr>
-    <tr><td>8</td><td>Alexander Albon</td><td>Williams</td><td>54</td></tr>
-    <tr><td>9</td><td>Nico Hulkenberg</td><td>Sauber</td><td>37</td></tr>
-    <tr><td>10</td><td>Esteban Ocon</td><td>Haas</td><td>27</td></tr>
-    <!-- continue with remaining drivers -->
-  </table>
-
-  <h2 id="races">📅 Upcoming Races</h2>
-<div style="display: flex; gap: 20px; flex-wrap: wrap;">
-  <div style="border: 1px solid #ccc; padding: 16px; border-radius: 8px; width: 250px;">
-    <h3>🇧🇪 Belgian GP</h3>
-    <p><strong>Date:</strong> Aug 25</p>
-    <p><strong>Location:</strong> Spa-Francorchamps</p>
-  </div>
-  <div style="border: 1px solid #ccc; padding: 16px; border-radius: 8px; width: 250px;">
-    <h3>🇮🇹 Italian GP</h3>
-    <p><strong>Date:</strong> Sep 8</p>
-    <p><strong>Location:</strong> Monza</p>
-  </div>
-  <div style="border: 1px solid #ccc; padding: 16px; border-radius: 8px; width: 250px;">
-    <h3>🇸🇬 Singapore GP</h3>
-    <p><strong>Date:</strong> Sep 22</p>
-    <p><strong>Location:</strong> Marina Bay Circuit</p>
-  </div>
-</div>
-
- <h2 id="social">🔗 Follow Us on Facebook</h2>
+    <!-- Upcoming Races -->
+    <section id="races">
+      <h2>📅 Upcoming Races</h2>
+      <div class="race-cards">
+        <div class="race-card">
+          <h3>🇧🇪 Belgian GP</h3>
+          <p><strong>Date:</strong> Aug 25, 2025</p>
+          <p><strong>Location:</strong> Spa-Francorchamps</p>
+        </div>
+        <div class="race-card">
+          <h3>🇮🇹 Italian GP</h3>
+          <p><strong>Date:</strong> Sep 8, 2025</p>
+          <p><strong>Location:</strong> Monza</p>
+        </div>
+        <div class="race-card">
+          <h3>🇸🇬 Singapore GP</h3>
+          <p><strong>Date:</strong> Sep 22, 2025</p>
+          <p><strong>Location:</strong> Marina Bay Circuit</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 F1 GP Breakdown. All rights reserved.</p>
+    © 2025 F1 GP Breakdown. All rights reserved.
   </footer>
 
+  <script>
+    // Countdown to next race (Belgian GP)
+    (function() {
+      const countdownEl = document.getElementById('countdown');
+      const raceDate = new Date('2025-08-25T00:00:00');
+
+      function update() {
+        const now = new Date();
+        const diff = raceDate - now;
+        if (diff <= 0) {
+          countdownEl.textContent = 'Belgian GP is underway!';
+          clearInterval(timer);
+          return;
+        }
+        const d = Math.floor(diff / (1000*60*60*24));
+        const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+        const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+        const s = Math.floor((diff % (1000*60)) / 1000);
+        countdownEl.textContent = `Countdown to Belgian GP: ${d}d ${h}h ${m}m ${s}s`;
+      }
+
+      update();
+      const timer = setInterval(update, 1000);
+    })();
+  </script>
 </body>
 </html>
