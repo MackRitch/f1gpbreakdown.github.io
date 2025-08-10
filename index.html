@@ -182,5 +182,30 @@
   <footer>
     &copy; 2025 F1 GP Breakdown. All rights reserved.
   </footer>
+  <script>
+  const targetDate = new Date("2025-08-25T14:00:00");
+  const timerElement = document.getElementById("timer");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      timerElement.textContent = "Race day is here!";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+
 </body>
 </html>
