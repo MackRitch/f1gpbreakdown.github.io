@@ -4,62 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>F1 GP Breakdown</title>
- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
- <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-  body {
-  margin: 0;
-  font-family: 'Orbitron', 'Montserrat', sans-serif;
-  background-color: #0d0d0d;
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.03) 0,
-    rgba(255, 255, 255, 0.03) 1px,
-    transparent 1px,
-    transparent 20px
-  ),
-  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='10' y='100' font-size='40' fill='rgba(255,255,255,0.05)' font-family='Orbitron'%3EF1GPB%3C/text%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 200px 200px;
-  background-attachment: fixed;
-  color: #f1f1f1;
-}
- 
-  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='10' y='100' font-size='40' fill='rgba(255,255,255,0.05)' font-family='Orbitron'%3EF1GPB%3C/text%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 200px 200px;
-  background-attachment: fixed;
-  color: #f1f1f1;
-}
+    body {
+      margin: 0;
+      font-family: 'Orbitron', 'Montserrat', sans-serif;
+      background-color: #0d0d0d;
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.03) 0,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 20px
+      ),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='10' y='100' font-size='40' fill='rgba(255,255,255,0.05)' font-family='Orbitron'%3EF1GPB%3C/text%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      background-attachment: fixed;
+      color: #f1f1f1;
+    }
 
     header {
       background-color: #e10600;
       padding: 1rem;
       text-align: center;
+      color: white;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
+
     nav {
       background-color: #1c1c1c;
       padding: 0.5rem;
       text-align: center;
     }
+
     nav a {
       color: #f1f1f1;
       margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
     }
+
     section {
       padding: 2rem;
     }
+
     .fb-container {
       margin-top: 2rem;
       text-align: center;
     }
+
     footer {
       background-color: #1c1c1c;
       text-align: center;
@@ -100,38 +94,19 @@
     </ul>
   </section>
 
-<section id="facebook" class="fb-container">
-  <h2>🔗 Follow Us on Facebook</h2>
- <!-- Load Facebook SDK -->
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" 
-  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" 
-  nonce="FbWidget123"></script>
+  <section id="facebook" class="fb-container">
+    <h2>🔗 Follow Us on Facebook</h2>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="FbWidget123"></script>
+    <div class="fb-page" data-href="https://www.facebook.com/F1GPBreakdown" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+      <blockquote cite="https://www.facebook.com/F1GPBreakdown" class="fb-xfbml-parse-ignore">
+        <a href="https://www.facebook.com/F1GPBreakdown">F1 GP Breakdown</a>
+      </blockquote>
+    </div>
+  </section>
 
-<!-- Facebook Page Plugin -->
-<div class="fb-page" 
-     data-href="https://www.facebook.com/F1GPBreakdown" 
-     data-tabs="timeline" 
-     data-width="" 
-     data-height="" 
-     data-small-header="false" 
-     data-adapt-container-width="true" 
-     data-hide-cover="false" 
-     data-show-facepile="true">
-  <blockquote cite="https://www.facebook.com/F1GPBreakdown" 
-              class="fb-xfbml-parse-ignore">
-    <a href="https://www.facebook.com/F1GPBreakdown">F1 GP Breakdown</a>
-  </blockquote>
-</div>
-
-
-</section>
-  
   <footer>
     &copy; 2025 F1 GP Breakdown. All rights reserved.
   </footer>
-
-
-
 </body>
 </html>
