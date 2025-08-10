@@ -1,463 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>F1 GP Breakdown</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap"
-    rel="stylesheet"
-  />
   <style>
     body {
-      margin: 0;
-      font-family: 'Orbitron', 'Montserrat', sans-serif;
-      background-color: #0d0d0d;
-      background-image:
-        repeating-linear-gradient(
-          45deg,
-          rgba(255, 255, 255, 0.03) 0,
-          rgba(255, 255, 255, 0.03) 1px,
-          transparent 1px,
-          transparent 20px
-        ),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='10' y='100' font-size='40' fill='rgba(255,255,255,0.05)' font-family='Orbitron'%3EF1GPB%3C/text%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 200px 200px;
-      background-attachment: fixed;
-      color: #f1f1f1;
+      font-family: Arial, sans-serif;
+      margin: 20px;
     }
-
-    header {
-      background-color: #e10600;
-      padding: 1rem;
-      text-align: center;
-      color: white;
+    .flex-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
     }
-
-    nav {
-      background-color: #1c1c1c;
-      padding: 0.5rem;
-      text-align: center;
+    .recap {
+      flex: 1;
+      margin-right: 20px;
     }
-
-    nav a {
-      color: #f1f1f1;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
+    .countdown {
+      text-align: right;
+      min-width: 200px;
     }
-
-    section {
-      padding: 2rem;
-    }
-
-    .fb-container {
-      margin-top: 2rem;
-      text-align: center;
-    }
-
-    #standings {
-      padding: 2rem;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #fff;
-    }
-
-    #standings h2 {
-      text-align: center;
-      font-family: 'Orbitron', sans-serif;
-      margin-bottom: 1rem;
-    }
-
-    .standings-table {
+    table {
       width: 100%;
       border-collapse: collapse;
-      font-family: 'Montserrat', sans-serif;
+      margin-top: 20px;
     }
-
-    .standings-table th,
-    .standings-table td {
-      padding: 0.75rem;
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
       text-align: left;
-      border-bottom: 1px solid #444;
     }
-
-    .standings-table th {
-      background-color: #1a1a1a;
-      color: #f0f0f0;
-    }
-
-    .standings-table tr:hover {
-      background-color: #333;
-    }
-
-    .race-cards {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background: #2c2c2c;
-      border-radius: 8px;
-      padding: 15px;
-      width: 250px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    }
-
-    .countdown {
-      margin-top: 2rem;
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .race-recap {
-      background: #1c1c1c;
-      border-left: 4px solid #DA291C;
-      padding: 20px;
-      margin: 2rem 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .race-recap h3 {
-      margin-top: 0;
-      font-size: 1.4em;
-    }
-
-    .race-recap h4 {
-      margin-bottom: 0.5rem;
-      font-size: 1.1em;
-    }
-
-    .race-recap ul,
-    .race-recap ol {
-      margin-left: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    footer {
-      background-color: #1c1c1c;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
+    th {
+      background-color: #f2f2f2;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>F1 GP Breakdown</h1>
-    <p>Your pit stop for race recaps, standings &amp; more</p>
-  </header>
+
+  <h1>F1 GP Breakdown</h1>
+  <p>Your pit stop for race recaps, standings & more</p>
 
   <nav>
-    <a href="#recaps">Race Recaps</a>
-    <a href="#standings">Driver Standings</a>
-    <a href="#schedule">Upcoming Races</a>
-    <a href="#facebook">Facebook</a>
+    <a href="#recaps">Race Recaps</a> |
+    <a href="#standings">Driver Standings</a> |
+    <a href="#races">Upcoming Races</a> |
+    <a href="#social">Facebook</a>
   </nav>
 
-  <section id="recaps">
-  <h2>🏆 Latest Race Recap</h2>
-  <section class="race-recap">
-    <h3>🇭🇺 Hungarian Grand Prix – Full Breakdown</h3>
-    <p>
-      At the Hungaroring, Lando Norris clinched a dramatic victory for McLaren,
-      fending off teammate Oscar Piastri by just 0.698 seconds. Charles Leclerc’s
-      early lead from pole faded under clever strategy calls, while George Russell
-      completed the podium for Mercedes.
-    </p>
-    <h4>Key Moments</h4>
-    <ul>
-      <li>
-        Lap 1: Charles Leclerc holds off Piastri into Turn 1; Norris drops to P4
-        after a slow getaway.
-      </li>
-      <li>
-        Lap 23: McLaren split strategies—Norris stretches a one-stop on mediums,
-        Piastri opts for a two-stopper with fresher hards.
-      </li>
-      <li>
-        Lap 51: Piastri’s newer rubber slices through backmarkers, closing a
-        six-second gap to Norris.
-      </li>
-      <li>
-        Lap 69: On the final tour, Piastri locks up at Turn 1 on a last-ditch
-        move, handing Norris the win.
-      </li>
-    </ul>
-    <h4>Podium Finishers</h4>
-    <ol>
-      <li>Lando Norris (McLaren)</li>
-      <li>Oscar Piastri (McLaren)</li>
-      <li>George Russell (Mercedes)</li>
-    </ol>
-    <h4>Top 10 Finishers</h4>
-    <ul>
-      <li>4 Charles Leclerc (Ferrari)</li>
-      <li>5 Fernando Alonso (Aston Martin)</li>
-      <li>6 Gabriel Bortoleto (Sauber)</li>
-      <li>7 Lance Stroll (Aston Martin)</li>
-      <li>8 Liam Lawson (Racing Bulls)</li>
-      <li>9 Max Verstappen (Red Bull Racing)</li>
-      <li>10 Kimi Antonelli (Mercedes)</li>
-    </ul>
-    <p>
-      This victory is Norris’s fifth of 2025 and marks McLaren’s 200th
-      Grand Prix triumph. Piastri slims the championship gap to nine points,
-      while Russell and Leclerc keep the title fight boiling over the summer
-      break.
-    </p>
-  </section>
-</section>
-
-  <section id="standings">
-    <h2>Driver Standings</h2>
-    <table class="standings-table">
-      <thead>
-        <tr>
-          <th>Position</th>
-          <th>Driver</th>
-          <th>Team</th>
-          <th>Logo</th>
-          <th>Points</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Oscar Piastri</td>
-          <td>McLaren</td>
-          <td><img src="logos/mclaren.png" alt="McLaren" style="height:20px;" /></td>
-          <td>284</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Lando Norris</td>
-          <td>McLaren</td>
-          <td><img src="logos/mclaren.png" alt="McLaren" style="height:20px;" /></td>
-          <td>275</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Max Verstappen</td>
-          <td>Red Bull Racing</td>
-          <td><img src="logos/redbull.png" alt="Red Bull Racing" style="height:20px;" /></td>
-          <td>187</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>George Russell</td>
-          <td>Mercedes</td>
-          <td><img src="logos/mercedes.png" alt="Mercedes" style="height:20px;" /></td>
-          <td>172</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Charles Leclerc</td>
-          <td>Ferrari</td>
-          <td><img src="logos/ferrari.png" alt="Ferrari" style="height:20px;" /></td>
-          <td>151</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>Lewis Hamilton</td>
-          <td>Ferrari</td>
-          <td><img src="logos/ferrari.png" alt="Ferrari" style="height:20px;" /></td>
-          <td>109</td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td>Kimi Antonelli</td>
-          <td>Mercedes</td>
-          <td><img src="logos/mercedes.png" alt="Mercedes" style="height:20px;" /></td>
-          <td>64</td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td>Alexander Albon</td>
-          <td>Williams</td>
-          <td><img src="logos/williams.png" alt="Williams" style="height:20px;" /></td>
-          <td>54</td>
-        </tr>
-        <tr>
-          <td>9</td>
-          <td>Nico Hulkenberg</td>
-          <td>Sauber</td>
-          <td><img src="logos/sauber.png" alt="Sauber" style="height:20px;" /></td>
-          <td>37</td>
-        </tr>
-        <tr>
-          <td>10</td>
-          <td>Esteban Ocon</td>
-          <td>Haas</td>
-          <td><img src="logos/haas.png" alt="Haas" style="height:20px;" /></td>
-          <td>27</td>
-        </tr>
-        <tr>
-          <td>11</td>
-          <td>Fernando Alonso</td>
-          <td>Aston Martin</td>
-          <td><img src="logos/astonmartin.png" alt="Aston Martin" style="height:20px;" /></td>
-          <td>26</td>
-        </tr>
-        <tr>
-          <td>12</td>
-          <td>Lance Stroll</td>
-          <td>Aston Martin</td>
-          <td><img src="logos/astonmartin.png" alt="Aston Martin" style="height:20px;" /></td>
-          <td>26</td>
-        </tr>
-        <tr>
-          <td>13</td>
-          <td>Isack Hadjar</td>
-          <td>Racing Bulls</td>
-          <td><img src="logos/racingbulls.png" alt="Racing Bulls" style="height:20px;" /></td>
-          <td>22</td>
-        </tr>
-        <tr>
-          <td>14</td>
-          <td>Pierre Gasly</td>
-          <td>Alpine</td>
-          <td><img src="logos/alpine.png" alt="Alpine" style="height:20px;" /></td>
-          <td>20</td>
-        </tr>
-        <tr>
-          <td>15</td>
-          <td>Liam Lawson</td>
-          <td>Racing Bulls</td>
-          <td><img src="logos/racingbulls.png" alt="Racing Bulls" style="height:20px;" /></td>
-          <td>20</td>
-        </tr>
-        <tr>
-          <td>16</td>
-          <td>Carlos Sainz Jr.</td>
-          <td>Williams</td>
-          <td><img src="logos/williams.png" alt="Williams" style="height:20px;" /></td>
-          <td>16</td>
-        </tr>
-        <tr>
-          <td>17</td>
-          <td>Gabriel Bortoleto</td>
-          <td>Sauber</td>
-          <td><img src="logos/sauber.png" alt="Sauber" style="height:20px;" /></td>
-          <td>14</td>
-        </tr>
-        <tr>
-          <td>18</td>
-          <td>Yuki Tsunoda</td>
-          <td>Red Bull Racing</td>
-          <td><img src="logos/redbull.png" alt="Red Bull Racing" style="height:20px;" /></td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>19</td>
-          <td>Oliver Bearman</td>
-          <td>Haas</td>
-          <td><img src="logos/haas.png" alt="Haas" style="height:20px;" /></td>
-          <td>8</td>
-        </tr>
-        <tr>
-          <td>20</td>
-          <td>Franco Colapinto</td>
-          <td>Alpine</td>
-          <td><img src="logos/alpine.png" alt="Alpine" style="height:20px;" /></td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td>21</td>
-          <td>Jack Doohan</td>
-          <td>Alpine</td>
-          <td><img src="logos/alpine.png" alt="Alpine" style="height:20px;" /></td>
-          <td>0</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section id="schedule">
-    <h2>📅 Upcoming Races</h2>
-    <div class="race-cards">
-      <div class="card">
-        <h3>🇧🇪 Belgian GP</h3>
-        <p><em>Aug 25</em> – Spa-Francorchamps</p>
-      </div>
-      <div class="card">
-        <h3>🇮🇹 Italian GP</h3>
-        <p><em>Sep 8</em> – Monza</p>
-      </div>
-      <div class="card">
-        <h3>🇸🇬 Singapore GP</h3>
-        <p><em>Sep 22</em> – Marina Bay Circuit</p>
-      </div>
+  <div class="flex-container">
+    <div class="recap">
+      <h2>🏆 Latest Race Recap</h2>
+      <h3>🇭🇺 Hungarian Grand Prix – Full Breakdown</h3>
+      <p>At the Hungaroring, Lando Norris clinched a dramatic victory for McLaren, fending off teammate Oscar Piastri by just 0.698 seconds...</p>
+      <ul>
+        <li><strong>Lap 1:</strong> Leclerc holds off Piastri into Turn 1; Norris drops to P4.</li>
+        <li><strong>Lap 23:</strong> McLaren split strategies—Norris on one-stop, Piastri on two-stop.</li>
+        <li><strong>Lap 51:</strong> Piastri closes gap with fresher tires.</li>
+        <li><strong>Lap 69:</strong> Piastri locks up at Turn 1, Norris wins.</li>
+      </ul>
+      <h4>Podium Finishers</h4>
+      <ul>
+        <li>Lando Norris (McLaren)</li>
+        <li>Oscar Piastri (McLaren)</li>
+        <li>George Russell (Mercedes)</li>
+      </ul>
     </div>
+
     <div class="countdown">
       <h3>⏳ Countdown to Belgian GP</h3>
-      <p id="timer">Loading...</p>
+      <p>14d 20h 44m 43s</p>
     </div>
-  </section>
+  </div>
 
-  <section id="facebook" class="fb-container">
-    <h2>🔗 Follow Us on Facebook</h2>
-    <div id="fb-root"></div>
-    <script
-      async
-      defer
-      crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"
-      nonce="FbWidget123"
-    ></script>
-    <div
-      class="fb-page"
-      data-href="https://www.facebook.com/F1GPBreakdown"
-      data-tabs="timeline"
-      data-width=""
-      data-height=""
-      data-small-header="false"
-      data-adapt-container-width="true"
-      data-hide-cover="false"
-      data-show-facepile="true"
-    >
-      <blockquote
-        cite="https://www.facebook.com/F1GPBreakdown"
-        class="fb-xfbml-parse-ignore"
-      >
-        <a href="https://www.facebook.com/F1GPBreakdown">F1 GP Breakdown</a>
-      </blockquote>
-    </div>
-  </section>
+  <h2 id="standings">🏁 Driver Standings</h2>
+  <table>
+    <tr>
+      <th>Position</th>
+      <th>Driver</th>
+      <th>Team</th>
+      <th>Points</th>
+    </tr>
+    <tr><td>1</td><td>Oscar Piastri</td><td>McLaren</td><td>284</td></tr>
+    <tr><td>2</td><td>Lando Norris</td><td>McLaren</td><td>275</td></tr>
+    <tr><td>3</td><td>Max Verstappen</td><td>Red Bull Racing</td><td>187</td></tr>
+    <tr><td>4</td><td>George Russell</td><td>Mercedes</td><td>172</td></tr>
+    <tr><td>5</td><td>Charles Leclerc</td><td>Ferrari</td><td>151</td></tr>
+    <tr><td>6</td><td>Lewis Hamilton</td><td>Ferrari</td><td>109</td></tr>
+    <tr><td>7</td><td>Kimi Antonelli</td><td>Mercedes</td><td>64</td></tr>
+    <tr><td>8</td><td>Alexander Albon</td><td>Williams</td><td>54</td></tr>
+    <tr><td>9</td><td>Nico Hulkenberg</td><td>Sauber</td><td>37</td></tr>
+    <tr><td>10</td><td>Esteban Ocon</td><td>Haas</td><td>27</td></tr>
+    <!-- continue with remaining drivers -->
+  </table>
+
+  <h2 id="races">📅 Upcoming Races</h2>
+  <ul>
+    <li>🇧🇪 Belgian GP – Aug 25 – Spa-Francorchamps</li>
+    <li>🇮🇹 Italian GP – Sep 8 – Monza</li>
+    <li>🇸🇬 Singapore GP – Sep 22 – Marina Bay Circuit</li>
+  </ul>
+
+  <h2 id="social">🔗 Follow Us on Facebook</h2>
 
   <footer>
-    &copy; 2025 F1 GP Breakdown. All rights reserved.
+    <p>© 2025 F1 GP Breakdown. All rights reserved.</p>
   </footer>
 
-  <script>
-    const targetDate = new Date("2025-08-25T14:00:00");
-    const timerElement = document.getElementById("timer");
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        timerElement.textContent = "Race day is here!";
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    setInterval(updateCountdown, 1000);
-  </script>
 </body>
 </html>
-```
