@@ -53,6 +53,17 @@
     #countdown {
       font-size: 1.2rem;
     }
+.banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px; /* space between logo and title */
+}
+
+.fb-logo {
+  height: 50px;
+  width: auto;
+}
 
     /* Main content wrapper */
     main {
@@ -143,10 +154,14 @@
   <div class="watermark">F1 GP Breakdown</div>
 
   <!-- Red Banner -->
-  <header>
+<header>
+  <div class="banner-content">
+    <img src="F1GPBLogoC.jpg" alt="F1 GP Breakdown Logo" class="fb-logo">
     <h1>F1 GP Breakdown</h1>
-    <div id="countdown">Loading countdown…</div>
-  </header>
+  </div>
+  <div id="countdown">Loading countdown…</div>
+</header>
+ 
 
   <main>
     <!-- Race Recap -->
