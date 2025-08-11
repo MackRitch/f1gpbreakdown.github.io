@@ -1,274 +1,382 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>F1 GP Breakdown</title>
 
-  <!-- Import a cooler, racing-style font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Orbitron font (optional; remove if you’re bundling fonts locally) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    /* Page reset & base font */
-    * {
-      box-sizing: border-box;
+    :root {
+      --bg-overlay: rgba(0,0,0,0.25);
+      --card-bg: #ffffff;
+      --card-fg: #000000;
+      --accent: #e10600; /* F1 red */
+      --muted: rgba(255,255,255,0.75);
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.25);
+      --maxw: 1100px;
+      --gap: 20px;
+    }
+
+    html, body {
+      height: 100%;
       margin: 0;
-      padding: 0;
     }
 
-    body::before {
-  content: "F1 GP Breakdown";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-30deg);
-  font-size: 5rem;
-  font-weight: bold;
-  color: rgba(255, 0, 0, 0.04); /* red with low opacity */
-  white-space: nowrap;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-}
-    
- body {
-  background-image: url('logos/usgptrack.jpg'); /* update extension if it's .png or .webp */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  font-family: 'Orbitron', sans-serif;
-  position: relative;
-  min-height: 100vh;
-  color: #fff;
-  filter: brightness(0.8);
-}
-
-
-
- /* Watermark */
-  
-  /* Banner */
-    header {
-      background-color: #cc0000;
+    body {
+      font-family: 'Orbitron', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: #fff;
-      text-align: center;
-      padding: 40px 20px;
+      background-image: url('logos/usgptrack.jpg'); /* verify path/extension */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       position: relative;
-      z-index: 2;
+      min-height: 100vh;
+      line-height: 1.4;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-  text-align: center;
-  flex: 1; /* ensures it takes up full space for better centering */
-}
 
-    #countdown {
-      font-size: 1.2rem;
+    /* Watermark layer (beneath overlay) */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url('logos/F1GPBLogoC.jpg') no-repeat center;
+      background-size: 40% auto; /* adjust watermark size */
+      opacity: 0.08;
+      z-index: 0;
+      pointer-events: none;
     }
-.banner-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px; /* space between logo and title */
-}
 
-.fb-logo {
-  height: 50px;
-  width: auto;
-}
+    /* Darken only the background (not content) */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: var(--bg-overlay);
+      z-index: 1;
+      pointer-events: none;
+    }
 
-    /* Main content wrapper */
-    main {
+    header, main, footer {
       position: relative;
-      z-index: 2;
-      padding: 20px;
-      max-width: 1000px;
+      z-index: 2; /* above overlay/watermark */
+    }
+
+    .container {
+      max-width: var(--maxw);
       margin: 0 auto;
-    }
-    section {
-      margin-bottom: 30px;
+      padding: 24px;
     }
 
-    /* Race Recap */
-   .recap {
-  background-color : #fff;
-  padding : 20 px ;
-  border-radius : 8 px ;
-  box-shadow : 0 2 px 4 px rgba ( 0 , 0 , 0 , 0.2 ) ;
-  color : #000;
-}
-
-    .recap h2,
-    .recap h3,
-    .recap h4 {
-      margin-bottom: 10px;
-    }
-    .recap ul {
-      margin-left: 20px;
-      margin-bottom: 10px;
+    header {
+      padding-top: 24px;
+      padding-bottom: 8px;
     }
 
-    /* Driver Standings */
-    .standings {
-  background-color : #fff;
-  padding : 20 px ;
-  border-radius : 8 px ;
-  box-shadow : 0 2 px 4 px rgba ( 0 , 0 , 0 , 0.2 ) ;
-  color : #000;
-}
-
-    .standings table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .standings th,
-    .standings td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-    .standings th {
-      background-color: #f2f2f2;
-    }
-
-    /* Upcoming Races */
-    .race-cards {
+    .title-row {
       display: flex;
-      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
       flex-wrap: wrap;
     }
-    .race-card {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 16px;
-      width: 250px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      color: #000;
-    }
-    .race-card h3 {
-      margin-bottom: 8px;
-    }
-    .race-card p {
-      margin-bottom: 6px;
+
+    h1 {
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: 0.5px;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
+    .countdown {
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* Card base */
+    .card {
+      background-color: var(--card-bg);
+      color: var(--card-fg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       padding: 20px;
-      font-size: 0.9rem;
-      color: #aaa;
+    }
+
+    /* Sections layout */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Specific cards */
+    .recap h2,
+    .standings h2,
+    .upcoming h2 {
+      margin: 0 0 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      color: #111;
+    }
+
+    .recap .meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #444;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .recap .flag {
+      font-size: 20px;
+    }
+
+    .key-moments {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    /* Table styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: calc(var(--radius) - 2px);
+      overflow: hidden;
+    }
+
+    thead th {
+      text-align: left;
+      font-weight: 700;
+      background: #f6f6f7;
+      color: #111;
+      border-bottom: 2px solid #eee;
+      padding: 12px 10px;
+      font-size: 14px;
+    }
+
+    tbody td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+      color: #222;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: #fafafa;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: #f0f0f0;
+      color: #222;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    /* Upcoming list */
+    .upcoming-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .race-card {
+      background: #fff;
+      color: #111;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .race-card .when {
+      color: #444;
+      font-size: 13px;
+    }
+
+    footer {
+      opacity: 0.85;
+      font-size: 13px;
+      padding: 16px 0 36px;
+      text-align: center;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      body { background-attachment: scroll; } /* prevent mobile jank */
+      .container { padding: 18px; }
+      .title-row { gap: 10px; }
+      .countdown { font-size: 14px; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Watermark -->
-  <!-- Removed watermark div; now handled via CSS -->
-
-  <!-- Red Banner -->
-<header>
-  <div class="banner-content">
-    <img src="logos/F1GPBLogoC.jpg" alt="F1 GP Breakdown Logo" class="fb-logo">
-
-    <h1>F1 GP Breakdown</h1>
-  </div>
-  <div id="countdown">Loading countdown…</div>
-</header>
- 
+  <header>
+    <div class="container">
+      <div class="title-row">
+        <h1>F1 GP Breakdown</h1>
+        <div id="countdown" class="countdown">Loading countdown…</div>
+      </div>
+    </div>
+  </header>
 
   <main>
-    <!-- Race Recap -->
-    <section class="recap" id="recap">
-      <h2>🏆 Latest Race Recap</h2>
-      <h3>🇭🇺 Hungarian Grand Prix – Full Breakdown</h3>
-      <p>At the Hungaroring, Lando Norris clinched a dramatic victory for McLaren, fending off teammate Oscar Piastri by just 0.698 seconds. Charles Leclerc’s early lead from pole faded under clever strategy calls, while George Russell completed the podium for Mercedes.</p>
-      <h4>Key Moments</h4>
-      <ul>
-        <li><strong>Lap 1:</strong> Leclerc holds off Piastri into Turn 1; Norris drops to P4.</li>
-        <li><strong>Lap 23:</strong> McLaren split strategies—Norris on one-stop, Piastri on two-stop.</li>
-        <li><strong>Lap 51:</strong> Piastri closes gap with fresher tires.</li>
-        <li><strong>Lap 69:</strong> Piastri locks up at Turn 1, Norris wins.</li>
-      </ul>
-      <h4>Podium Finishers</h4>
-      <ul>
-        <li>Lando Norris (McLaren)</li>
-        <li>Oscar Piastri (McLaren)</li>
-        <li>George Russell (Mercedes)</li>
-      </ul>
-    </section>
+    <div class="container">
+      <div class="grid">
+        <!-- Latest Race Recap -->
+        <section class="card recap">
+          <h2>Latest race recap</h2>
+          <div class="meta">
+            <span class="flag" aria-hidden="true">🇭🇺</span>
+            <span>Hungarian Grand Prix — Hungaroring</span>
+          </div>
+          <p><strong class="accent">Headline:</strong> Lando Norris clinches a dramatic victory for McLaren, fending off teammate Oscar Piastri by 0.698s; George Russell completes the podium.</p>
+          <ul class="key-moments">
+            <li>Lap 1: Leclerc holds P1 into Turn 1; Norris drops to P4.</li>
+            <li>Lap 23: McLaren split strategies — Norris one-stop, Piastri two-stop.</li>
+            <li>Lap 51: Piastri closes with fresher tires.</li>
+            <li>Lap 69: Late lockup for Piastri seals Norris’s win.</li>
+          </ul>
+        </section>
 
-    <!-- Driver Standings -->
-    <section class="standings" id="standings">
-      <h2>🏁 Driver Standings</h2>
-      <table>
-        <tr>
-          <th>Position</th>
-          <th>Driver</th>
-          <th>Team</th>
-          <th>Points</th>
-        </tr>
-        <tr><td>1</td><td>Oscar Piastri</td><td>McLaren</td><td>284</td></tr>
-        <tr><td>2</td><td>Lando Norris</td><td>McLaren</td><td>275</td></tr>
-        <tr><td>3</td><td>Max Verstappen</td><td>Red Bull Racing</td><td>187</td></tr>
-        <tr><td>4</td><td>George Russell</td><td>Mercedes</td><td>172</td></tr>
-        <tr><td>5</td><td>Charles Leclerc</td><td>Ferrari</td><td>151</td></tr>
-      </table>
-    </section>
-
-    <!-- Upcoming Races -->
-    <section id="races">
-      <h2>📅 Upcoming Races</h2>
-      <div class="race-cards">
-        <div class="race-card">
-          <h3>🇧🇪 Belgian GP</h3>
-          <p><strong>Date:</strong> Aug 25, 2025</p>
-          <p><strong>Location:</strong> Spa-Francorchamps</p>
-        </div>
-        <div class="race-card">
-          <h3>🇮🇹 Italian GP</h3>
-          <p><strong>Date:</strong> Sep 8, 2025</p>
-          <p><strong>Location:</strong> Monza</p>
-        </div>
-        <div class="race-card">
-          <h3>🇸🇬 Singapore GP</h3>
-          <p><strong>Date:</strong> Sep 22, 2025</p>
-          <p><strong>Location:</strong> Marina Bay Circuit</p>
-        </div>
+        <!-- Driver Standings -->
+        <section class="card standings">
+          <h2>Driver standings</h2>
+          <table aria-label="Driver standings">
+            <thead>
+              <tr>
+                <th scope="col">Position</th>
+                <th scope="col">Driver</th>
+                <th scope="col">Team</th>
+                <th scope="col">Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Oscar Piastri</td>
+                <td>McLaren</td>
+                <td><span class="badge">284</span></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Lando Norris</td>
+                <td>McLaren</td>
+                <td><span class="badge">275</span></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Max Verstappen</td>
+                <td>Red Bull Racing</td>
+                <td><span class="badge">187</span></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>George Russell</td>
+                <td>Mercedes</td>
+                <td><span class="badge">172</span></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Charles Leclerc</td>
+                <td>Ferrari</td>
+                <td><span class="badge">151</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </div>
-    </section>
+
+      <!-- Upcoming Races -->
+      <section class="card upcoming" style="margin-top: 20px;">
+        <h2>Upcoming races</h2>
+        <div class="upcoming-list">
+          <div class="race-card">
+            <div>
+              <strong>🇧🇪 Belgian GP</strong>
+              <div class="when">Aug 25, 2025 — Spa-Francorchamps</div>
+            </div>
+            <div class="badge">Next</div>
+          </div>
+          <div class="race-card">
+            <div>
+              <strong>🇮🇹 Italian GP</strong>
+              <div class="when">Sep 8, 2025 — Monza</div>
+            </div>
+          </div>
+          <div class="race-card">
+            <div>
+              <strong>🇸🇬 Singapore GP</strong>
+              <div class="when">Sep 22, 2025 — Marina Bay Circuit</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer>
-    © 2025 F1 GP Breakdown. All rights reserved.
+    <div class="container">
+      © 2025 F1 GP Breakdown. All rights reserved.
+    </div>
   </footer>
 
   <script>
-    // Countdown to next race (Belgian GP)
-    (function() {
+    (function () {
       const countdownEl = document.getElementById('countdown');
+      const eventName = 'Belgian GP';
+      // Set to your target start time (local or UTC with Z). Adjust as needed.
       const raceDate = new Date('2025-08-25T00:00:00');
+
+      let timer; // declared first to avoid TDZ issues
+
+      function format(diffMs) {
+        const d = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diffMs % (1000 * 60)) / 1000);
+        return `${d}d ${h}h ${m}m ${s}s`;
+      }
 
       function update() {
         const now = new Date();
         const diff = raceDate - now;
+
         if (diff <= 0) {
-          countdownEl.textContent = 'Belgian GP is underway!';
-          clearInterval(timer);
+          countdownEl.textContent = `${eventName} is underway!`;
+          if (timer) clearInterval(timer);
           return;
         }
-        const d = Math.floor(diff / (1000*60*60*24));
-        const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-        const m = Math.floor((diff % (1000*60*60)) / (1000*60));
-        const s = Math.floor((diff % (1000*60)) / 1000);
-        countdownEl.textContent = `Countdown to Belgian GP: ${d}d ${h}h ${m}m ${s}s`;
+
+        countdownEl.textContent = `Countdown to ${eventName}: ${format(diff)}`;
       }
 
       update();
-      const timer = setInterval(update, 1000);
+      timer = setInterval(update, 1000);
     })();
   </script>
 </body>
 </html>
-```
