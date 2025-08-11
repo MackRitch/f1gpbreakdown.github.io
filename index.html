@@ -116,12 +116,14 @@
 
     /* Card base */
     .card {
-      background-color: var(--card-bg);
-      color: var(--card-fg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px;
-    }
+  background-color: rgba(32, 32, 32, 0.65); /* Grey with slight transparency */
+  color: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  backdrop-filter: blur(6px);
+}
+
 
     /* Sections layout */
     .grid {
@@ -328,7 +330,7 @@
       </div>
 
       <!-- Upcoming Races -->
-      <section class="card upcoming" style="margin-top: 20px;">
+      <section class="card upcoming">
         <h2>Upcoming races</h2>
         <div class="upcoming-list">
           <div class="race-card">
