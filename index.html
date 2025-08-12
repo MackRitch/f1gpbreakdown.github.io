@@ -47,7 +47,7 @@
   font-size: 1.5rem;
 }
 
-/* Racing stripe for title */
+/* Racing stripe with swoosh effect */
 .title-with-stripe {
   position: relative;
   display: inline-block;
@@ -55,17 +55,25 @@
   font-size: 2.5rem;
   color: #ffffff;
 }
+
 .title-with-stripe::after {
   content: "";
   position: absolute;
   top: 50%;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background-color: #e10600;
-  transform: translateY(-50%);
+  left: -5%;
+  width: 110%;
+  height: 8px;
+  background: linear-gradient(
+    135deg,
+    #ff2b2b 0%,
+    #e10600 40%,
+    #990000 100%
+  );
+  transform: translateY(-50%) skewX(-20deg);
+  border-radius: 4px;
   z-index: -1;
 }
+
 </style>
 </head>
 <body>
