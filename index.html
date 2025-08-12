@@ -5,251 +5,227 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>F1 GP Breakdown</title>
 
-  <!-- Fonts -->
+  <!-- Fonts (safe if blocked; system fallbacks below) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg: #0b0f1a;
-      --bg2: #0f1424;
-      --fg: #e6edf3;
-      --muted: #a9b1bd;
-      --accent: #5de4ff;
-      --accent-2: #9d7dff;
-      --card-bg: rgba(255, 255, 255, 0.06);
-      --card-bg-strong: rgba(255, 255, 255, 0.10);
-      --card-border: rgba(255, 255, 255, 0.14);
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      --radius: 16px;
-      --radius-sm: 12px;
-      --maxw: 1200px;
-      --gap: 18px;
+    /* CSS surgery: use cascade layers + namespacing so nothing else can clobber this. */
+    @layer reset, theme, components, utilities;
+
+    @layer reset {
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body { margin: 0; }
+      img, svg, video { max-width: 100%; display: block; }
+      table { border-collapse: collapse; width: 100%; }
+      :where(h1, h2, h3, p) { margin: 0; }
     }
 
-    /* Global */
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      color: var(--fg);
-      background: radial-gradient(1200px 800px at 20% -10%, #1a2442 0%, transparent 60%),
-                  radial-gradient(1400px 900px at 120% 10%, #15203a 0%, transparent 60%),
-                  linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.55;
-      overflow-x: hidden;
+    @layer theme {
+      :root {
+        --bg: #0b0f1a;
+        --bg2: #0f1424;
+        --fg: #e6edf3;
+        --muted: #a9b1bd;
+        --accent: #5de4ff;
+        --accent-2: #9d7dff;
+        --card: rgba(17, 23, 40, 0.88);
+        --card-border: rgba(255,255,255,0.16);
+        --shadow: 0 10px 30px rgba(0,0,0,0.35);
+        --radius: 16px;
+        --radius-sm: 12px;
+        --gap: 18px;
+        --maxw: 1200px;
+      }
+      /* Namespaced body so other global body rules can't override */
+      body.gp {
+        color: var(--fg);
+        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        line-height: 1.55;
+        background:
+          radial-gradient(1200px 800px at 20% -10%, #1a2442 0%, transparent 60%),
+          radial-gradient(1400px 900px at 120% 10%, #15203a 0%, transparent 60%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+        /* Prevent accidental overlays from other stylesheets */
+        background-attachment: fixed, fixed, fixed;
+        overflow-x: hidden;
+      }
     }
 
-    /* Subtle grain + vignette */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(80% 120% at 50% 50%, transparent 50%, rgba(0,0,0,0.35) 100%),
-        repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 4px);
-      mix-blend-mode: soft-light;
-      z-index: 0;
+    @layer components {
+      /* Container */
+      .gp .container {
+        position: relative;
+        z-index: 1;
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 28px 18px 56px;
+      }
+
+      /* Header */
+      .gp .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 22px;
+      }
+      .gp .title {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+      }
+      .gp .title h1 {
+        font-family: "Orbitron", ui-sans-serif;
+        font-weight: 700;
+        font-size: clamp(24px, 3vw, 36px);
+        letter-spacing: 0.6px;
+        background: linear-gradient(90deg, #ffffff, #d9f7ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .gp .subtitle { color: var(--muted); font-size: 14px; }
+
+      /* Countdown */
+      .gp .countdown {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        border: 1px solid var(--card-border);
+        background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+        border-radius: var(--radius-sm);
+        backdrop-filter: blur(8px);
+        box-shadow: var(--shadow);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        color: #eaf9ff;
+      }
+      .gp .countdown .label { font-weight: 600; color: #bfefff; }
+      .gp .countdown .t b {
+        font-family: "Orbitron"; letter-spacing: 0.5px; font-weight: 700; color: #ffffff;
+      }
+
+      /* Grid */
+      .gp .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--gap);
+        margin-top: 18px;
+      }
+
+      /* Card */
+      .gp .card {
+        position: relative;
+        border-radius: var(--radius);
+        padding: 18px 18px 16px;
+        border: 1px solid var(--card-border);
+        background: var(--card);
+        box-shadow: var(--shadow);
+        transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        min-height: 160px;
+      }
+      .gp .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 36px rgba(0,0,0,0.45);
+        border-color: rgba(255,255,255,0.24);
+      }
+      .gp .card h2 {
+        display: inline-block;
+        margin: 0 0 10px;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        color: #eaf9ff;
+        padding-right: 10px;
+        position: relative;
+      }
+      .gp .card h2::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 44px;
+        margin-top: 8px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        border-radius: 2px;
+      }
+
+      /* Content helpers */
+      .gp .muted { color: var(--muted); }
+      .gp .em { color: #dff7ff; font-weight: 600; }
+
+      .gp .list {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .gp .list li {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        color: #f3f7fb;
+      }
+      .gp .list small { color: var(--muted); }
+
+      .gp .table th, .gp .table td {
+        text-align: left;
+        padding: 8px 6px;
+        border-bottom: 1px dashed rgba(255,255,255,0.12);
+      }
+      .gp .table th {
+        color: #bfefff;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .gp .table td {
+        color: #eef7ff;
+        font-size: 14px;
+      }
+      .gp .pos { display: inline-block; min-width: 22px; text-align: right; color: #c9eaff; }
+      .gp .pts { text-align: right; color: #dff7ff; font-weight: 600; }
+
+      /* Watermark */
+      .gp .watermark {
+        position: fixed;
+        right: 14px;
+        bottom: 12px;
+        z-index: 3;
+        font-family: "Orbitron";
+        letter-spacing: 0.6px;
+        color: rgba(223, 247, 255, 0.85);
+        background: rgba(255,255,255,0.08);
+        border: 1px solid var(--card-border);
+        padding: 8px 10px;
+        border-radius: 10px;
+        backdrop-filter: blur(6px);
+        font-size: 12px;
+      }
     }
 
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 28px 18px 48px;
-    }
+    @layer utilities {
+      /* Responsive */
+      @media (max-width: 980px) {
+        .gp .grid { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 640px) {
+        .gp .header { flex-direction: column; align-items: flex-start; }
+        .gp .grid { grid-template-columns: 1fr; }
+        .gp .countdown { width: 100%; justify-content: space-between; }
+      }
 
-    /* Header */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-    .title {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-    }
-    .title h1 {
-      font-family: "Orbitron", ui-sans-serif;
-      font-weight: 700;
-      font-size: clamp(24px, 3vw, 36px);
-      letter-spacing: 0.6px;
-      margin: 0;
-      background: linear-gradient(90deg, #fff, #d9f7ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .subtitle {
-      color: var(--muted);
-      font-size: 14px;
-      margin: 0;
-    }
-
-    /* Countdown */
-    .countdown {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      border: 1px solid var(--card-border);
-      background: linear-gradient(180deg, var(--card-bg-strong), var(--card-bg));
-      border-radius: var(--radius-sm);
-      backdrop-filter: blur(8px);
-      box-shadow: var(--shadow);
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-    .countdown .label {
-      font-weight: 600;
-      color: #bfefff;
-    }
-    .countdown .t {
-      display: inline-flex;
-      gap: 8px;
-      color: #fff;
-    }
-    .countdown .t b {
-      font-family: "Orbitron";
-      letter-spacing: 0.5px;
-      font-weight: 700;
-    }
-
-    /* Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--gap);
-      margin-top: 18px;
-    }
-
-    /* Cards */
-    .card {
-      position: relative;
-      border-radius: var(--radius);
-      padding: 18px 18px 16px;
-      border: 1px solid var(--card-border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)),
-        radial-gradient(140% 120% at 10% -10%, rgba(93, 228, 255, 0.10), transparent 40%),
-        radial-gradient(140% 120% at 110% 10%, rgba(157, 125, 255, 0.08), transparent 40%);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-      min-height: 160px;
-    }
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
-      border-color: rgba(255,255,255,0.22);
-    }
-    .card h2 {
-      display: inline-block;
-      margin: 0 0 10px;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      color: #eaf9ff;
-      padding-right: 10px;
-      position: relative;
-    }
-    .card h2::after {
-      content: "";
-      display: block;
-      height: 2px;
-      width: 44px;
-      margin-top: 8px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      border-radius: 2px;
-    }
-
-    /* Content styles */
-    .muted { color: var(--muted); }
-    .em { color: #dff7ff; font-weight: 600; }
-
-    .list {
-      display: grid;
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .list li {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      color: #f3f7fb;
-    }
-    .list small { color: var(--muted); }
-
-    /* Standings table */
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      font-variant-numeric: tabular-nums;
-    }
-    .table th, .table td {
-      text-align: left;
-      padding: 8px 6px;
-      border-bottom: 1px dashed rgba(255,255,255,0.12);
-    }
-    .table th {
-      color: #bfefff;
-      font-weight: 600;
-      font-size: 13px;
-    }
-    .table td {
-      color: #eef7ff;
-      font-size: 14px;
-    }
-    .pos {
-      display: inline-block;
-      min-width: 22px;
-      text-align: right;
-      color: #c9eaff;
-    }
-    .pts {
-      text-align: right;
-      color: #dff7ff;
-      font-weight: 600;
-    }
-
-    /* Watermark */
-    .watermark {
-      position: fixed;
-      right: 14px;
-      bottom: 12px;
-      z-index: 2;
-      font-family: "Orbitron";
-      letter-spacing: 0.6px;
-      color: rgba(223, 247, 255, 0.75);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      border: 1px solid var(--card-border);
-      padding: 8px 10px;
-      border-radius: 10px;
-      backdrop-filter: blur(6px);
-      font-size: 12px;
-    }
-
-    /* Responsive */
-    @media (max-width: 980px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 640px) {
-      .header { flex-direction: column; align-items: flex-start; }
-      .grid { grid-template-columns: 1fr; }
-      .countdown { width: 100%; justify-content: space-between; }
+      /* Debug “safe mode” — add data-debug="1" to <body class="gp"> to visualize layout */
+      body.gp[data-debug="1"] * { outline: 1px solid rgba(93, 228, 255, 0.25); }
+      body.gp[data-debug="1"] .card { background: #122038; }
     }
   </style>
 </head>
-<body>
+
+<body class="gp">
   <div class="container">
     <!-- Header -->
     <header class="header" role="banner">
@@ -282,55 +258,4 @@
       <!-- Standings -->
       <section class="card standings" aria-labelledby="standings-title">
         <h2 id="standings-title">Driver standings</h2>
-        <table class="table" aria-describedby="standings-title">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Driver</th>
-              <th>Team</th>
-              <th class="pts">Pts</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><span class="pos">1</span></td><td>Oscar Piastri</td><td>McLaren</td><td class="pts">284</td></tr>
-            <tr><td><span class="pos">2</span></td><td>Lando Norris</td><td>McLaren</td><td class="pts">275</td></tr>
-            <tr><td><span class="pos">3</span></td><td>Max Verstappen</td><td>Red Bull Racing</td><td class="pts">187</td></tr>
-            <tr><td><span class="pos">4</span></td><td>George Russell</td><td>Mercedes</td><td class="pts">172</td></tr>
-            <tr><td><span class="pos">5</span></td><td>Charles Leclerc</td><td>Ferrari</td><td class="pts">151</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- Upcoming -->
-      <section class="card upcoming" aria-labelledby="upcoming-title">
-        <h2 id="upcoming-title">Upcoming races</h2>
-        <ul class="list">
-          <li><span class="em">🇧🇪 Belgian GP:</span> Aug 31, 2025 — Spa‑Francorchamps</li>
-          <li><span class="em">🇮🇹 Italian GP:</span> Sep 7, 2025 — Monza</li>
-          <li><span class="em">🇸🇬 Singapore GP:</span> Sep 22, 2025 — Marina Bay</li>
-        </ul>
-      </section>
-    </section>
-
-    <!-- Bottom grid -->
-    <section class="grid bottom" aria-label="Deep dive">
-      <!-- Tech Insights -->
-      <section class="card tech" aria-labelledby="tech-title">
-        <h2 id="tech-title">Tech insights 🔧</h2>
-        <ul class="list">
-          <li><span class="em">McLaren rear wing:</span> Spa-spec low-drag trim delivered measurable top-speed gains.</li>
-          <li><span class="em">Ferrari cooling:</span> Revised sidepod airflow reduced thermal load in FP3.</li>
-        </ul>
-      </section>
-
-      <!-- Strategy Corner -->
-      <section class="card strategy" aria-labelledby="strategy-title">
-        <h2 id="strategy-title">Strategy corner ♟️</h2>
-        <ul class="list">
-          <li><span class="em">Hungary recap:</span> Split strategies — Norris gained ~10s on pit lane delta.</li>
-          <li><span class="em">Spa preview:</span> Medium–soft likely for low-deg; rain risk could push inters.</li>
-        </ul>
-      </section>
-
-      <!-- Latest News -->
-      <section class="card news" aria-labelledby="news-title">
+        <table
