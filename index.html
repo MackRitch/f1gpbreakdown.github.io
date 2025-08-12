@@ -10,17 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg-overlay: rgba(0,0,0,0.25);
-      --card-bg: #ffffff;
-      --card-fg: #000000;
-      --accent: #e10600; /* F1 red */
-      --muted: rgba(255,255,255,0.75);
-      --radius: 12px;
-      --shadow: 0 8px 24px rgba(0,0,0,0.25);
-      --maxw: 1100px;
-      --gap: 20px;
-    }
+   :root {
+  --card-bg: rgba(68, 68, 68, 0.8);
+  --card-fg: #ffffff;
+  --card-radius: 12px;
+  --card-padding: 1rem;
+  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --card-hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
 
     html, body {
       height: 100%;
@@ -115,18 +112,22 @@
     }
 
     /* Card base */
-   .card {
-  background-color: rgba(68, 68, 68, 0.8); /* Lightened grey, closer to background */
-  color: #fff;
-  border-radius: var(--radius);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35); /* Slightly deeper shadow for lift */
-  padding: 20px;
-  backdrop-filter: blur(6px);
+ .card {
+  background-color: var(--card-bg);
+  color: var(--card-fg);
+  border-radius: var(--card-radius, 12px);
+  padding: var(--card-padding, 1rem);
+  box-shadow: var(--card-shadow, 0 4px 8px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow, 0 6px 12px rgba(0, 0, 0, 0.3));
 }
 
 
-
-    /* Sections layout */
+ /* Sections layout */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
