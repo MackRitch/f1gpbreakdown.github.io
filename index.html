@@ -142,14 +142,15 @@
     }
 
     /* Specific cards */
-    .recap h2,
-    .standings h2,
-    .upcoming h2 {
-      margin: 0 0 12px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-      color: #111;
-    }
+    .recap,
+.standings,
+.upcoming {
+  background-color: var(--card-bg);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--card-shadow);
+}
+
 
     .recap .meta {
       display: flex;
