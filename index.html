@@ -116,16 +116,25 @@
   margin: 0 0 12px;
   font-weight: 700;
   letter-spacing: 0.3px;
-  color: var(--card-fg); /* replaces hardcoded #111 */
+  color: var(--card-fg);
 }
+
+.card {
+  background-color: var(--card-bg); /* rgba(229, 229, 229, 0.9) */
+  color: var(--card-fg);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--card-hover-shadow, 0 6px 12px rgba(0, 0, 0, 0.3));
 }
 
-
- /* Sections layout */
+/* Sections layout */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -140,16 +149,7 @@
     
   }
       /* Specific cards */
-  .recap,
-.standings,
-.upcoming {
-  background-color: var(--card-bg);        /* Light grey with slight transparency */
-  color: var(--card-fg);                   /* Unified text color */
-  border-radius: var(--card-radius);       /* Consistent rounded corners */
-  padding: var(--card-padding);            /* Shared spacing */
-  box-shadow: var(--card-shadow);          /* Soft shadow for depth */
-}
-
+ 
      .recap .meta {
       display: flex;
       align-items: center;
