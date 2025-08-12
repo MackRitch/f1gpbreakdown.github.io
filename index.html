@@ -25,17 +25,16 @@
       margin: 0;
     }
 
-    body {
-      font-family: 'Orbitron', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: #fff;
-      background-image: url('logos/usgptrack.jpg'); /* verify path/extension */
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      position: relative;
-      min-height: 100vh;
-      line-height: 1.4;
-    }
+   body {
+  font-family: 'Orbitron', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--card-fg);
+  background-color: rgba(229, 229, 229, 0.9); /* soft grey tone */
+  position: relative;
+  min-height: 100vh;
+  line-height: 1.4;
+  z-index: 0;
+}
+
 
     /* Watermark layer (beneath overlay) */
     body::before {
