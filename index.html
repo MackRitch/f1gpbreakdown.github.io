@@ -2,10 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>F1 GP Breakdown</title>
 
+  <!-- Orbitron font (optional; remove if you’re bundling fonts locally) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
+   :root {
+  --card-bg: rgba(229, 229, 229, 0.9); /* soft light grey */
+  --card-fg: #333;                     /* clean dark text */
+  --card-radius: 12px;
+  --card-padding: 1rem;
+  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --card-hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+    html, body {
+      height: 100%;
     /* Design tokens */
     :root {
       --bg: #0f1115;
@@ -17,6 +34,7 @@
       --card-radius: 16px;
       --card-padding: 16px;
       --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
       --accent: #ff3d71;
       --accent-2: #4ea8ff;
     }
@@ -32,44 +50,114 @@
       line-height: 1.4;
     }
 
+   body {
+  font-family: 'Orbitron', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--card-fg);
+  background-color: rgba(229, 229, 229, 0.9); /* soft grey tone */
+  position: relative;
+  min-height: 100vh;
+  line-height: 1.4;
+  z-index: 0;
+}
+
+
+    /* Watermark layer (beneath overlay) */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url('logos/F1GPBLogoC.jpg') no-repeat center;
+      background-size: 40% auto; /* adjust watermark size */
+      opacity: 0.08;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Darken only the background (not content) */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: none;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    header, main, footer {
+      position: relative;
+      z-index: 2; /* above overlay/watermark */
+    }
     a { color: inherit; text-decoration: none; }
 
     /* Layout */
     .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 24px;
       width: min(1100px, 92vw);
       margin: 32px auto;
     }
 
+    header {
+      padding-top: 24px;
+      padding-bottom: 8px;
     header.hero {
       margin-bottom: 20px;
     }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
     header.hero h1 {
       margin: 0 0 6px;
       font-size: 32px;
       letter-spacing: 0.4px;
     }
+
+   h1 {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+.racing-title {
+  display: inline-block;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    red 20%,
+    red 40%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 8px;
+  background-position: center 60%;
+  padding: 2px 6px;
+  position: relative;
+  color: #fff;
+}
+}
+
+    .countdown {
+      font-weight: 600;
     header.hero p {
       margin: 0;
       color: var(--muted);
+      white-space: nowrap;
     }
 
-    /* Grids */
-    .grid {
-      display: grid;
-      gap: 16px;
-    }
+    /* Card base */
+ .card h2 {
+  margin: 0 0 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--card-fg);
+}
 
-    /* If you had a separate top grid, keep it without opacity */
-    .grid.top { opacity: 1; background: none; }
-
-    @media (min-width: 880px) {
-      .grid.top { grid-template-columns: 2fr 1fr 1fr; }
-      .grid.bottom { grid-template-columns: 1fr 1fr 1fr; }
-    }
-
-    /* Card system (unified) */
-   .card {
-  background-color: var(--card-bg);
+.card {
+  background-color: var(--card-bg); /* rgba(229, 229, 229, 0.9) */
   color: var(--card-fg);
   border-radius: var(--card-radius);
   padding: var(--card-padding);
@@ -77,19 +165,102 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card h2 {
-  margin: 0 0 12px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  color: var(--card-fg);
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow, 0 6px 12px rgba(0, 0, 0, 0.3));
 }
 
+/* Sections layout */
+    /* Grids */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      align-items: start;
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    
+  }
+      /* Specific cards */
+ 
+     .recap .meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #444;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    /* If you had a separate top grid, keep it without opacity */
+    .grid.top { opacity: 1; background: none; }
+
+    .recap .flag {
+      font-size: 20px;
+    @media (min-width: 880px) {
+      .grid.top { grid-template-columns: 2fr 1fr 1fr; }
+      .grid.bottom { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .key-moments {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    /* Card system (unified) */
+    .card {
+      background-color: var(--card-bg);
+      color: var(--card-fg);
+      border-radius: var(--card-radius);
+      padding: var(--card-padding);
+      box-shadow: var(--card-shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      will-change: transform, box-shadow;
+    }
+
+    /* Table styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: calc(var(--radius) - 2px);
+      overflow: hidden;
     .card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
     }
- 
-/* Neutralize any old per-section visual overrides (keeps hooks if you use them) */
+
+    thead th {
+      text-align: left;
+    .card h2 {
+      margin: 0 0 12px;
+      font-weight: 700;
+      background: #f6f6f7;
+      color: #111;
+      border-bottom: 2px solid #eee;
+      padding: 12px 10px;
+      font-size: 14px;
+    }
+
+    tbody td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+      color: #222;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+      letter-spacing: 0.3px;
+      color: var(--card-fg);
+      font-size: 18px;
+    }
+
+    tbody tr:hover {
+      background: #fafafa;
+    /* Neutralize any old per-section visual overrides (keeps hooks if you use them) */
     .recap, .standings, .upcoming,
     .tech, .strategy, .news {
       background: inherit;
@@ -104,18 +275,28 @@
     /* Common small UI bits */
     .badge {
       display: inline-block;
+      padding: 2px 8px;
       padding: 4px 8px;
       border-radius: 999px;
       font-weight: 700;
       font-size: 12px;
+      background: #f0f0f0;
+      color: #222;
       background: #111827;
       color: #fff;
     }
     .muted { color: var(--muted); }
 
+    .accent {
+      color: var(--accent);
+    }
     /* Recap content */
     .recap p { margin: 0 0 10px; }
 
+    /* Upcoming list */
+    .upcoming-list {
+      display: grid;
+      gap: 12px;
     /* Standings table */
     .standings table {
       width: 100%;
@@ -137,15 +318,27 @@
     /* Upcoming list */
     .upcoming-list { display: grid; gap: 10px; }
     .race-card {
+      background: #fff;
+      color: #111;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
       background: rgba(0,0,0,0.04);
       border-radius: 12px;
       padding: 10px 12px;
     }
     .race-card .when { color: #333; font-size: 13px; }
 
+    .race-card .when {
+      color: #444;
+      font-size: 13px;
+    }
     /* Tech/Strategy/News specifics */
     .tech p, .strategy p, .news p, .news li { color: #222; }
     .news ul { margin: 0; padding-left: 18px; }
@@ -153,14 +346,52 @@
 
     /* Footer */
     footer {
+      opacity: 0.85;
+      font-size: 13px;
+      padding: 16px 0 36px;
       margin: 28px 0 40px;
       color: var(--muted);
       text-align: center;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      body { background-attachment: scroll; } /* prevent mobile jank */
+      .container { padding: 18px; }
+      .title-row { gap: 10px; }
+      .countdown { font-size: 14px; }
       font-size: 13px;
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="container">
+      <div class="title-row">
+       <h1><span class="racing-title">F1 GP Breakdown</span></h1>
+       <div id="countdown" class="countdown">Loading countdown…</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="grid">
+        <!-- Latest Race Recap -->
+        <section class="card recap">
+          <h2>Latest race recap</h2>
+          <div class="meta">
+            <span class="flag" aria-hidden="true">🇭🇺</span>
+            <span>Hungarian Grand Prix — Hungaroring</span>
+          </div>
+          <p><strong class="accent">Headline:</strong> Lando Norris clinches a dramatic victory for McLaren, fending off teammate Oscar Piastri by 0.698s; George Russell completes the podium.</p>
+          <ul class="key-moments">
+            <li>Lap 1: Leclerc holds P1 into Turn 1; Norris drops to P4.</li>
+            <li>Lap 23: McLaren split strategies — Norris one-stop, Piastri two-stop.</li>
+            <li>Lap 51: Piastri closes with fresher tires.</li>
+            <li>Lap 69: Late lockup for Piastri seals Norris’s win.</li>
+          </ul>
+        </section>
   <div class="container">
     <header class="hero">
       <h1>F1 GP Breakdown</h1>
@@ -176,6 +407,53 @@
         <p class="muted">More detail here…</p>
       </section>
 
+        <!-- Driver Standings -->
+        <section class="card standings">
+          <h2>Driver standings</h2>
+          <table aria-label="Driver standings">
+            <thead>
+              <tr>
+                <th scope="col">Position</th>
+                <th scope="col">Driver</th>
+                <th scope="col">Team</th>
+                <th scope="col">Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Oscar Piastri</td>
+                <td>McLaren</td>
+                <td><span class="badge">284</span></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Lando Norris</td>
+                <td>McLaren</td>
+                <td><span class="badge">275</span></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Max Verstappen</td>
+                <td>Red Bull Racing</td>
+                <td><span class="badge">187</span></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>George Russell</td>
+                <td>Mercedes</td>
+                <td><span class="badge">172</span></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Charles Leclerc</td>
+                <td>Ferrari</td>
+                <td><span class="badge">151</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
       <section class="card standings">
         <h2>Standings</h2>
         <table>
@@ -192,32 +470,34 @@
         </table>
       </section>
 
+      <!-- Upcoming Races -->
       <section class="card upcoming">
         <h2>Upcoming races</h2>
         <div class="upcoming-list">
-          <div class="race-card">
-            <div>
-              <strong>🇧🇪 Belgian GP</strong>
-              <div class="when">Aug 25, 2025 — Spa-Francorchamps</div>
-            </div>
-            <div class="badge">Next</div>
-          </div>
-          <div class="race-card">
-            <div>
-              <strong>🇮🇹 Italian GP</strong>
-              <div class="when">Sep 8, 2025 — Monza</div>
-            </div>
-          </div>
+@@ -350,74 +212,38 @@
           <div class="race-card">
             <div>
               <strong>🇸🇬 Singapore GP</strong>
+              <div class="when">Sep 22, 2025 — Marina Bay Circuit</div>
               <div class="when">Sep 22, 2025 — Marina Bay</div>
             </div>
           </div>
         </div>
       </section>
     </div>
+  </main>
+<!-- New Insights Section -->
+<section class="card tech" style="margin-top: 20px;">
+  <h2>Tech Insights</h2>
+  <p><strong>🔧 McLaren Rear Wing Update:</strong> Spa-spec low-drag trim delivered 3.4 km/h gain through Sector 1 speed traps.</p>
+  <p><strong>🔥 Ferrari Cooling Fix:</strong> Revised sidepod airflow cut thermal load by 6% in FP3. Expect stronger race pace.</p>
+</section>
 
+<section class="card strategy" style="margin-top: 20px;">
+  <h2>Strategy Corner</h2>
+  <p><strong>🧠 Hungary Recap:</strong> McLaren split strategies—Norris one-stopped; Piastri two-stopped. Norris gained ~10s on pit lane delta.</p>
+  <p><strong>🌀 Spa Preview:</strong> Medium-soft likely for low-deg setup; rain threat may force intermediates.</p>
+</section>
     <!-- Bottom three cards -->
     <div class="grid bottom" style="margin-top: 16px;">
       <section class="card tech">
@@ -226,12 +506,23 @@
         <p><strong>🔥 Ferrari Cooling Fix:</strong> Revised sidepod airflow reduced thermal load in FP3.</p>
       </section>
 
+<section class="card news" style="margin-top: 20px;">
+  <h2>Latest News</h2>
+  <ul>
+    <li><strong>🔺 Mercedes reshuffles pit crew:</strong> Russell gets dedicated strategist for the remainder of 2025.</li>
+    <li><strong>🟠 McLaren locks in Spa upgrades:</strong> Major floor revisions locked ahead of qualifying.</li>
+    <li><strong>🌧️ Weather alert:</strong> FP2 at Spa may face light drizzle—intermediates on standby.</li>
+  </ul>
+</section>
       <section class="card strategy">
         <h2>Strategy Corner</h2>
         <p><strong>🧠 Hungary Recap:</strong> Split strategies widened delta via pit timing.</p>
         <p><strong>🔁 Spa Preview:</strong> Medium–soft likely; rain could force inters.</p>
       </section>
 
+  <footer>
+    <div class="container">
+      © 2025 F1 GP Breakdown. All rights reserved.
       <section class="card news">
         <h2>Latest News</h2>
         <ul>
@@ -241,7 +532,42 @@
         </ul>
       </section>
     </div>
+  </footer>
 
+  <script>
+    (function () {
+      const countdownEl = document.getElementById('countdown');
+      const eventName = 'Belgian GP';
+      // Set to your target start time (local or UTC with Z). Adjust as needed.
+      const raceDate = new Date('2025-08-25T00:00:00');
+
+      let timer; // declared first to avoid TDZ issues
+
+      function format(diffMs) {
+        const d = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diffMs % (1000 * 60)) / 1000);
+        return `${d}d ${h}h ${m}m ${s}s`;
+      }
+
+      function update() {
+        const now = new Date();
+        const diff = raceDate - now;
+
+        if (diff <= 0) {
+          countdownEl.textContent = `${eventName} is underway!`;
+          if (timer) clearInterval(timer);
+          return;
+        }
+
+        countdownEl.textContent = `Countdown to ${eventName}: ${format(diff)}`;
+      }
+
+      update();
+      timer = setInterval(update, 1000);
+    })();
+  </script>
     <footer>© 2025 F1 GP Breakdown. All rights reserved.</footer>
   </div>
 </body>
