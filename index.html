@@ -4,14 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>F1 GP Breakdown</title>
-  <link rel="stylesheet" href="styles.css" /> 
-  
-  <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>F1 GP Breakdown</title>
   <link rel="stylesheet" href="styles.css" />
+
   <style>
+    /* Base page styles */
     body {
       background-color: #121212;
       color: #ffffff;
@@ -19,6 +15,8 @@
       margin: 0;
       padding: 0;
     }
+
+    /* Common elements */
     .card, header, footer, table {
       background-color: transparent;
       color: #ffffff;
@@ -26,9 +24,71 @@
     .card h2, .card h3, .card h4, .card p, .card li, .card table td, .card table th {
       color: #ffffff;
     }
+
+    /* Optional helpers */
+    .site-header { padding: 24px 16px; }
+    .tagline { margin: 8px 0 16px; opacity: 0.85; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.15); text-align: left; }
+    .card { padding: 16px; margin: 16px; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; }
   </style>
-  </head>
-  body {
+</head>
+<body>
+  <header class="site-header">
+    <div class="racing-stripe"></div>
+    <h1>F1 GP Breakdown</h1>
+    <p class="tagline">All Things Formula 1 — News • Recap • Tech • Standings</p>
+    <div id="countdown">Countdown loading...</div>
+  </header>
+
+  <main>
+    <section class="card recap">
+      <h2>🏁 Race Recap</h2>
+      <p><strong>Hungarian Grand Prix:</strong> Norris edges Piastri by under a second with Russell completing the podium. Early strategy split sealed the deal.</p>
+    </section>
+
+    <section class="card standings">
+      <h2>📊 Driver Standings</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Driver</th>
+            <th>Team</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Lando Norris</td>
+            <td>McLaren</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Max Verstappen</td>
+            <td>Red Bull</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Charles Leclerc</td>
+            <td>Ferrari</td>
+            <td>&mdash;</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="site-footer"></footer>
+</body>
+</html>
+
+  </style>
+  
+    body {
   background-color: #121212;
   color: #ffffff;
   font-family: 'Orbitron', sans-serif;
