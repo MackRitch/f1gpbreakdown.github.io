@@ -41,17 +41,38 @@
       transform: translateY(-5px);
       box-shadow: 0 6px 15px rgba(0,0,0,0.8);
     }
-    .card h2 {
-      color: #e10600;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-  </style>
+.card h2 {
+  color: #e10600;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+/* Racing stripe for title */
+.title-with-stripe {
+  position: relative;
+  display: inline-block;
+  padding: 0 1rem;
+  font-size: 2.5rem;
+  color: #ffffff;
+}
+.title-with-stripe::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-color: #e10600;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>F1 GP Breakdown</h1>
-  </header>
+ <header>
+  <h1 class="title-with-stripe">F1 GP Breakdown</h1>
+</header>
+
   <main>
     <div class="card">
       <h2>Race Recap</h2>
