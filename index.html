@@ -1,308 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>F1 GP Breakdown</title>
-
-  <!-- Fonts (safe if blocked; system fallbacks below) -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    /* CSS surgery: use cascade layers + namespacing so nothing else can clobber this. */
-    @layer reset, theme, components, utilities;
-
-    @layer reset {
-      *, *::before, *::after { box-sizing: border-box; }
-      html, body { height: 100%; }
-      body { margin: 0; }
-      img, svg, video { max-width: 100%; display: block; }
-      table { border-collapse: collapse; width: 100%; }
-      :where(h1, h2, h3, p) { margin: 0; }
-    }
-
-    @layer theme {
-      :root {
-        --bg: #0b0f1a;
-        --bg2: #0f1424;
-        --fg: #e6edf3;
-        --muted: #a9b1bd;
-        --accent: #5de4ff;
-        --accent-2: #9d7dff;
-        --card: rgba(17, 23, 40, 0.88);
-        --card-border: rgba(255,255,255,0.16);
-        --shadow: 0 10px 30px rgba(0,0,0,0.35);
-        --radius: 16px;
-        --radius-sm: 12px;
-        --gap: 18px;
-        --maxw: 1200px;
-      }
-      /* Namespaced body so other global body rules can't override */
-      body.gp {
-        color: var(--fg);
-        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        line-height: 1.55;
-        background:
-          radial-gradient(1200px 800px at 20% -10%, #1a2442 0%, transparent 60%),
-          radial-gradient(1400px 900px at 120% 10%, #15203a 0%, transparent 60%),
-          linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
-        /* Prevent accidental overlays from other stylesheets */
-        background-attachment: fixed, fixed, fixed;
-        overflow-x: hidden;
-      }
-    }
-
-    @layer components {
-      /* Container */
-      .gp .container {
-        position: relative;
-        z-index: 1;
-        max-width: var(--maxw);
-        margin: 0 auto;
-        padding: 28px 18px 56px;
-      }
-
-      /* Header */
-      .gp .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 22px;
-      }
-      .gp .title {
-        display: flex;
-        align-items: baseline;
-        gap: 12px;
-      }
-      .gp .title h1 {
-        font-family: "Orbitron", ui-sans-serif;
-        font-weight: 700;
-        font-size: clamp(24px, 3vw, 36px);
-        letter-spacing: 0.6px;
-        background: linear-gradient(90deg, #ffffff, #d9f7ff);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-      .gp .subtitle { color: var(--muted); font-size: 14px; }
-
-      /* Countdown */
-      .gp .countdown {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        padding: 10px 14px;
-        border: 1px solid var(--card-border);
-        background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
-        border-radius: var(--radius-sm);
-        backdrop-filter: blur(8px);
-        box-shadow: var(--shadow);
-        font-variant-numeric: tabular-nums;
-        white-space: nowrap;
-        color: #eaf9ff;
-      }
-      .gp .countdown .label { font-weight: 600; color: #bfefff; }
-      .gp .countdown .t b {
-        font-family: "Orbitron"; letter-spacing: 0.5px; font-weight: 700; color: #ffffff;
-      }
-
-      /* Grid */
-      .gp .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--gap);
-        margin-top: 18px;
-      }
-
-      /* Card */
-      .gp .card {
-        position: relative;
-        border-radius: var(--radius);
-        padding: 18px 18px 16px;
-        border: 1px solid var(--card-border);
-        background: var(--card);
-        box-shadow: var(--shadow);
-        transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-        min-height: 160px;
-      }
-      .gp .card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 16px 36px rgba(0,0,0,0.45);
-        border-color: rgba(255,255,255,0.24);
-      }
-      .gp .card h2 {
-        display: inline-block;
-        margin: 0 0 10px;
-        font-size: 16px;
-        font-weight: 700;
-        letter-spacing: 0.4px;
-        text-transform: uppercase;
-        color: #eaf9ff;
-        padding-right: 10px;
-        position: relative;
-      }
-      .gp .card h2::after {
-        content: "";
-        display: block;
-        height: 2px;
-        width: 44px;
-        margin-top: 8px;
-        background: linear-gradient(90deg, var(--accent), var(--accent-2));
-        border-radius: 2px;
-      }
-.card-row {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 8px 0;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-.card-row .card {
-  flex: 0 0 320px;
-  scroll-snap-align: start;
-}
-
-      /* Content helpers */
-      .gp .muted { color: var(--muted); }
-      .gp .em { color: #dff7ff; font-weight: 600; }
-
-      .gp .list {
-        display: grid;
-        gap: 8px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-      .gp .list li {
-        display: flex;
-        gap: 10px;
-        align-items: flex-start;
-        color: #f3f7fb;
-      }
-      .gp .list small { color: var(--muted); }
-
-      .gp .table th, .gp .table td {
-        text-align: left;
-        padding: 8px 6px;
-        border-bottom: 1px dashed rgba(255,255,255,0.12);
-      }
-      .gp .table th {
-        color: #bfefff;
-        font-weight: 600;
-        font-size: 13px;
-<div class="card-row">
-  <section class="card recap">...</section>
-  <section class="card standings">...</section>
-  <section class="card upcoming">...</section>
-  <section class="card tech">...</section>
-  <section class="card strategy">...</section>
-  <section class="card news">...</section>
-</div>
-{
-      .gp .table td {
-        color: #eef7ff;
-        font-size: 14px;
-      }
-      .gp .pos { display: inline-block; min-width: 22px; text-align: right; color: #c9eaff; }
-      .gp .pts { text-align: right; color: #dff7ff; font-weight: 600; }
-
-      /* Watermark */
-      .gp .watermark {
-        position: fixed;
-        right: 14px;
-        bottom: 12px;
-        z-index: 3;
-        font-family: "Orbitron";
-        letter-spacing: 0.6px;
-        color: rgba(223, 247, 255, 0.85);
-        background: rgba(255,255,255,0.08);
-        border: 1px solid var(--card-border);
-        padding: 8px 10px;
-        border-radius: 10px;
-        backdrop-filter: blur(6px);
-        font-size: 12px;
-      }
-    }
-@layer utilities {
-      /* Responsive */
-      @media (max-width: 980px) {
-        .gp .grid { grid-template-columns: repeat(2, 1fr); }
-      }
-      @media (max-width: 640px) {
-        .gp .header { flex-direction: column; align-items: flex-start; }
-        .gp .grid { grid-template-columns: 1fr; }
-        .gp .countdown { width: 100%; justify-content: space-between; }
-      }
-
-      /* Debug “safe mode” — add data-debug="1" to <body class="gp"> to visualize layout */
-      body.gp[data-debug="1"] * { outline: 1px solid rgba(93, 228, 255, 0.25); }
-      body.gp[data-debug="1"] .card { background: #122038; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
+<body>
+  <header class="site-header">
+    <h1>F1 GP Breakdown</h1>
+    <p>Fast recap, standings, and what’s next.</p>
 
-<body class="gp">
-  <div class="container">
-    <!-- Header -->
-    <header class="header" role="banner">
-      <div class="title">
-        <h1>F1 GP Breakdown</h1>
-        <p class="subtitle">Fast recap, standings, and what’s next.</p>
-      </div>
+    <!-- Countdown target lives here, not inside any table or card content -->
+    <div id="countdown"
+         class="countdown"
+         data-event="Belgian GP"
+         data-target="2025-08-31T13:00:00Z">
+      Countdown loading…
+    </div>
+    <noscript>Enable JavaScript to see the live countdown.</noscript>
+  </header>
 
-      <!-- Set your next race UTC datetime in data-target -->
-      <div id="countdown" class="countdown" aria-live="polite" data-target="2025-08-31T13:00:00Z">
-        <span class="label">Countdown to Belgian GP:</span>
-        <span class="t"><b>--d --h --m --s</b></span>
-      </div>
-    </header>
+  <main class="grid">
+    <section class="card recap">
+      <h2>Latest race recap</h2>
+      <h3>Hungarian Grand Prix — Hungaroring</h3>
+      <ul>
+        <li><strong>Headline:</strong> Lando Norris holds off Oscar Piastri by 0.698s; George Russell completes the podium.</li>
+        <li><strong>Lap 1:</strong> Leclerc keeps P1 into Turn 1; Norris drops to P4.</li>
+        <li><strong>Lap 23:</strong> McLaren split strategies — Norris one‑stop, Piastri two‑stop.</li>
+        <li><strong>Lap 69:</strong> Late lockup from Piastri seals Norris’s win.</li>
+      </ul>
+    </section>
 
-    <!-- Top grid -->
-    <section class="grid top" aria-label="Overview">
-      <!-- Recap -->
-      <section class="card recap" aria-labelledby="recap-title">
-        <h2 id="recap-title">Latest race recap 🇭🇺</h2>
-        <p class="muted">Hungarian Grand Prix — Hungaroring</p>
-        <ul class="list" aria-label="Race highlights">
-          <li><span class="em">Headline:</span> Lando Norris holds off Oscar Piastri by 0.698s; George Russell completes the podium.</li>
-          <li><span class="em">Lap 1:</span> Leclerc keeps P1 into Turn 1; Norris drops to P4.</li>
-          <li><span class="em">Lap 23:</span> McLaren split strategies — Norris one-stop, Piastri two-stop.</li>
-          <li><span class="em">Lap 69:</span> Late lockup from Piastri seals Norris’s win.</li>
-        </ul>
-      </section>
+    <section class="card standings">
+      <h2>Driver standings</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Pos</th>
+            <th>Driver</th>
+            <th>Team</th>
+            <th>Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Lando Norris</td>
+            <td>McLaren</td>
+            <td>—</td>
+          </tr>
+          <!-- More rows -->
+        </tbody>
+      </table>
+    </section>
 
-      <!-- Standings -->
-      <section class="card standings" aria-labelledby="standings-title">
-        <h2 id="standings-title">Driver standings</h2>
-        <table
-<script>
-(function () {
-  const countdownEl = document.getElementById('countdown');
-  const eventName = 'Belgian GP';
-  const raceDate = new Date('2025-08-25T00:00:00');
-  let timer;
+    <!-- More cards here, but no <script> tags inside any table or card markup -->
+  </main>
 
-  function format(diffMs) {
-    const d = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((diffMs % (1000 * 60)) / 1000);
-    return `${d}d ${h}h ${m}m ${s}s`;
-  }
+  <!-- Safe place for all scripts, right before closing body -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const el = document.getElementById('countdown');
+      if (!el) return;
 
-  function update() {
-    const now = new Date();
-    const diff = raceDate - now;
-    countdownEl.textContent = diff <= 0
-      ? `${eventName} is underway!`
-      : `Countdown to ${eventName}: ${format(diff)}`;
-    if (diff <= 0 && timer) clearInterval(timer);
-  }
+      const eventName = el.dataset.event?.trim() || 'Next race';
+      const targetStr = el.dataset.target?.trim();
+      const target = targetStr ? new Date(targetStr) : null;
 
-  update();
-  timer = setInterval(update, 1000);
-})();
+      if (!target || isNaN(target.getTime())) {
+        el.textContent = 'Countdown TBA';
+        return;
+      }
+
+      function two(n) { return String(n).padStart(2, '0'); }
+
+      function render() {
+        const now = new Date();
+        const diff = target.getTime() - now.getTime();
+
+        if (diff <= 0) {
+          el.textContent = `${eventName} is underway!`;
+          clearInterval(timer);
+          return;
+        }
+
+        const d = Math.floor(diff / 86_400_000);
+        const h = Math.floor((diff % 86_400_000) / 3_600_000);
+        const m = Math.floor((diff % 3_600_000) / 60_000);
+        const s = Math.floor((diff % 60_000) / 1_000);
+
+        el.textContent = `Countdown to ${eventName}: ${d}d ${two(h)}h ${two(m)}m ${two(s)}s`;
+      }
+
+      render();
+      const timer = setInterval(render, 1000);
+    });
+  </script>
+  <!-- Right before closing body -->
+
+ function format(diffMs) {
+      const d = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diffMs % (1000 * 60)) / 1000);
+      return `${d}d ${h}h ${m}m ${s}s`;
+    }
+
+    function update() {
+      const now = new Date();
+      const diff = raceDate - now;
+      countdownEl.textContent =
+        diff <= 0 ? `${eventName} is underway!` : `Countdown to ${eventName}: ${format(diff)}`;
+      if (diff <= 0 && timer) clearInterval(timer);
+    }
+
+    update();
+    timer = setInterval(update, 1000);
+  })();
 </script>
+</body>
+
+</html>
