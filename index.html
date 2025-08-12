@@ -47,7 +47,7 @@
   font-size: 1.5rem;
 }
 
-/* Racing stripe with swoosh effect */
+/* Racing stripe with swoosh + motion blur */
 .title-with-stripe {
   position: relative;
   display: inline-block;
@@ -72,6 +72,11 @@
   transform: translateY(-50%) skewX(-20deg);
   border-radius: 4px;
   z-index: -1;
+  
+  /* Motion blur illusion */
+  filter: blur(1.5px);
+  box-shadow: 0 0 10px rgba(225, 6, 0, 0.6),
+              0 0 20px rgba(225, 6, 0, 0.4);
 }
 
 </style>
