@@ -68,28 +68,28 @@
     }
 
     /* Card system (unified) */
-    .card {
-      background-color: var(--card-bg);
-      color: var(--card-fg);
-      border-radius: var(--card-radius);
-      padding: var(--card-padding);
-      box-shadow: var(--card-shadow);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      will-change: transform, box-shadow;
-    }
+   .card {
+  background-color: var(--card-bg);
+  color: var(--card-fg);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--card-fg);
+}
+
     .card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
     }
-    .card h2 {
-      margin: 0 0 12px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-      color: var(--card-fg);
-      font-size: 18px;
-    }
-
-    /* Neutralize any old per-section visual overrides (keeps hooks if you use them) */
+ 
+/* Neutralize any old per-section visual overrides (keeps hooks if you use them) */
     .recap, .standings, .upcoming,
     .tech, .strategy, .news {
       background: inherit;
