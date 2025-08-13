@@ -274,56 +274,32 @@ main > .card:first-child {
   <div id="countdown" style="margin-top: 1em; font-weight: bold;">
     ⏳ Countdown to Dutch GP: <span id="timer">Loading...</span>
   </div>
+
+  <script>
+    const targetDate = new Date("2025-08-31T06:00:00Z");
+    const timerElement = document.getElementById("timer");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        timerElement.textContent = "Race is live!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </div>
-
-<script>
-  const targetDate = new Date("2025-08-31T06:00:00Z"); // Race start time in UTC
-  const timerElement = document.getElementById("timer");
-
-  function updateCountdown() {
-    const now = new Date();
-    const diff = targetDate - now;
-
-    if (diff <= 0) {
-      timerElement.textContent = "Race is live!";
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-</script>
-
-  const targetDate = new Date("2025-08-31T06:00:00Z"); // Race start time in UTC
-  const timerElement = document.getElementById("timer");
-
-  function updateCountdown() {
-    const now = new Date();
-    const diff = targetDate - now;
-
-    if (diff <= 0) {
-      timerElement.textContent = "Race is live!";
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-</script>
 
   <!-- Left column stack -->
   <div class="card standings">
