@@ -61,12 +61,12 @@
       font-size: 2.5rem;
       letter-spacing: 2px;
     }
-  main {
-  display: flex;              /* lay cards in a row */
-  overflow-x: auto;           /* allow horizontal scrolling */
+main {
+  display: flex;                  /* switch from grid to flexbox */
+  overflow-x: auto;               /* enable horizontal scrolling */
   gap: 1.5rem;
   padding: 2rem;
-  scroll-snap-type: x mandatory; /* optional: snap scrolling */
+  scroll-snap-type: x mandatory;  /* optional: snap effect */
 }
 
 .card {
@@ -75,6 +75,11 @@
   scroll-snap-align: start;
   font-family: 'Exo 2', sans-serif !important;
 }
+
+.card h1, .card h2, .card h3 {
+  font-family: 'Orbitron', sans-serif;
+}
+
 
 .card h1, .card h2, .card h3 {
   font-family: 'Orbitron', sans-serif;
