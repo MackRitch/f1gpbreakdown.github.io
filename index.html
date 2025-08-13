@@ -62,19 +62,19 @@
       letter-spacing: 2px;
     }
 main {
-  display: flex;                  /* switch from grid to flexbox */
-  overflow-x: auto;               /* enable horizontal scrolling */
+  display: grid;
+  grid-auto-flow: column;    /* makes columns flow sideways */
+  grid-auto-columns: 300px;  /* card width */
+  overflow-x: auto;
   gap: 1.5rem;
   padding: 2rem;
-  scroll-snap-type: x mandatory;  /* optional: snap effect */
+  scroll-snap-type: x mandatory;
 }
 
 .card {
-  flex: 0 0 auto;
-  width: 300px;
   scroll-snap-align: start;
-  font-family: 'Exo 2', sans-serif !important;
 }
+
 
 .card h1, .card h2, .card h3 {
   font-family: 'Orbitron', sans-serif;
