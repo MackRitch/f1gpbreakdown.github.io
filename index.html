@@ -30,8 +30,8 @@
       gap: 1.5rem;
       padding: 2rem;
     }
-  .card {
-  position: relative; /* enable layering */
+ .card {
+  position: relative; /* needed for the overlay to position absolutely */
 }
 
 .card::before {
@@ -42,28 +42,21 @@
   width: 80%;
   height: 80%;
   transform: translate(-50%, -50%);
-  background: linear-gradient(
-    135deg,
-    #ff2b2b 0%,
-    #e10600 40%,
-    #990000 100%
-  );
-  background-size: cover;
+  background-image: url('logos/F1GPBLogoC.jpg');
+  background-size: contain;    /* keep logo aspect ratio */
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.18;
+  opacity: 0.18;                /* subtle overlay */
   pointer-events: none;
   z-index: 0;
-  border-radius: 10px;
 }
 
 .card > * {
   position: relative;
-  z-index: 1; /* keep text above */
+  z-index: 1; /* text and other content stay on top */
 }
 
-
-    .card:hover {
+ .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 15px rgba(0,0,0,0.8);
     }
