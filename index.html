@@ -61,28 +61,24 @@
       font-size: 2.5rem;
       letter-spacing: 2px;
     }
-   main {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  main {
+  display: flex;              /* lay cards in a row */
+  overflow-x: auto;           /* allow horizontal scrolling */
   gap: 1.5rem;
   padding: 2rem;
+  scroll-snap-type: x mandatory; /* optional: snap scrolling */
 }
 
 .card {
-  flex : 0 0 auto; /* layout */
-  width : 300px;
-  scroll-snap-align : start;
-
-  /* typography */
+  flex: 0 0 auto;
+  width: 300px;
+  scroll-snap-align: start;
   font-family: 'Exo 2', sans-serif !important;
 }
 
-.card h1,
-.card h2,
-.card h3 {
+.card h1, .card h2, .card h3 {
   font-family: 'Orbitron', sans-serif;
 }
-
 
 .card::before {
   content: "";
