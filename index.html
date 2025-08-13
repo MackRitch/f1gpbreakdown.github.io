@@ -105,14 +105,25 @@ main > .card:first-child {
   font-weight: 400;
 }
 
+/* The Paddock: read left-to-right like a book */
+.card.paddock {
+  column-count: 2;
+  column-gap: 1.5rem;
+}
+
+.card.paddock h1,
+.card.paddock h2,
+.card.paddock h3 {
+  column-span: all;
+}
+
 /* Headings stay in Orbitron */
 .card h1,
 .card h2,
 .card h3 {
   font-family: 'Orbitron', sans-serif;
 }
-
-/* Ensure overlay layers correctly */
+ /* Ensure overlay layers correctly */
 .card {
   position: relative;
 }
