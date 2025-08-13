@@ -78,6 +78,35 @@
   box-shadow: 0 0 10px rgba(225, 6, 0, 0.6),
               0 0 20px rgba(225, 6, 0, 0.4);
 }
+/* Generic card styling so the text stays readable */
+.card {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* or 'cover' for full fill */
+  background-blend-mode: lighten; /* helps with subtle overlays */
+}
+
+/* Race Recap card watermark */
+.card:nth-of-type(1) {
+  background-image: url('images/hungaroring-watermark.png');
+  opacity: 0.95; /* keeps text vibrant, watermark subtle */
+}
+
+/* Driver Standings card watermark */
+.card:nth-of-type(2) {
+  background-image: url('images/helmet-watermark.svg');
+}
+
+/* Tech Bites card watermark */
+.card:nth-of-type(3) {
+  background-image: url('images/tech-schematic.png');
+}
+
+/* Team Radio card watermark */
+.card:nth-of-type(4) {
+  background-image: url('images/radio-wave.svg');
+}
 
 </style>
 </head>
