@@ -61,29 +61,27 @@
       font-size: 2.5rem;
       letter-spacing: 2px;
     }
-    main {
-   /* new horizontal layout: */
-  display: flex;
-  flex-wrap: nowrap;      /* keep in a single row */
-  overflow-x: auto;       /* allow horizontal scroll if needed */
-  gap: 1rem;
+   main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
   padding: 2rem;
-  scroll-snap-type: x mandatory;
 }
 
 .card {
-  flex: 0 0 auto;         /* don’t shrink, keep intrinsic width */
-  width: 300px;           /* fixed width per card */
+  flex: 0 0 auto; /* layout: don’t shrink, fixed width */
+  width: 300px;
   scroll-snap-align: start;
-}
 
+  /* typography */
+  font-family: 'Exo 2', sans-serif !important;
+}
 /* Keep headings in Orbitron for that F1 vibe */
 .card h1,
 .card h2,
 .card h3 {
   font-family: 'Orbitron', sans-serif;
 }
-
 
 .card::before {
   content: "";
