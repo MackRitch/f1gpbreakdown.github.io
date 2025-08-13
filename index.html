@@ -71,6 +71,29 @@ main {
 
 .card:first-child {
   grid-column: span 2;      /* hero card at top */
+/* Custom widths for Standings + Paddock + Tech Talk (left column stack) */
+.card.standings,
+.card.paddock,
+.tech-talk.card {
+  grid-column: 1 / 2;      /* lock to the first grid column */
+  max-width: 350px;
+  justify-self: start;
+}
+
+/* Card body font reset: match Tech Talk across all cards */
+.card p,
+.card li,
+.card ul,
+.card ol,
+.card table,
+.card th,
+.card td,
+.card figcaption,
+.card small {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
 }
 
 
@@ -193,14 +216,14 @@ main {
   <h1 class="title-with-stripe">F1 GP Breakdown</h1>
 </header>
 
- <main>
-  <!-- Hero: spans both columns via .card:first-child -->
+<main>
+  <!-- Hero card -->
   <div class="card">
     <h2>Race Recap</h2>
-    <p><strong>Hungarian Grand Prix (July 20, 2025)</strong> — A tense duel between the McLarens kept Budapest buzzing. Lando Norris converted an early undercut into the lead, but Oscar Piastri hounded him all the way to the line, finishing just 0.7 seconds adrift. George Russell brought the Mercedes home P3 after a clever one‑stop, holding off late pressure from Charles Leclerc. Key moment: McLaren split their tyre strategy on lap 18, forcing Red Bull’s hand and leaving Max Verstappen stuck in traffic. Fastest lap went to Piastri, sealing a McLaren 1–2 and tightening the fight in the constructors’ standings.</p>
+    <p><strong>Hungarian Grand Prix (July 20, 2025)</strong> — A tense duel between the McLarens kept Budapest buzzing. Lando Norris converted an early undercut into the lead, but Oscar Piastri hounded him all the way to the line, finishing just 0.7 seconds adrift. George Russell brought the Mercedes home P3 after a clever one‑stop, holding off late pressure from Charles Leclerc. Key moment: McLaren split their tyre strategy on lap 18, forcing Red Bull’s hand and leaving Max Verstappen stuck in traffic. Fastest lap went to Piastri, sealing a McLaren 1–2 and tightening the fight in the constructors’ standings.</p>
   </div>
 
-  <!-- Left column stack: Standings, The Paddock, Tech Talk -->
+  <!-- Left column stack -->
   <div class="card standings">
     <h2>Driver Standings</h2>
     <table>
@@ -224,7 +247,7 @@ main {
 
   <div class="card paddock">
     <h2>The Paddock</h2>
-    <p><strong>McLaren’s Dual Title Charge</strong> — Team boss Andrea Stella says the Woking squad feels “privileged” to be in a position where both of its drivers are genuine title contenders. With Oscar Piastri leading on 284 points and Lando Norris just nine behind after Hungary, McLaren has resisted naming a number one driver. “We know the risk of not throwing our weight behind one driver, but we will give Oscar and Lando equal opportunity to fight it out on track to win the drivers’ world championship,” CEO Zak Brown explained. Stella echoed that sentiment, adding that the open‑racing approach “may not make my life or Zak’s life any simpler” but allows both drivers to fully express their talent and ambition. The team’s philosophy — no ‘Papaya Rules’ this year — means strategy calls will continue to be made independently in each garage, even if it stirs up drama in the paddock.</p>
+    <p><strong>McLaren’s Dual Title Charge</strong> — Team boss Andrea Stella says the Woking squad feels “privileged” to be in a position where both of its drivers are genuine title contenders. With Oscar Piastri leading on 284 points and Lando Norris just nine behind after Hungary, McLaren has resisted naming a number one driver. “We know the risk of not throwing our weight behind one driver, but we will give Oscar and Lando equal opportunity to fight it out on track to win the drivers’ world championship,” CEO Zak Brown explained. Stella echoed that sentiment, adding that the open‑racing approach “may not make my life or Zak’s life any simpler” but allows both drivers to fully express their talent and ambition. The team’s philosophy — no ‘Papaya Rules’ this year — means strategy calls will continue to be made independently in each garage, even if it stirs up drama in the paddock.</p>
   </div>
 
   <section id="tech-talk-belgian-gp" class="tech-talk card" aria-labelledby="tech-talk-title">
@@ -271,7 +294,11 @@ main {
       </ul>
     </div>
   </section>
+
+  <!-- Optional: add other right‑hand column cards here -->
 </main>
+
+
 
     <div class="card paddock">
   <h2>The Paddock</h2>
