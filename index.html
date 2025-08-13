@@ -107,10 +107,12 @@ main > .card:first-child {
 
 /* The Paddock: read left-to-right like a book */
 .card.paddock {
+  grid-column: 1 / -1; /* span across the entire main grid */
   padding: 1rem;
-  max-width: 100%;
+  max-width: 100%; /* remove the 350px lock */
   font-family: 'Roboto', sans-serif;
 }
+
 
 
 
