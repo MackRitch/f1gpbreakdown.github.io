@@ -30,13 +30,34 @@
       gap: 1.5rem;
       padding: 2rem;
     }
-    .card {
-      background-color: #2a2a2a;
-      border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+   .card {
+  position: relative;
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    #ff2b2b 0%,
+    #e10600 40%,
+    #990000 100%
+  );
+  opacity: 0.18; /* adjust visibility */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1; /* keeps text above watermark */
+}
+
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 15px rgba(0,0,0,0.8);
