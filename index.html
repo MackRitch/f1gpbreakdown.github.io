@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>F1 GP Breakdown</title>
+
   <!-- Orbitron font from Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Exo 2 font for Tech Talk card -->
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
+    /* ...your existing sitewide styles... */
+
+    /* existing .card styles here */
+
+    /* New styles for the Tech Talk card font & layout */
+    .tech-talk.card {
+      font-family: 'Exo 2', sans-serif;
+      padding: 1rem;
+      border: 1px solid #e4e7eb;
+      border-radius: 10px;
+      background: #fff;
+    }
+    .tech-talk h2 { 
+      margin: 0 0 .5rem; 
+      font-size: 1.5rem; 
+      font-weight: 600;
+    }
+    .tech-talk h3 { 
+      margin: 1rem 0 .25rem; 
+      font-size: 1.1rem; 
+      font-weight: 600;
+    }
+    .tech-talk ul { margin: .25rem 0 0 1.1rem; }
+    .tech-talk li { margin: .25rem 0; line-height: 1.35; }
+    .tech-talk strong { font-weight: 600; }
+    @media (max-width: 640px) {
+      .tech-talk.card { padding: .9rem; border-radius: 8px; }
+      .tech-talk h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+ <style>
     body {
       background-color: #1c1c1c; /* sleek dark grey */
       color: #ffffff;
