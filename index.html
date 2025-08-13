@@ -69,53 +69,55 @@ main {
   padding: 2rem;
 }
 
-.card:first-child {
-  grid-column: span 2;      /* hero card at top */
-/* Custom widths for Standings + Paddock + Tech Talk (left column stack) */
+/* Layout: two columns (fixed 350px sidebar + flexible main) */
+/* Layout: two columns (fixed 350px sidebar + flexible main) */
+main {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  grid-auto-rows: minmax(200px, auto);
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+/* Make the first card span both columns as the hero */
+main > .card:first-child {
+  grid-column: 1 / -1;
+}
+
+/* Left-column stack widths */
 .card.standings,
 .card.paddock,
 .tech-talk.card {
-  grid-column: 1 / 2;      /* lock to the first grid column */
+  grid-column: 1 / 2;
   max-width: 350px;
   justify-self: start;
 }
 
-/* Card body font reset: match Tech Talk across all cards */
+/* Card body font reset */
 .card p,
 .card li,
 .card ul,
 .card ol,
 .card table,
 .card th,
-.card td,
-.card figcaption,
-.card small {
+.card td {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
 
-}
-
-
-.card h1, .card h2, .card h3 {
+/* Headings stay in Orbitron */
+.card h1,
+.card h2,
+.card h3 {
   font-family: 'Orbitron', sans-serif;
 }
 
-.card h1, .card h2, .card h3 {
-  font-family: 'Orbitron', sans-serif;
-}
-.card.standings {
-  grid-column: span 1;
-  max-width: 350px;
-  justify-self: start;
+/* Ensure overlay layers correctly */
+.card {
+  position: relative;
 }
 
-.tech-talk.card {
-  grid-column: span 1;
-  max-width: 350px;
-  justify-self: start;
-}
-
+/* Watermark overlay */
 .card::before {
   content: "";
   position: absolute;
@@ -125,20 +127,22 @@ main {
   height: 80%;
   transform: translate(-50%, -50%);
   background-image: url('logos/F1GPBLogoC.jpg');
-  background-size: contain;    /* keep logo aspect ratio */
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.18;                /* subtle overlay */
+  opacity: 0.18;
   pointer-events: none;
   z-index: 0;
 }
 
+/* Keep actual card content above the watermark */
 .card > * {
   position: relative;
-  z-index: 1; /* text and other content stay on top */
+  z-index: 1;
 }
 
- .card:hover {
+
+.card:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 15px rgba(0,0,0,0.8);
     }
@@ -295,20 +299,5 @@ main {
     </div>
   </section>
 
-  <!-- Optional: add other right‑hand column cards here -->
-</main>
-
-
-
-    <div class="card paddock">
-  <h2>The Paddock</h2>
-  <p><strong>McLaren’s Dual Title Charge</strong> — Team boss Andrea Stella says the Woking squad feels “privileged” to be in a position where both of its drivers are genuine title contenders. 
-  With Oscar Piastri leading on 284 points and Lando Norris just nine behind after Hungary, McLaren has resisted naming a number one driver. 
-  “We know the risk of not throwing our weight behind one driver, but we will give Oscar and Lando equal opportunity to fight it out on track to win the drivers’ world championship,” CEO Zak Brown explained. 
-  Stella echoed that sentiment, adding that the open‑racing approach “may not make my life or Zak’s life any simpler” but allows both drivers to fully express their talent and ambition. 
-  The team’s philosophy — no ‘Papaya Rules’ this year — means strategy calls will continue to be made independently in each garage, even if it stirs up drama in the paddock.</p>
-</div>
-
-  </main>
 </body>
 </html>
