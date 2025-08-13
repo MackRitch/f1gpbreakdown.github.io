@@ -62,14 +62,19 @@
       letter-spacing: 2px;
     }
     main {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-    }
- /* Global: all cards use Exo 2 for readable body text */
+   /* new horizontal layout: */
+  display: flex;
+  flex-wrap: nowrap;      /* keep in a single row */
+  overflow-x: auto;       /* allow horizontal scroll if needed */
+  gap: 1rem;
+  padding: 2rem;
+  scroll-snap-type: x mandatory;
+}
+
 .card {
-  font-family: 'Exo 2', sans-serif !important;
+  flex: 0 0 auto;         /* don’t shrink, keep intrinsic width */
+  width: 300px;           /* fixed width per card */
+  scroll-snap-align: start;
 }
 
 /* Keep headings in Orbitron for that F1 vibe */
