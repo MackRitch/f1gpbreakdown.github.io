@@ -467,34 +467,33 @@ main > .card:first-child {
 
 <script>
   // ========== Upcoming Races: Data ==========
-  const UPCOMING_RACES = [
-    {
-      flag: "logos/nlflag.png",
-      grandPrix: "Dutch Grand Prix",
-      dateISO: "2025-08-31T15:00:00+02:00", // local race start time
-      location: "Zandvoort, Netherlands"
-    },
-    
+const UPCOMING_RACES = [
   {
-  flag: "logos/itflag.png",
-  grandPrix: "Italian Grand Prix",
-  dateISO: "2025-09-07T15:00:00+02:00",
-  location: "Monza, Italy"
-}, // ✅ comma added here
-{
-  flag: "🇦🇿",
-  grandPrix: "Azerbaijan Grand Prix",
-  dateISO: "2025-09-21T15:00:00+04:00",
-  location: "Baku, Azerbaijan"
-},
+    flag: "logos/nlflag.png",
+    grandPrix: "Dutch Grand Prix",
+    dateISO: "2025-08-31T15:00:00+02:00",
+    location: "Zandvoort, Netherlands"
+  },
+  {
+    flag: "logos/itflag.png",
+    grandPrix: "Italian Grand Prix",
+    dateISO: "2025-09-07T15:00:00+02:00",
+    location: "Monza, Italy"
+  },
+  {
+    flag: "logos/azflag.png",  // ← add this PNG to /logos/ if not there yet
+    grandPrix: "Azerbaijan Grand Prix",
+    dateISO: "2025-09-21T15:00:00+04:00",
+    location: "Baku, Azerbaijan"
+  },
+  {
+    flag: "logos/sgflag.png",  // ← add this PNG to /logos/ if not there yet
+    grandPrix: "Singapore Grand Prix",
+    dateISO: "2025-09-28T20:00:00+08:00",
+    location: "Marina Bay, Singapore"
+  }
+];
 
-    {
-      flag: "🇸🇬",
-      grandPrix: "Singapore Grand Prix",
-      dateISO: "2025-09-28T20:00:00+08:00",
-      location: "Marina Bay, Singapore"
-    }
-  ];
 
   // ========== Upcoming Races: Utilities ==========
   function formatLocalDate(iso) {
