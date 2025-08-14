@@ -36,32 +36,62 @@
     }
 
     /* ▼ New table layout rules ▼ */
-    .upcoming-races-table {
+    /* Upcoming Races table: lock columns and prevent overlap */
+.upcoming-races-card table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
 }
-.upcoming-races-table th,
-.upcoming-races-table td {
+
+.upcoming-races-card thead th,
+.upcoming-races-card tbody td {
   padding: 0.5rem;
   text-align: left;
-}
-.upcoming-races-table td:first-child {
-  min-width: 250px;
-  white-space: nowrap;
-}
-.upcoming-races-table td:nth-child(2) {
-  width: 140px;
-  white-space: nowrap;
-}
-.upcoming-races-table td:nth-child(3) {
-  min-width: 180px;
-}
-.flag-icon {
-  width: 20px;
-  height: auto;
-  margin-right: 8px;
   vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Col 1: flag */
+.upcoming-races-card thead th:nth-child(1),
+.upcoming-races-card tbody td:nth-child(1) {
+  width: 3.5rem;
+  text-align: center;
+}
+
+/* Col 2: Grand Prix (flag + name) */
+.upcoming-races-card thead th:nth-child(2),
+.upcoming-races-card tbody td:nth-child(2) {
+  min-width: 260px;
+}
+
+/* Col 3: Date */
+.upcoming-races-card thead th:nth-child(3),
+.upcoming-races-card tbody td:nth-child(3) {
+  width: 180px;
+}
+
+/* Col 4: Location (flex column) */
+.upcoming-races-card thead th:nth-child(4),
+.upcoming-races-card tbody td:nth-child(4) {
+  min-width: 200px;
+}
+
+/* Col 5: Countdown */
+.upcoming-races-card thead th:nth-child(5),
+.upcoming-races-card tbody td:nth-child(5) {
+  width: 9.5rem;
+  text-align: left;
+}
+
+/* Flag image beside GP name */
+.upcoming-races-card .flag-icon {
+  width: 20px;
+  height: 14px;
+  margin-right: 8px;
+  vertical-align: -2px;
+  border-radius: 2px;
 }
 
     /* ▲ End new table layout rules ▲ */
