@@ -156,7 +156,6 @@ main > .card:first-child {
   z-index: 1;
 }
 
-
 .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 15px rgba(0,0,0,0.8);
@@ -255,24 +254,47 @@ main > .card:first-child {
         <th>📆 Date</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>🇳🇱 Dutch Grand Prix — Zandvoort</td>
-        <td>Aug 31, 2025</td>
-      </tr>
-      <tr>
-        <td>🇮🇹 Italian Grand Prix — Monza</td>
-        <td>Sep 7, 2025</td>
-      </tr>
-      <tr>
-        <td>🇦🇿 Azerbaijan Grand Prix — Baku</td>
-        <td>Sep 21, 2025</td>
-      </tr>
-      <tr>
-        <td>🇸🇬 Singapore Grand Prix — Marina Bay</td>
-        <td>Oct 5, 2025</td>
-      </tr>
-    </tbody>
+   <tbody>
+  <tr>
+    <td>
+      <img src="images/flags/nl.svg" alt="Netherlands flag" class="flag-icon">
+      Dutch Grand Prix — Zandvoort
+      <span id="countdown" style="
+        margin-left: 12px;
+        font-weight: bold;
+        font-size: 0.95em;
+        background: linear-gradient(135deg, #ff2b2b, #e10600);
+        color: #fff;
+        padding: 0.25em 0.5em;
+        border-radius: 6px;
+        box-shadow: 0 0 6px rgba(225,6,0,0.5);
+      ">⏳ Loading...</span>
+    </td>
+    <td>Aug 31, 2025</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="images/flags/it.svg" alt="Italy flag" class="flag-icon">
+      Italian Grand Prix — Monza
+    </td>
+    <td>Sep 7, 2025</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="images/flags/az.svg" alt="Azerbaijan flag" class="flag-icon">
+      Azerbaijan Grand Prix — Baku
+    </td>
+    <td>Sep 21, 2025</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="images/flags/sg.svg" alt="Singapore flag" class="flag-icon">
+      Singapore Grand Prix — Marina Bay
+    </td>
+    <td>Oct 5, 2025</td>
+  </tr>
+</tbody>
+
   </table>
 
   <div id="countdown" style="margin-top: 1em; font-weight: bold;">
@@ -282,29 +304,30 @@ main > .card:first-child {
 
 
   <script>
-    const targetDate = new Date("2025-08-31T06:00:00Z");
-    const timerElement = document.getElementById("timer");
+  const targetDate = new Date("2025-08-31T06:00:00Z");
+  const countdownElement = document.getElementById("countdown");
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
 
-      if (diff <= 0) {
-        timerElement.textContent = "Race is live!";
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    if (diff <= 0) {
+      countdownElement.textContent = "🏁 Race is live!";
+      return;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+
+    countdownElement.textContent =
+      `⏳ ${days}d ${hours}h ${mins}m`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+</script>
+
 </div>
 
 
