@@ -542,12 +542,13 @@ function renderRaces() {
     const tdFlag = document.createElement("td");
     tdFlag.className = "td-flag";
 
-    if (race.flag.endsWith(".png")) {
-      tdFlag.innerHTML = `<img class="flag-icon" src="${race.flag}" alt="${race.location} flag">`;
-    } else {
-      tdFlag.innerHTML = `<span class="flag" aria-hidden="true">${race.flag}</span>
-                          <span class="sr-only">${race.location} flag</span>`;
-    }
+    if (race.flag.trim().toLowerCase().endsWith(".png")) {
+  tdFlag.innerHTML = `<img class="flag-icon" src="${race.flag.trim()}" alt="${race.location} flag">`;
+} else {
+  tdFlag.innerHTML = `<span class="flag" aria-hidden="true">${race.flag}</span>
+                      <span class="sr-only">${race.location} flag</span>`;
+}
+
     tr.appendChild(tdFlag);
 
     // --- Column 2: Grand Prix name (prepend NL image if Dutch GP) ---
@@ -555,10 +556,9 @@ function renderRaces() {
     tdGP.className = "td-gp";
 
     const prependImg =
-      race.grandPrix === "Dutch Grand Prix"
-        ? `<img class="flag-icon" src="${race.flag}" alt="Netherlands flag"> `
-        : "";
-
+  race.grandPrix === "Dutch Grand Prix"
+    ? `<img class="flag-icon" src="${race.flag.trim()}" alt="Netherlands flag"> `
+    : "";
     tdGP.innerHTML = `${prependImg}<span class="gp-name">${race.grandPrix}</span>`;
     tr.appendChild(tdGP);
 
