@@ -530,53 +530,60 @@ main > .card:first-child {
   }
 
   // ========== Upcoming Races: Render ==========
-  function renderRaces() {
-    const tbody = document.getElementById("races-body");
-    tbody.innerHTML = "";
+function renderRaces() {
+  const tbody = document.getElementById("races-body");
+  tbody.innerHTML = "";
 
-    UPCOMING_RACES.forEach((race, idx) => {
-      const tr = document.createElement("tr");
-      tr.setAttribute("role", "row");
+  UPCOMING_RACES.forEach((race) => {
+    const tr = document.createElement("tr");
+    tr.setAttribute("role", "row");
 
-      // Flag
-      const tdFlag = document.createElement("td");
-      tdFlag.className = "td-flag";
-      tdFlag.innerHTML = `<span class="flag" aria-hidden="true">${race.flag}</span><span class="sr-only">${race.location} flag</span>`;
-      tr.appendChild(tdFlag);
+    // --- Column 1: Flag ---
+    const tdFlag = document.createElement("td");
+    tdFlag.className = "td-flag";
 
-      // GP name
-     // GP name
-const tdGP = document.createElement("td");
-tdGP.className = "td-gp";
+    if (race.flag.endsWith(".png")) {
+      tdFlag.innerHTML = `<img class="flag-icon" src="${race.flag}" alt="${race.location} flag">`;
+    } else {
+      tdFlag.innerHTML = `<span class="flag" aria-hidden="true">${race.flag}</span>
+                          <span class="sr-only">${race.location} flag</span>`;
+    }
+    tr.appendChild(tdFlag);
 
-const nlFlagImg = (race.grandPrix === "Dutch Grand Prix")
-  ? '<img class="flag-icon" src="logos/nlflag.png" alt="Netherlands flag"> '
-  : '';
-tdGP.innerHTML = `${nlFlagImg}<span class="gp-name">${race.grandPrix}</span>`;
-tr.appendChild(tdGP);
+    // --- Column 2: Grand Prix name (prepend NL image if Dutch GP) ---
+    const tdGP = document.createElement("td");
+    tdGP.className = "td-gp";
 
+    const prependImg =
+      race.grandPrix === "Dutch Grand Prix"
+        ? `<img class="flag-icon" src="${race.flag}" alt="Netherlands flag"> `
+        : "";
 
-      // Date (kept strictly to the Date column)
-      const tdDate = document.createElement("td");
-      tdDate.className = "td-date";
-      tdDate.innerHTML = `<time datetime="${race.dateISO}">${formatLocalDate(race.dateISO)}</time>`;
-      tr.appendChild(tdDate);
+    tdGP.innerHTML = `${prependImg}<span class="gp-name">${race.grandPrix}</span>`;
+    tr.appendChild(tdGP);
 
-      // Location
-      const tdLoc = document.createElement("td");
-      tdLoc.className = "td-loc";
-      tdLoc.textContent = race.location;
-      tr.appendChild(tdLoc);
+    // --- Column 3: Date ---
+    const tdDate = document.createElement("td");
+    tdDate.className = "td-date";
+    tdDate.innerHTML = `<time datetime="${race.dateISO}">${formatLocalDate(race.dateISO)}</time>`;
+    tr.appendChild(tdDate);
 
-      // Countdown (isolated cell; JS updates text only here)
-      const tdCtd = document.createElement("td");
-      tdCtd.className = "td-ctd";
-      tdCtd.innerHTML = `<span class="countdown" data-countdown="${race.dateISO}" aria-label="Countdown to ${race.grandPrix}"></span>`;
-      tr.appendChild(tdCtd);
+    // --- Column 4: Location ---
+    const tdLoc = document.createElement("td");
+    tdLoc.className = "td-loc";
+    tdLoc.textContent = race.location;
+    tr.appendChild(tdLoc);
 
-      tbody.appendChild(tr);
-    });
-  }
+    // --- Column 5: Countdown ---
+    const tdCtd = document.createElement("td");
+    tdCtd.className = "td-ctd";
+    tdCtd.innerHTML = `<span class="countdown" data-countdown="${race.dateISO}" aria-label="Countdown to ${race.grandPrix}"></span>`;
+    tr.appendChild(tdCtd);
+
+    tbody.appendChild(tr);
+  });
+}
+
 
   function tickCountdowns() {
     const nodes = document.querySelectorAll('[data-countdown]');
