@@ -29,20 +29,45 @@
       font-size: 1.5rem; 
       font-weight: 600;
     }
-    .tech-talk h3 { 
-      margin: 1rem 0 .25rem; 
-      font-size: 1.1rem; 
-      font-weight: 600;
+       .tech-talk h3 {
+      margin : 1rem 0 .25rem;
+      font-size : 1.1rem;
+      font-weight : 600;
     }
-    .tech-talk ul { margin: .25rem 0 0 1.1rem; }
-    .tech-talk li { margin: .25rem 0; line-height: 1.35; }
-    .tech-talk strong { font-weight: 600; }
-    @media (max-width: 640px) {
-      .tech-talk.card { padding: .9rem; border-radius: 8px; }
-      .tech-talk h2 { font-size: 1.25rem; }
-    }
+
+    /* ▼ New table layout rules ▼ */
+    .upcoming-races-table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+.upcoming-races-table th,
+.upcoming-races-table td {
+  padding: 0.5rem;
+  text-align: left;
+}
+.upcoming-races-table td:first-child {
+  min-width: 250px;
+  white-space: nowrap;
+}
+.upcoming-races-table td:nth-child(2) {
+  width: 140px;
+  white-space: nowrap;
+}
+.upcoming-races-table td:nth-child(3) {
+  min-width: 180px;
+}
+.flag-icon {
+  width: 20px;
+  height: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+    /* ▲ End new table layout rules ▲ */
   </style>
 </head>
+
  <style>
     body {
       background-color: #1c1c1c; /* sleek dark grey */
