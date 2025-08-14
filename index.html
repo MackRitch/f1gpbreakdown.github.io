@@ -256,95 +256,297 @@ main > .card:first-child {
     <p><strong>Hungarian Grand Prix (July 20, 2025)</strong> — A tense duel between the McLarens kept Budapest buzzing. Lando Norris converted an early undercut into the lead, but Oscar Piastri hounded him all the way to the line, finishing just 0.7 seconds adrift. George Russell brought the Mercedes home P3 after a clever one‑stop, holding off late pressure from Charles Leclerc. Key moment: McLaren split their tyre strategy on lap 18, forcing Red Bull’s hand and leaving Max Verstappen stuck in traffic. Fastest lap went to Piastri, sealing a McLaren 1–2 and tightening the fight in the constructors’ standings.</p>
   </div>
 <div class="card paddock upcoming-races">
-  <h2>📅 Upcoming Races</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>🇺🇳 Venue</th>
-        <th>📆 Date</th>
-      </tr>
-    </thead>
-   <tbody>
-  <tr>
-    <td>
-     <td>
-  <img src="logos/nlflag.png" alt="Netherlands flag" class="flag-icon">
-  Dutch Grand Prix — Zandvoort
-  <div class="countdown-block" style="margin-top: 1em; font-weight: bold;">
-    ⏳ Countdown to Dutch GP:
-    <span class="countdown-label"
-          style="background: linear-gradient(135deg, #ff2b2b, #e10600);
-                 color: #fff; padding: 0.3em 0.6em; border-radius: 6px;
-                 font-weight: 700; font-size: 1.1em;
-                 box-shadow: 0 0 8px rgba(225, 6, 0, 0.6);">
-      Loading...
-    </span>
+<!-- ===== Upcoming Races: START ===== -->
+<section class="card upcoming-races-card" aria-labelledby="upcoming-races-title">
+  <h2 id="upcoming-races-title">Upcoming races</h2>
+
+  <div class="races-table-wrap">
+    <table class="races-table" role="table" aria-describedby="upcoming-races-title">
+      <colgroup>
+        <col style="width: 3.5rem" />   <!-- Flag -->
+        <col />                         <!-- Grand Prix -->
+        <col style="width: 12.5rem" />  <!-- Date -->
+        <col style="width: 12.5rem" />  <!-- Location -->
+        <col style="width: 10.5rem" />  <!-- Countdown -->
+      </colgroup>
+      <thead>
+        <tr role="row">
+          <th scope="col" class="col-flag">Flag</th>
+          <th scope="col" class="col-gp">Grand Prix</th>
+          <th scope="col" class="col-date">Date</th>
+          <th scope="col" class="col-loc">Location</th>
+          <th scope="col" class="col-ctd">Countdown</th>
+        </tr>
+      </thead>
+      <tbody id="races-body">
+        <!-- Rows are injected here by JS -->
+      </tbody>
+    </table>
   </div>
-</td>
+</section>
 
-    <td>Aug 31, 2025</td>
-  </tr>
-  <tr>
-    <td>
-      <img src="images/flags/it.svg" alt="Italy flag" class="flag-icon">
-      Italian Grand Prix — Monza
-    </td>
-    <td>Sep 7, 2025</td>
-  </tr>
-  <tr>
-    <td>
-      <img src="images/flags/az.svg" alt="Azerbaijan flag" class="flag-icon">
-      Azerbaijan Grand Prix — Baku
-    </td>
-    <td>Sep 21, 2025</td>
-  </tr>
-  <tr>
-    <td>
-      <img src="images/flags/sg.svg" alt="Singapore flag" class="flag-icon">
-      Singapore Grand Prix — Marina Bay
-    </td>
-    <td>Oct 5, 2025</td>
-  </tr>
-</tbody>
-
-  </table>
-
-  <div id="countdown" style="margin-top: 1em; font-weight: bold;">
-  ⏳ Countdown to Dutch GP:
-  <span id="timer" style="background: linear-gradient(135deg, #ff2b2b, #e10600); color: #fff; padding: 0.3em 0.6em; border-radius: 6px; font-weight: 700; font-size: 1.1em; box-shadow: 0 0 8px rgba(225, 6, 0, 0.6);">Loading...</span>
-</div>
-
-
-<script>
-  const targetDate = new Date("2025-08-31T06:00:00Z");
-  const labels = document.querySelectorAll('.countdown-label');
-
-  function updateCountdown() {
-    const now = new Date();
-    const diff = targetDate - now;
-
-    if (diff <= 0) {
-      labels.forEach(el => el.textContent = "Race day!");
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    const countdownText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    labels.forEach(el => el.textContent = countdownText);
+<style>
+  /* ========== Upcoming Races: Styles ========== */
+  .upcoming-races-card {
+    padding: 1rem 1.25rem;
   }
 
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+  .upcoming-races-card h2 {
+    font-family: 'Orbitron', system-ui, sans-serif;
+    font-size: 1.25rem;
+    margin: 0 0 0.75rem;
+    letter-spacing: 0.02em;
+  }
+
+  .races-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .races-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Prevents column drift/migration */
+    background: #0b0b10;
+    color: #e8e8ef;
+    border: 1px solid #1f2130;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .races-table thead th {
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.65rem 0.75rem;
+    background: #141625;
+    border-bottom: 1px solid #24273a;
+    white-space: nowrap;
+  }
+
+  .races-table tbody td {
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid #1b1e2e;
+    vertical-align: middle;
+    font-size: 0.92rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Keeps GP name/date from wrapping into other columns */
+  }
+
+  .races-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .col-flag,
+  .td-flag {
+    text-align: center;
+  }
+
+  .td-flag .flag {
+    font-size: 1.25rem;
+    display: inline-block;
+    width: 1.75rem;
+  }
+
+  .td-gp .gp-name {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .td-date time {
+    color: #cfd3ff;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .td-loc {
+    color: #c5c8d4;
+  }
+
+  .td-ctd .countdown {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-weight: 600;
+    color: #8ef0a6;
+    background: #11331c;
+    border: 1px solid #1d5a31;
+    padding: 0.2rem 0.45rem;
+    border-radius: 6px;
+    display: inline-block;
+    min-width: 7.5rem;
+    text-align: center;
+  }
+
+  /* Hover state */
+  .races-table tbody tr:hover td {
+    background: #101324;
+  }
+
+  /* Responsive: stack columns on very narrow screens */
+  @media (max-width: 600px) {
+    .races-table thead {
+      display: none;
+    }
+    .races-table,
+    .races-table tbody,
+    .races-table tr,
+    .races-table td {
+      display: block;
+      width: 100%;
+    }
+    .races-table tbody tr {
+      border-bottom: 1px solid #1b1e2e;
+      padding: 0.5rem 0.25rem;
+    }
+    .races-table tbody td {
+      border: none;
+      white-space: normal; /* allow wrapping within the cell on mobile */
+      padding: 0.35rem 0.5rem;
+    }
+    .td-flag { order: 1; }
+    .td-gp { order: 2; }
+    .td-date { order: 3; }
+    .td-loc { order: 4; }
+    .td-ctd { order: 5; margin-top: 0.25rem; }
+  }
+</style>
+
+<script>
+  // ========== Upcoming Races: Data ==========
+  const UPCOMING_RACES = [
+    {
+      flag: "🇳🇱",
+      grandPrix: "Dutch Grand Prix",
+      dateISO: "2025-08-31T15:00:00+02:00", // local race start time
+      location: "Zandvoort, Netherlands"
+    },
+    {
+      flag: "🇮🇹",
+      grandPrix: "Italian Grand Prix",
+      dateISO: "2025-09-07T15:00:00+02:00",
+      location: "Monza, Italy"
+    },
+    {
+      flag: "🇦🇿",
+      grandPrix: "Azerbaijan Grand Prix",
+      dateISO: "2025-09-21T15:00:00+04:00",
+      location: "Baku, Azerbaijan"
+    },
+    {
+      flag: "🇸🇬",
+      grandPrix: "Singapore Grand Prix",
+      dateISO: "2025-09-28T20:00:00+08:00",
+      location: "Marina Bay, Singapore"
+    }
+  ];
+
+  // ========== Upcoming Races: Utilities ==========
+  function formatLocalDate(iso) {
+    const d = new Date(iso);
+    const fmt = new Intl.DateTimeFormat(undefined, {
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    });
+    return fmt.format(d);
+  }
+
+  function diffParts(toISO) {
+    const now = new Date();
+    const target = new Date(toISO);
+    let diff = target - now;
+    if (diff <= 0) return { over: true, d: 0, h: 0, m: 0, s: 0 };
+    const d = Math.floor(diff / (24 * 3600 * 1000));
+    diff -= d * 24 * 3600 * 1000;
+    const h = Math.floor(diff / (3600 * 1000));
+    diff -= h * 3600 * 1000;
+    const m = Math.floor(diff / (60 * 1000));
+    diff -= m * 60 * 1000;
+    const s = Math.floor(diff / 1000);
+    return { over: false, d, h, m, s };
+  }
+
+  function formatCountdown(parts) {
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${parts.d}d ${pad(parts.h)}h ${pad(parts.m)}m`;
+  }
+
+  // ========== Upcoming Races: Render ==========
+  function renderRaces() {
+    const tbody = document.getElementById("races-body");
+    tbody.innerHTML = "";
+
+    UPCOMING_RACES.forEach((race, idx) => {
+      const tr = document.createElement("tr");
+      tr.setAttribute("role", "row");
+
+      // Flag
+      const tdFlag = document.createElement("td");
+      tdFlag.className = "td-flag";
+      tdFlag.innerHTML = `<span class="flag" aria-hidden="true">${race.flag}</span><span class="sr-only">${race.location} flag</span>`;
+      tr.appendChild(tdFlag);
+
+      // GP name
+      const tdGP = document.createElement("td");
+      tdGP.className = "td-gp";
+      tdGP.innerHTML = `<span class="gp-name">${race.grandPrix}</span>`;
+      tr.appendChild(tdGP);
+
+      // Date (kept strictly to the Date column)
+      const tdDate = document.createElement("td");
+      tdDate.className = "td-date";
+      tdDate.innerHTML = `<time datetime="${race.dateISO}">${formatLocalDate(race.dateISO)}</time>`;
+      tr.appendChild(tdDate);
+
+      // Location
+      const tdLoc = document.createElement("td");
+      tdLoc.className = "td-loc";
+      tdLoc.textContent = race.location;
+      tr.appendChild(tdLoc);
+
+      // Countdown (isolated cell; JS updates text only here)
+      const tdCtd = document.createElement("td");
+      tdCtd.className = "td-ctd";
+      tdCtd.innerHTML = `<span class="countdown" data-countdown="${race.dateISO}" aria-label="Countdown to ${race.grandPrix}"></span>`;
+      tr.appendChild(tdCtd);
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  function tickCountdowns() {
+    const nodes = document.querySelectorAll('[data-countdown]');
+    nodes.forEach((node) => {
+      const iso = node.getAttribute('data-countdown');
+      const parts = diffParts(iso);
+      node.textContent = parts.over ? "On track" : formatCountdown(parts);
+    });
+  }
+
+  // Initialize on DOM ready
+  (function initUpcomingRaces() {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => {
+        renderRaces();
+        tickCountdowns();
+        // Update every 30s to avoid layout thrash
+        setInterval(tickCountdowns, 30000);
+      });
+    } else {
+      renderRaces();
+      tickCountdowns();
+      setInterval(tickCountdowns, 30000);
+    }
+  })();
 </script>
+<!-- ===== Upcoming Races: END ===== -->
 
 </div>
 
-
-  <!-- Left column stack -->
+<!-- Left column stack -->
   <div class="card standings">
     <h2>Driver Standings</h2>
     <table>
