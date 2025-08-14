@@ -132,7 +132,6 @@ main > .card:first-child {
   font-family: 'Roboto', sans-serif;
 }
 
-
 /* Watermark overlay */
 .card::before {
   content: "";
@@ -277,8 +276,10 @@ main > .card:first-child {
   </table>
 
   <div id="countdown" style="margin-top: 1em; font-weight: bold;">
-    ⏳ Countdown to Dutch GP: <span id="timer">Loading...</span>
-  </div>
+  ⏳ Countdown to Dutch GP:
+  <span id="timer" style="background: linear-gradient(135deg, #ff2b2b, #e10600); color: #fff; padding: 0.3em 0.6em; border-radius: 6px; font-weight: 700; font-size: 1.1em; box-shadow: 0 0 8px rgba(225, 6, 0, 0.6);">Loading...</span>
+</div>
+
 
   <script>
     const targetDate = new Date("2025-08-31T06:00:00Z");
