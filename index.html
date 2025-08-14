@@ -545,10 +545,16 @@ main > .card:first-child {
       tr.appendChild(tdFlag);
 
       // GP name
-      const tdGP = document.createElement("td");
-      tdGP.className = "td-gp";
-      tdGP.innerHTML = `<span class="gp-name">${race.grandPrix}</span>`;
-      tr.appendChild(tdGP);
+     // GP name
+const tdGP = document.createElement("td");
+tdGP.className = "td-gp";
+
+const nlFlagImg = (race.grandPrix === "Dutch Grand Prix")
+  ? '<img class="flag-icon" src="logos/nlflag.png" alt="Netherlands flag"> '
+  : '';
+tdGP.innerHTML = `${nlFlagImg}<span class="gp-name">${race.grandPrix}</span>`;
+tr.appendChild(tdGP);
+
 
       // Date (kept strictly to the Date column)
       const tdDate = document.createElement("td");
