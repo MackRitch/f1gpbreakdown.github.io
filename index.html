@@ -267,23 +267,21 @@ main > .card:first-child {
    <tbody>
   <tr>
     <td>
-      <img src="logos/nlflag.png" alt="Netherlands flag" class="flag-icon">
-      Dutch Grand Prix — Zandvoort
-      <span id="countdown" style="
-        margin-left: 12px;
-        font-weight: bold;
-        font-size: 0.95em;
-        background: linear-gradient(135deg, #ff2b2b, #e10600);
-        color: #fff;
-        padding: 0.25em 0.5em;
-        border-radius: 6px;
-        box-shadow: 0 0 6px rgba(225,6,0,0.5);
-      <span id="countdown"
-      style="margin-left: 12px; font-weight: bold; font-size: 0.95em; background: linear-gradient(135deg, #ff2b2b, #e10600); color: #fff; padding: 0.25em 0.5em; border-radius: 6px; box-shadow: 0 0 6px rgba(225, 6, 0, 0.5);">
-  <span class="countdown-label">⏳ Loading...</span>
-</span>
+     <td>
+  <img src="logos/nlflag.png" alt="Netherlands flag" class="flag-icon">
+  Dutch Grand Prix — Zandvoort
+  <div class="countdown-block" style="margin-top: 1em; font-weight: bold;">
+    ⏳ Countdown to Dutch GP:
+    <span class="countdown-label"
+          style="background: linear-gradient(135deg, #ff2b2b, #e10600);
+                 color: #fff; padding: 0.3em 0.6em; border-radius: 6px;
+                 font-weight: 700; font-size: 1.1em;
+                 box-shadow: 0 0 8px rgba(225, 6, 0, 0.6);">
+      Loading...
+    </span>
+  </div>
+</td>
 
-     </td>
     <td>Aug 31, 2025</td>
   </tr>
   <tr>
@@ -317,29 +315,30 @@ main > .card:first-child {
 </div>
 
 
-  <script>
+<script>
   const targetDate = new Date("2025-08-31T06:00:00Z");
-  const countdownElement = document.getElementById("countdown");
+  const labels = document.querySelectorAll('.countdown-label');
 
   function updateCountdown() {
     const now = new Date();
     const diff = targetDate - now;
 
     if (diff <= 0) {
-      countdownElement.textContent = "🏁 Race is live!";
+      labels.forEach(el => el.textContent = "Race day!");
       return;
     }
 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-    countdownElement.textContent =
-      `⏳ ${days}d ${hours}h ${mins}m`;
+    const countdownText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    labels.forEach(el => el.textContent = countdownText);
   }
 
+  setInterval(updateCountdown, 1000);
   updateCountdown();
-  setInterval(updateCountdown, 60000);
 </script>
 
 </div>
