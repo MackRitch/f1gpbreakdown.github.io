@@ -4,6 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>F1 GP Breakdown</title>
+<style>
+  /* Card title alignment */
+  .card-title,
+  .card h2,
+  .card h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* The helmet icon next to titles */
+  .helmet-icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    object-fit: contain;
+    vertical-align: middle;
+    /* Optional: make PNG icons blend with text color on dark backgrounds */
+    /* filter: brightness(0) invert(1); */
+  }
+
+  /* Optional: tone down brightness when title is a link with hover color */
+  .card a:hover .helmet-icon {
+    filter: none;
+  }
+
+  /* If you want the icon on the right instead of left, swap prepend->append in JS and/or use order */
+  /* .helmet-icon { order: 2; } */
+</style>
 
   <!-- Orbitron font from Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -294,7 +323,7 @@ main > .card:first-child {
 </style>
 
 </head>
-<body>
+  <body>
 <main>
  <header class="site-banner">
   <h1 class="title-with-stripe">🏎️ F1 GP Breakdown</h1>
@@ -712,6 +741,52 @@ tr.appendChild(tdFlag);
       </ul>
     </div>
   </section>
+    <!-- any other scripts you have -->
+
+    <!-- Helmet icon auto-injection -->
+    <script>
+      (function(){
+        function addHelmetIconToTitle(titleEl) {
+          var target = titleEl.firstElementChild && titleEl.firstElementChild.tagName === 'A'
+            ? titleEl.firstElementChild
+            : titleEl;
+          if (target.querySelector('.helmet-icon')) return;
+          var img = document.createElement('img');
+          img.className = 'helmet-icon';
+          img.src = 'logos/helmet.svg';
+          img.alt = '';
+          img.setAttribute('aria-hidden', 'true');
+          target.insertBefore(img, target.firstChild);
+        }
+        function initHelmetIcons(root) {
+          var titles = (root || document).querySelectorAll('.card h2, .card h3, .card .card-title');
+          titles.forEach(addHelmetIconToTitle);
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function(){ initHelmetIcons(); });
+        } else {
+          initHelmetIcons();
+        }
+        var mo = new MutationObserver(function(mutations) {
+          mutations.forEach(function(m) {
+            m.addedNodes.forEach(function(node) {
+              if (!(node instanceof Element)) return;
+              if (node.matches && (node.matches('.card h2, .card h3, .card .card-title') || node.matches('.card'))) {
+                initHelmetIcons(node);
+              } else {
+                var within = node.querySelectorAll && node.querySelectorAll('.card h2, .card h3, .card .card-title');
+                if (within && within.length) initHelmetIcons(node);
+              }
+            });
+          });
+        });
+        mo.observe(document.body, { childList: true, subtree: true });
+      })();
+    </script>
+</body>
+</html>
+
+  
 
 </body>
 </html>
