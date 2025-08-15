@@ -498,7 +498,21 @@ main > .card:first-child {
 </style>
 
 <script>
-  // ========== Upcoming Races: Data ==========
+  .race-recap {
+  position: relative;
+  overflow: hidden; /* Keeps watermark contained inside card */
+}
+
+.race-recap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('logos/landohelmet.webp') no-repeat center;
+  background-size: 60%; /* adjust size to taste */
+  opacity: 0.08; /* subtle and light so text stays readable */
+  pointer-events: none; /* clicks pass through */
+}
+
 const UPCOMING_RACES = [
   {
     flag: "logos/nlflag.png",
