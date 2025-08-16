@@ -16,13 +16,17 @@ gap: 0.4rem;
 
 /* The helmet icon next to titles */
 .helmet-icon {
-width: 21px;
-height: 21px;
-flex: 0 0 21px;
-object-fit: contain;
-vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    object-fit: contain;
+    vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  object-fit: contain;
+  vertical-align: middle;
 }
-
 
 /* Optional: make PNG icons blend with text color on dark backgrounds */
 /* filter: brightness(0) invert(1); */
@@ -498,22 +502,7 @@ padding: 0.35rem 0.5rem;
 </style>
 
 <script>
-  // ========== Upcoming Races: Data ==========
-  .race-recap {
-  position: relative;
-  overflow: hidden; /* Keeps watermark contained inside card */
-}
-
-.race-recap::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('logos/landohelmet.webp') no-repeat center;
-  background-size: 60%; /* adjust size to taste */
-  opacity: 0.08; /* subtle and light so text stays readable */
-  pointer-events: none; /* clicks pass through */
-}
-
+// ========== Upcoming Races: Data ==========
 const UPCOMING_RACES = [
 {
 flag: "logos/nlflag.png",
@@ -803,7 +792,6 @@ mo.observe(document.body, { childList: true, subtree: true });
 </script>
 </body>
 </html>
-
 
 
 </body>
