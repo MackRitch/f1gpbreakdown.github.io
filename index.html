@@ -1,579 +1,431 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- saved from url=(0028)https://mackritch.github.io/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>F1 GP Breakdown</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Orbitron font from Google Fonts -->
+  <link href="./F1 GP Breakdown_files/css2" rel="stylesheet">
+  <!-- Exo 2 font for Tech Talk card -->
+  <link href="./F1 GP Breakdown_files/css2(1)" rel="stylesheet">
 
   <style>
-    /* ===== Base ===== */
+    /* ...your existing sitewide styles... */
+
+    /* existing .card styles here */
+
+    /* New styles for the Tech Talk card font & layout */
+  .tech-talk.card {
+  font-family: 'Exo 2', sans-serif !important;
+}
+.tech-talk.card h2,
+.tech-talk.card h3 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+    .tech-talk h2 { 
+      margin: 0 0 .5rem; 
+      font-size: 1.5rem; 
+      font-weight: 600;
+    }
+    .tech-talk h3 { 
+      margin: 1rem 0 .25rem; 
+      font-size: 1.1rem; 
+      font-weight: 600;
+    }
+    .tech-talk ul { margin: .25rem 0 0 1.1rem; }
+    .tech-talk li { margin: .25rem 0; line-height: 1.35; }
+    .tech-talk strong { font-weight: 600; }
+    @media (max-width: 640px) {
+      .tech-talk.card { padding: .9rem; border-radius: 8px; }
+      .tech-talk h2 { font-size: 1.25rem; }
+    }
+  </style>
+<style>
     body {
-      background-color: #1c1c1c;
+      background-color: #1c1c1c; /* sleek dark grey */
       color: #ffffff;
       font-family: 'Orbitron', sans-serif;
       margin: 0;
+      padding: 0;
     }
-
-    header.site-banner {
+    header {
       text-align: center;
       padding: 2rem 1rem;
-      border-bottom: 2px solid #e10600;
+      border-bottom: 2px solid #e10600; /* F1 red accent */
     }
-
     h1 {
       margin: 0;
       font-size: 2.5rem;
       letter-spacing: 2px;
     }
+main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-auto-rows: minmax(200px, auto);
+  gap: 1.5rem;
+  padding: 2rem;
+}
 
-    .title-with-stripe {
-      position: relative;
-      display: inline-block;
-      padding: 0 1rem;
-      font-size: 2.5rem;
-      color: #ffffff;
-    }
-    .title-with-stripe::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: -5%;
-      width: 110%;
-      height: 8px;
-      background: linear-gradient(135deg, #ff2b2b 0%, #e10600 40%, #990000 100%);
-      transform: translateY(-50%) skewX(-20deg);
-      border-radius: 4px;
-      z-index: -1;
-      filter: blur(1.5px);
-      box-shadow: 0 0 10px rgba(225, 6, 0, 0.6), 0 0 20px rgba(225, 6, 0, 0.4);
-    }
+/* Layout: two columns (fixed 350px sidebar + flexible main) */
+/* Layout: two columns (fixed 350px sidebar + flexible main) */
+main {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  grid-auto-rows: minmax(200px, auto);
+  gap: 1.5rem;
+  padding: 2rem;
+}
 
-    /* ===== Layout ===== */
-    main {
-      display: grid;
-      grid-template-columns: 350px 1fr;
-      grid-auto-rows: minmax(200px, auto);
-      gap: 1.5rem;
-      padding: 2rem;
-    }
-    /* Make the first card span both columns as the hero */
-    main > .card:first-child {
-      grid-column: 1 / -1;
-    }
-    /* Left column stack widths */
-    .card.standings, .tech-talk.card {
-      grid-column: 1 / 2;
-      max-width: 350px;
-      justify-self: start;
-    }
-    /* Paddock spans full width */
-    .card.paddock {
-      grid-column: 1 / -1;
-      padding: 1rem;
-      max-width: 100%;
-      font-family: 'Roboto', sans-serif;
-    }
-    .card.paddock h1, .card.paddock h2, .card.paddock h3 { column-span: all; }
+/* Make the first card span both columns as the hero */
+main > .card:first-child {
+  grid-column: 1 / -1;
+}
 
-    /* ===== Cards ===== */
-    .card {
-      position: relative;
-      padding: 1rem;
-      max-width: 100%;
-      font-family: 'Roboto', sans-serif;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      background-blend-mode: lighten;
-    }
+/* Left-column stack widths */
+.card.standings, .tech-talk.card {
+  grid-column: 1 / 2;
+  max-width: 350px;
+  justify-self: start;
+}
 
-    /* Global watermark layer */
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 80%;
-      height: 80%;
-      transform: translate(-50%, -50%);
-      background-image: url('logos/F1GPBLogoC.jpg');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      opacity: 0.18;
-      pointer-events: none;
-      z-index: 0;
-    }
 
-    /* Keep content above watermark */
-    .card > * {
-      position: relative;
-      z-index: 1;
-    }
+/* Card body font reset */
+.card p,
+.card li,
+.card ul,
+.card ol,
+.card table,
+.card th,
+.card td {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
 
-    .card:hover {
+/* The Paddock: read left-to-right like a book */
+.card.paddock {
+  grid-column: 1 / -1; /* span across the entire main grid */
+  padding: 1rem;
+  max-width: 100%; /* remove the 350px lock */
+  font-family: 'Roboto', sans-serif;
+}
+
+.card.paddock h1,
+.card.paddock h2,
+.card.paddock h3 {
+  column-span: all;
+}
+
+/* Headings stay in Orbitron */
+.card h1,
+.card h2,
+.card h3 {
+  font-family: 'Orbitron', sans-serif;
+}
+ /* Ensure overlay layers correctly */
+.card {
+  position: relative;
+  padding: 1rem;
+  max-width: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Watermark overlay */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  background-image: url('logos/F1GPBLogoC.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Keep actual card content above the watermark */
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 15px rgba(0,0,0,0.8);
     }
+.card h2 {
+  color: #e10600;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
 
-    .card h2 {
-      font-family: 'Orbitron', sans-serif;
-      color: #e10600;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
+/* Racing stripe with swoosh + motion blur */
+.title-with-stripe {
+  position: relative;
+  display: inline-block;
+  padding: 0 1rem;
+  font-size: 2.5rem;
+  color: #ffffff;
+}
 
-    /* Remove old first-card background and opacity tweak;
-       we’ll handle the Race Recap watermark via .race-recap::before */
-    /* .card:nth-of-type(1) { ... } — removed on purpose */
+.title-with-stripe::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -5%;
+  width: 110%;
+  height: 8px;
+  background: linear-gradient(
+    135deg,
+    #ff2b2b 0%,
+    #e10600 40%,
+    #990000 100%
+  );
+  transform: translateY(-50%) skewX(-20deg);
+  border-radius: 4px;
+  z-index: -1;
+  
+  /* Motion blur illusion */
+  filter: blur(1.5px);
+  box-shadow: 0 0 10px rgba(225, 6, 0, 0.6),
+              0 0 20px rgba(225, 6, 0, 0.4);
+}
+/* Generic card styling so the text stays readable */
+.card {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* or 'cover' for full fill */
+  background-blend-mode: lighten; /* helps with subtle overlays */
+}
 
-    /* Other watermark hints for remaining cards (kept as-is) */
-    .card:nth-of-type(2) { background-image: url('images/helmet-watermark.svg'); }
-    .card:nth-of-type(3) { background-image: url('images/tech-schematic.png'); }
-    .card:nth-of-type(4) { background-image: url('images/radio-wave.svg'); }
+/* Race Recap card watermark */
+.card:nth-of-type(1) {
+  background-image: url('images/hungaroring-watermark.png');
+  opacity: 0.95; /* keeps text vibrant, watermark subtle */
+}
 
-    /* ===== Race Recap watermark: Lando helmet only on this card ===== */
-    .race-recap { overflow: hidden; }
-    .race-recap::before {
-      /* Overrides the global ::before background for this one card only */
-      background-image: url('logos/landohelmet.webp');
-      background-size: 60%;
-      background-position: center;
-      opacity: 0.08;
-    }
+/* Driver Standings card watermark */
+.card:nth-of-type(2) {
+  background-image: url('images/helmet-watermark.svg');
+}
 
-    /* ===== Helmet icon next to titles ===== */
-    .card-title, .card h2, .card h3 {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .helmet-icon {
-      width: 21px;
-      height: 21px;
-      flex: 0 0 21px;
-      object-fit: contain;
-      vertical-align: middle;
-    }
-    /* Optional: tone down brightness when title is a link with hover color */
-    .card a:hover .helmet-icon { filter: none; }
+/* Tech Bites card watermark */
+.card:nth-of-type(3) {
+  background-image: url('images/tech-schematic.png');
+}
 
-    /* ===== Tech Talk card font ===== */
-    .tech-talk.card { font-family: 'Exo 2', sans-serif !important; }
-    .tech-talk.card h2, .tech-talk.card h3 { font-family: 'Orbitron', sans-serif; }
-    .tech-talk h2 { margin: 0 0 .5rem; font-size: 1.5rem; font-weight: 600; }
-    .tech-talk h3 { margin: 1rem 0 .25rem; font-size: 1.1rem; font-weight: 600; }
+/* Team Radio card watermark */
+.card:nth-of-type(4) {
+  background-image: url('images/radio-wave.svg');
+}
 
-    /* ===== Flags ===== */
-    .flag-icon {
-      width: 20px;
-      height: 14px;
-      object-fit: cover;
-      vertical-align: -2px;
-      margin-right: 8px;
-      border-radius: 2px;
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
-    }
-
-    /* ===== Upcoming Races: Table styles ===== */
-    .upcoming-races-card { padding: 1rem 1.25rem; }
-    .upcoming-races-card h2 {
-      font-family: 'Orbitron', system-ui, sans-serif;
-      font-size: 1.25rem;
-      margin: 0 0 0.75rem;
-      letter-spacing: 0.02em;
-    }
-    .races-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .races-table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-      background: #0b0b10;
-      color: #e8e8ef;
-      border: 1px solid #1f2130;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .races-table thead th {
-      text-align: left;
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 0.65rem 0.75rem;
-      background: #141625;
-      border-bottom: 1px solid #24273a;
-      white-space: nowrap;
-    }
-    .races-table tbody td {
-      padding: 0.65rem 0.75rem;
-      border-bottom: 1px solid #1b1e2e;
-      vertical-align: middle;
-      font-size: 0.92rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .races-table tbody tr:last-child td { border-bottom: none; }
-    .col-flag, .td-flag { text-align: center; }
-    .td-flag .flag { font-size: 1.25rem; display: inline-block; width: 1.75rem; }
-    .td-gp .gp-name { font-weight: 600; letter-spacing: 0.01em; }
-    .td-date time { color: #cfd3ff; font-variant-numeric: tabular-nums; }
-    .td-loc { color: #c5c8d4; }
-    .td-ctd .countdown {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-      font-weight: 600;
-      color: #8ef0a6;
-      background: #11331c;
-      border: 1px solid #1d5a31;
-      padding: 0.2rem 0.45rem;
-      border-radius: 6px;
-      display: inline-block;
-      min-width: 7.5rem;
-      text-align: center;
-    }
-    .races-table tbody tr:hover td { background: #101324; }
-
-    /* Mobile: stack */
-    @media (max-width: 600px) {
-      .races-table thead { display: none; }
-      .races-table, .races-table tbody, .races-table tr, .races-table td {
-        display: block; width: 100%;
-      }
-      .races-table tbody tr {
-        border-bottom: 1px solid #1b1e2e;
-        padding: 0.5rem 0.25rem;
-      }
-      .races-table tbody td {
-        border: none;
-        white-space: normal;
-        padding: 0.35rem 0.5rem;
-      }
-      .td-flag { order: 1; }
-      .td-gp { order: 2; }
-      .td-date { order: 3; }
-      .td-loc { order: 4; }
-      .td-ctd { order: 5; margin-top: 0.25rem; }
-    }
-  </style>
-</head>
+</style></head>
+ 
 
 <body>
-  <header class="site-banner">
-    <h1 class="title-with-stripe">🏎️ F1 GP Breakdown</h1>
-    <p style="font-size: 1.2em; font-weight: 500;">
-      Your pit wall for everything Formula 1 — race recaps, standings, strategy, and tech insight from the heart of the paddock.
-    </p>
-  </header>
+<main>
+ <header class="site-banner">
+  <h1 class="title-with-stripe">🏎️ F1 GP Breakdown</h1>
+  <p style="font-size: 1.2em; font-weight: 500;">
+    Your pit wall for everything Formula 1 — race recaps, standings, strategy, and tech insight from the heart of the paddock.
+  </p>
+</header>
 
-  <main>
-    <!-- Hero: Race Recap -->
-    <div class="card race-recap">
-      <h2>Race Recap</h2>
-      <p><strong>Hungarian Grand Prix (July 20, 2025)</strong> — A tense duel between the McLarens kept Budapest buzzing. Lando Norris converted an early undercut into the lead, but Oscar Piastri hounded him all the way to the line, finishing just 0.7 seconds adrift. George Russell brought the Mercedes home P3 after a clever one‑stop, holding off late pressure from Charles Leclerc. Key moment: McLaren split their tyre strategy on lap 18, forcing Red Bull’s hand and leaving Max Verstappen stuck in traffic. Fastest lap went to Piastri, sealing a McLaren 1–2 and tightening the fight in the constructors’ standings.</p>
-    </div>
 
-    <!-- Upcoming Races -->
-    <section class="card upcoming-races-card" aria-labelledby="upcoming-races-title">
-      <h2 id="upcoming-races-title">Upcoming races</h2>
-      <div class="races-table-wrap">
-        <table class="races-table" role="table" aria-describedby="upcoming-races-title">
-          <colgroup>
-            <col style="width: 3.5rem"/><!-- Flag -->
-            <col /><!-- Grand Prix -->
-            <col style="width: 12.5rem"/><!-- Date -->
-            <col style="width: 12.5rem"/><!-- Location -->
-            <col style="width: 10.5rem"/><!-- Countdown -->
-          </colgroup>
-          <thead>
-            <tr role="row">
-              <th scope="col" class="col-flag">Flag</th>
-              <th scope="col" class="col-gp">Grand Prix</th>
-              <th scope="col" class="col-date">Date</th>
-              <th scope="col" class="col-loc">Location</th>
-              <th scope="col" class="col-ctd">Countdown</th>
-            </tr>
-          </thead>
-          <tbody id="races-body">
-            <!-- Rows injected by JS -->
-          </tbody>
-        </table>
-      </div>
-    </section>
+<main>
+  <!-- Hero card -->
+  <div class="card">
+    <h2>Race Recap</h2>
+    <p><strong>Hungarian Grand Prix (July 20, 2025)</strong> — A tense duel between the McLarens kept Budapest buzzing. Lando Norris converted an early undercut into the lead, but Oscar Piastri hounded him all the way to the line, finishing just 0.7 seconds adrift. George Russell brought the Mercedes home P3 after a clever one‑stop, holding off late pressure from Charles Leclerc. Key moment: McLaren split their tyre strategy on lap 18, forcing Red Bull’s hand and leaving Max Verstappen stuck in traffic. Fastest lap went to Piastri, sealing a McLaren 1–2 and tightening the fight in the constructors’ standings.</p>
+  </div>
+<div class="card paddock upcoming-races">
+  <h2>📅 Upcoming Races</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>🇺🇳 Venue</th>
+        <th>📆 Date</th>
+      </tr>
+    </thead>
+   <tbody>
+  <tr>
+    <td>
+      <img src="./F1 GP Breakdown_files/nl.svg" alt="Netherlands flag" class="flag-icon">
+      Dutch Grand Prix — Zandvoort
+      <span id="countdown" style="
+        margin-left: 12px;
+        font-weight: bold;
+        font-size: 0.95em;
+        background: linear-gradient(135deg, #ff2b2b, #e10600);
+        color: #fff;
+        padding: 0.25em 0.5em;
+        border-radius: 6px;
+        box-shadow: 0 0 6px rgba(225,6,0,0.5);
+      ">⏳ 16d 23h 18m</span>
+    </td>
+    <td>Aug 31, 2025</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./F1 GP Breakdown_files/it.svg" alt="Italy flag" class="flag-icon">
+      Italian Grand Prix — Monza
+    </td>
+    <td>Sep 7, 2025</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./F1 GP Breakdown_files/az.svg" alt="Azerbaijan flag" class="flag-icon">
+      Azerbaijan Grand Prix — Baku
+    </td>
+    <td>Sep 21, 2025</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./F1 GP Breakdown_files/sg.svg" alt="Singapore flag" class="flag-icon">
+      Singapore Grand Prix — Marina Bay
+    </td>
+    <td>Oct 5, 2025</td>
+  </tr>
+</tbody>
 
-    <!-- Driver Standings -->
-    <div class="card standings">
-      <h2>Driver Standings</h2>
-      <table>
-        <thead>
-          <tr><th>Pos</th><th>Driver</th><th>Team</th><th>Points</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>1</td><td>Oscar Piastri</td><td>McLaren</td><td>284</td></tr>
-          <tr><td>2</td><td>Lando Norris</td><td>McLaren</td><td>275</td></tr>
-          <tr><td>3</td><td>Max Verstappen</td><td>Red Bull</td><td>187</td></tr>
-          <tr><td>4</td><td>George Russell</td><td>Mercedes</td><td>172</td></tr>
-          <tr><td>5</td><td>Charles Leclerc</td><td>Ferrari</td><td>151</td></tr>
-          <tr><td>6</td><td>Lewis Hamilton</td><td>Ferrari</td><td>109</td></tr>
-          <tr><td>7</td><td>Kimi Antonelli</td><td>Mercedes</td><td>64</td></tr>
-          <tr><td>8</td><td>Alex Albon</td><td>Williams</td><td>54</td></tr>
-          <tr><td>9</td><td>Nico Hülkenberg</td><td>Sauber</td><td>37</td></tr>
-          <tr><td>10</td><td>Esteban Ocon</td><td>Haas</td><td>27</td></tr>
-        </tbody>
-      </table>
-    </div>
+  </table>
 
-    <!-- The Paddock -->
-    <div class="card paddock">
-      <h2>The Paddock: Alpine & Williams Test at Monza</h2>
-      <p>While the spotlight was on Budapest, Alpine and Williams quietly turned laps at Monza in a crucial mid-season test. With Spa and Monza looming on the calendar, both teams sought answers on low-downforce setups and tyre degradation.</p>
-      <h3>Alpine Highlights</h3>
-      <ul>
-        <li><strong>Ran aero rakes:</strong> on the A525 to validate new floor geometry.</li>
-        <li><strong>Ocon’s workload:</strong> Logged 100+ laps; brake cooling and DRS efficiency focus.</li>
-        <li><strong>Early signals:</strong> Data reportedly exceeded expectations for high-speed balance.</li>
-      </ul>
-      <h3>Williams Insights</h3>
-      <ul>
-        <li><strong>Aero package:</strong> Revised rear wing and diffuser trialed.</li>
-        <li><strong>Balance challenge:</strong> FW47 quick in a straight line; rear stability through Ascari needs work.</li>
-        <li><strong>Outlook:</strong> Engineers optimistic about qualifying trim gains.</li>
-      </ul>
-      <p>Both squads are chasing consistency in the midfield battle—and Monza’s long straights and heavy braking zones offered the perfect proving ground.</p>
-    </div>
+  <div id="countdown" style="margin-top: 1em; font-weight: bold;">
+  ⏳ Countdown to Dutch GP:
+  <span id="timer" style="background: linear-gradient(135deg, #ff2b2b, #e10600); color: #fff; padding: 0.3em 0.6em; border-radius: 6px; font-weight: 700; font-size: 1.1em; box-shadow: 0 0 8px rgba(225, 6, 0, 0.6);">Loading...</span>
+</div>
 
-    <!-- Tech Talk -->
-    <section id="tech-talk-belgian-gp" class="tech-talk card" aria-labelledby="tech-talk-title">
-      <h2 id="tech-talk-title">Tech Talk: Belgian Grand Prix — Spa‑Francorchamps</h2>
-      <div class="track-overview">
-        <h3>Circuit overview</h3>
-        <ul>
-          <li><strong>Name:</strong> Circuit de Spa‑Francorchamps</li>
-          <li><strong>Length:</strong> 7.004 km (longest on the calendar)</li>
-          <li><strong>Laps:</strong> 44 (race distance ~308.052 km)</li>
-          <li><strong>First F1 GP:</strong> 1950</li>
-          <li><strong>Character:</strong> Long straights, high‑speed corners, big elevation; Ardennes micro‑climate can split the track between wet and dry.</li>
-        </ul>
-        <div class="spa-layout-image" style="margin: 1rem 0;">
-          <img src="logos/spacircuit.jpg" alt="Spa-Francorchamps circuit layout" style="width: 100%; max-width: 600px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.6);">
-          <p style="font-size: 0.9em; color: #ccc; text-align: center; margin-top: 0.5rem;">
-            Spa-Francorchamps layout — 7km of elevation, speed, and legacy. Fastest lap: Bottas (1:46.286). Schumacher’s six wins here are legendary.
-          </p>
-        </div>
-      </div>
 
-      <div class="tech-tyres">
-        <h3>Technical and tyre notes</h3>
-        <ul>
-          <li><strong>Downforce:</strong> Medium–low to protect top speed on Kemmel while keeping Sector 2 stable.</li>
-          <li><strong>Tyres:</strong> Typically mid‑range compounds (C2–C4); cool, damp air can cause graining.</li>
-          <li><strong>Strategy:</strong> One or two stops viable; Safety Cars and weather often swing the call.</li>
-          <li><strong>Power unit & cooling:</strong> High full‑throttle time; brake energy moderate but cooling is critical.</li>
-        </ul>
-      </div>
-
-      <div class="weather-watch">
-        <h3>Weather watch</h3>
-        <ul>
-          <li><strong>Temperatures:</strong> High‑teens to low‑20s °C are common.</li>
-          <li><strong>Rain risk:</strong> Sudden showers are notorious; Intermediates often decide margins.</li>
-        </ul>
-      </div>
-
-      <div class="spotlight-sections">
-        <h3>Sections to spotlight</h3>
-        <ul>
-          <li><strong>Eau Rouge/Raidillon:</strong> Compression to crest at full chat; balance drag vs. front‑end bite.</li>
-          <li><strong>Kemmel Straight:</strong> Primary DRS and overtaking zone; tow effect is strong.</li>
-          <li><strong>Les Combes–Malmedy:</strong> Vulnerable to switchbacks if the defender over‑commits.</li>
-          <li><strong>Pouhon:</strong> Sustained lateral load; left‑side tyre temps spike.</li>
-          <li><strong>Blanchimont:</strong> Commitment‑heavy, especially in dirty air late in stints.</li>
-          <li><strong>Bus Stop chicane:</strong> Heavy braking; traction crucial onto the main straight.</li>
-        </ul>
-      </div>
-    </section>
-  </main>
-
-  <!-- Upcoming Races: Data + Render -->
   <script>
-    // ========== Upcoming Races: Data ==========
-    const UPCOMING_RACES = [
-      {
-        flag: "logos/nlflag.png",
-        grandPrix: "Dutch Grand Prix",
-        dateISO: "2025-08-31T15:00:00+02:00",
-        location: "Zandvoort, Netherlands"
-      },
-      {
-        flag: "logos/itflag.jpg",
-        grandPrix: "Italian Grand Prix",
-        dateISO: "2025-09-07T15:00:00+02:00",
-        location: "Monza, Italy"
-      },
-      {
-        flag: "logos/bakuflag.webp", // add to /logos/ if needed
-        grandPrix: "Azerbaijan Grand Prix",
-        dateISO: "2025-09-21T15:00:00+04:00",
-        location: "Baku, Azerbaijan"
-      },
-      {
-        flag: "logos/singaporeflag.webp", // add to /logos/ if needed
-        grandPrix: "Singapore Grand Prix",
-        dateISO: "2025-09-28T20:00:00+08:00",
-        location: "Marina Bay, Singapore"
-      }
-    ];
+  const targetDate = new Date("2025-08-31T06:00:00Z");
+  const countdownElement = document.getElementById("countdown");
 
-    // ========== Utilities ==========
-    function formatLocalDate(iso) {
-      const d = new Date(iso);
-      const fmt = new Intl.DateTimeFormat(undefined, {
-        weekday: "short",
-        year: "numeric",
-        month: "short",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
-      });
-      return fmt.format(d);
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      countdownElement.textContent = "🏁 Race is live!";
+      return;
     }
 
-    function diffParts(toISO) {
-      const now = new Date();
-      const target = new Date(toISO);
-      let diff = target - now;
-      if (diff <= 0) return { over: true, d: 0, h: 0, m: 0, s: 0 };
-      const d = Math.floor(diff / (24 * 3600 * 1000)); diff -= d * 24 * 3600 * 1000;
-      const h = Math.floor(diff / (3600 * 1000));      diff -= h * 3600 * 1000;
-      const m = Math.floor(diff / (60 * 1000));        diff -= m * 60 * 1000;
-      const s = Math.floor(diff / 1000);
-      return { over: false, d, h, m, s };
-    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
 
-    function formatCountdown(parts) {
-      const pad = (n) => String(n).padStart(2, "0");
-      return `${parts.d}d ${pad(parts.h)}h ${pad(parts.m)}m`;
-    }
+    countdownElement.textContent =
+      `⏳ ${days}d ${hours}h ${mins}m`;
+  }
 
-    // ========== Render ==========
-    function renderRaces() {
-      const tbody = document.getElementById("races-body");
-      if (!tbody) return;
-      tbody.innerHTML = "";
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+</script>
 
-      UPCOMING_RACES
-        .map(r => ({ ...r, date: new Date(r.dateISO) }))
-        .filter(r => r.date > new Date())
-        .sort((a, b) => a.date - b.date)
-        .forEach((race) => {
-          const tr = document.createElement("tr");
-          tr.setAttribute("role", "row");
+</div>
 
-          // Flag
-          const tdFlag = document.createElement("td");
-          tdFlag.className = "td-flag";
-          const flagSrc = race.flag.trim().startsWith("/") ? race.flag.trim() : "/" + race.flag.trim();
-          tdFlag.innerHTML = `<img class="flag-icon" src="${flagSrc}" alt="${race.location} flag" width="20" height="14" loading="lazy">`;
-          tr.appendChild(tdFlag);
 
-          // GP
-          const tdGP = document.createElement("td");
-          tdGP.className = "td-gp";
-          tdGP.innerHTML = `<span class="gp-name">${race.grandPrix}</span>`;
-          tr.appendChild(tdGP);
+  <!-- Left column stack -->
+  <div class="card standings">
+    <h2>Driver Standings</h2>
+    <table>
+      <thead>
+        <tr><th>Pos</th><th>Driver</th><th>Team</th><th>Points</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Oscar Piastri</td><td>McLaren</td><td>284</td></tr>
+        <tr><td>2</td><td>Lando Norris</td><td>McLaren</td><td>275</td></tr>
+        <tr><td>3</td><td>Max Verstappen</td><td>Red Bull</td><td>187</td></tr>
+        <tr><td>4</td><td>George Russell</td><td>Mercedes</td><td>172</td></tr>
+        <tr><td>5</td><td>Charles Leclerc</td><td>Ferrari</td><td>151</td></tr>
+        <tr><td>6</td><td>Lewis Hamilton</td><td>Ferrari</td><td>109</td></tr>
+        <tr><td>7</td><td>Kimi Antonelli</td><td>Mercedes</td><td>64</td></tr>
+        <tr><td>8</td><td>Alex Albon</td><td>Williams</td><td>54</td></tr>
+        <tr><td>9</td><td>Nico Hülkenberg</td><td>Sauber</td><td>37</td></tr>
+        <tr><td>10</td><td>Esteban Ocon</td><td>Haas</td><td>27</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-          // Date
-          const tdDate = document.createElement("td");
-          tdDate.className = "td-date";
-          tdDate.innerHTML = `<time datetime="${race.dateISO}">${formatLocalDate(race.dateISO)}</time>`;
-          tr.appendChild(tdDate);
+ <div class="card paddock">
+  <h2>🏁 The Paddock: Alpine &amp; Williams Test at Monza</h2>
+  <p>While the spotlight was on Budapest, Alpine and Williams quietly turned laps at Monza in a crucial mid-season test. With Spa and Monza looming on the calendar, both teams sought answers on low-downforce setups and tyre degradation.</p>
+  
+  <h3>Alpine Highlights</h3>
+  <ul>
+    <li>Ran aero rakes on the A525 to validate new floor geometry.</li>
+    <li>Esteban Ocon logged over 100 laps, focusing on brake cooling and DRS efficiency.</li>
+    <li>Team sources say the data “exceeded expectations” for high-speed balance.</li>
+  </ul>
+  
+  <h3>Williams Insights</h3>
+  <ul>
+    <li>Alex Albon trialed a revised rear wing and diffuser package.</li>
+    <li>The FW47 showed promising straight-line speed, but struggled with rear stability through Ascari.</li>
+    <li>Engineers are optimistic about gains in qualifying trim.</li>
+  </ul>
 
-          // Location
-          const tdLoc = document.createElement("td");
-          tdLoc.className = "td-loc";
-          tdLoc.textContent = race.location;
-          tr.appendChild(tdLoc);
+  <p>Both squads are chasing consistency in the midfield battle—and Monza’s long straights and heavy braking zones offered the perfect proving ground.</p>
+</div>
 
-          // Countdown
-          const tdCtd = document.createElement("td");
-          tdCtd.className = "td-ctd";
-          tdCtd.innerHTML = `<span class="countdown" data-countdown="${race.dateISO}" aria-label="Countdown to ${race.grandPrix}"></span>`;
-          tr.appendChild(tdCtd);
+  <section id="tech-talk-belgian-gp" class="tech-talk card" aria-labelledby="tech-talk-title">
+    <h2 id="tech-talk-title">Tech Talk: Belgian Grand Prix — Spa‑Francorchamps</h2>
 
-          tbody.appendChild(tr);
-        });
-    }
+    <div class="track-overview">
+      <h3>Circuit overview</h3>
+      <ul>
+        <li><strong>Name:</strong> Circuit de Spa‑Francorchamps</li>
+        <li><strong>Length:</strong> 7.004 km (longest on the calendar)</li>
+        <li><strong>Laps:</strong> 44 (race distance ~308.052 km)</li>
+        <li><strong>First F1 GP:</strong> 1950</li>
+        <li><strong>Character:</strong> Long straights, high‑speed corners, big elevation; Ardennes micro‑climate can split the track between wet and dry.</li>
+      </ul>
+      <div class="spa-layout-image" style="margin: 1rem 0;">
+ <img src="./F1 GP Breakdown_files/spacircuit.jpg" alt="Spa-Francorchamps circuit layout" style="width: 100%; max-width: 600px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.6);">
 
-    function tickCountdowns() {
-      const nodes = document.querySelectorAll('[data-countdown]');
-      nodes.forEach((node) => {
-        const iso = node.getAttribute('data-countdown');
-        const parts = diffParts(iso);
-        node.textContent = parts.over ? "On track" : formatCountdown(parts);
-      });
-    }
 
-    // Init
-    (function initUpcomingRaces() {
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", () => {
-          renderRaces();
-          tickCountdowns();
-          setInterval(tickCountdowns, 30000);
-        });
-      } else {
-        renderRaces();
-        tickCountdowns();
-        setInterval(tickCountdowns, 30000);
-      }
-    })();
-  </script>
+<p style="font-size: 0.9em; color: #ccc; text-align: center; margin-top: 0.5rem;">
+    Spa-Francorchamps layout — 7km of elevation, speed, and legacy. Fastest lap: Bottas (1:46.286). Schumacher’s six wins here are legendary.
+  </p>
+</div>
 
-  <!-- Helmet icon auto-injection for card titles -->
-  <script>
-    (function(){
-      function addHelmetIconToTitle(titleEl) {
-        var target = titleEl.firstElementChild && titleEl.firstElementChild.tagName === 'A'
-          ? titleEl.firstElementChild
-          : titleEl;
-        if (target.querySelector('.helmet-icon')) return;
-        var img = document.createElement('img');
-        img.className = 'helmet-icon';
-        img.src = 'logos/f1merchelmet.webp';
-        img.alt = '';
-        img.setAttribute('aria-hidden', 'true');
-        target.insertBefore(img, target.firstChild);
-      }
+    <div class="tech-tyres">
+      <h3>Technical and tyre notes</h3>
+      <ul>
+        <li><strong>Downforce:</strong> Medium–low to protect top speed on Kemmel while keeping Sector 2 stable.</li>
+        <li><strong>Tyres:</strong> Typically mid‑range compounds (C2–C4); cool, damp air can cause graining.</li>
+        <li><strong>Strategy:</strong> One or two stops viable; Safety Cars and weather often swing the call.</li>
+        <li><strong>Power unit &amp; cooling:</strong> High full‑throttle time; brake energy moderate but cooling is critical.</li>
+      </ul>
+    </div>
 
-      function initHelmetIcons(root) {
-        var titles = (root || document).querySelectorAll('.card h2, .card h3, .card .card-title');
-        titles.forEach(addHelmetIconToTitle);
-      }
+    <div class="weather-watch">
+      <h3>Weather watch</h3>
+      <ul>
+        <li><strong>Temperatures:</strong> High‑teens to low‑20s °C are common.</li>
+        <li><strong>Rain risk:</strong> Sudden showers are notorious; Intermediates often decide margins.</li>
+      </ul>
+    </div>
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function(){ initHelmetIcons(); });
-      } else {
-        initHelmetIcons();
-      }
+    <div class="spotlight-sections">
+      <h3>Sections to spotlight</h3>
+      <ul>
+        <li><strong>Eau Rouge/Raidillon:</strong> Compression to crest at full chat; balance drag vs. front‑end bite.</li>
+        <li><strong>Kemmel Straight:</strong> Primary DRS and overtaking zone; tow effect is strong.</li>
+        <li><strong>Les Combes–Malmedy:</strong> Vulnerable to switchbacks if the defender over‑commits.</li>
+        <li><strong>Pouhon:</strong> Sustained lateral load; left‑side tyre temps spike.</li>
+        <li><strong>Blanchimont:</strong> Commitment‑heavy, especially in dirty air late in stints.</li>
+        <li><strong>Bus Stop chicane:</strong> Heavy braking; traction crucial onto the main straight.</li>
+      </ul>
+    </div>
+  </div></section>
 
-      var mo = new MutationObserver(function(mutations) {
-        mutations.forEach(function(m) {
-          m.addedNodes.forEach(function(node) {
-            if (!(node instanceof Element)) return;
-            if (node.matches && (node.matches('.card h2, .card h3, .card .card-title') || node.matches('.card'))) {
-              initHelmetIcons(node);
-            } else {
-              var within = node.querySelectorAll && node.querySelectorAll('.card h2, .card h3, .card .card-title');
-              if (within && within.length) initHelmetIcons(node);
-            }
-          });
-        });
-      });
-      mo.observe(document.body, { childList: true, subtree: true });
-    })();
-  </script>
-</body>
-</html>
+
+
+</main></main></body></html>
