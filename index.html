@@ -199,10 +199,11 @@ font-weight: 400;
 
 /* The Paddock: read left-to-right like a book */
 .card.paddock {
-grid-column: 1 / -1; /* span across the entire main grid */
-padding: 1rem;
-max-width: 100%; /* remove the 350px lock */
-font-family: 'Roboto', sans-serif;
+  grid-column: 1 / 2; /* Move to left column */
+  max-width: 350px;   /* Optional: match other left-column cards */
+  justify-self: start;
+  padding: 1rem;
+  font-family: 'Roboto', sans-serif;
 }
 
 .card.paddock h1,
