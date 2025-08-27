@@ -513,31 +513,32 @@ padding: 0.35rem 0.5rem;
 <script>
 // ========== Upcoming Races: Data ==========
 const UPCOMING_RACES = [
-{
-flag: "logos/nlflag.png",
-grandPrix: "Dutch Grand Prix",
-dateISO: "2025-08-31T15:00:00+02:00",
-location: "Zandvoort, Netherlands"
-},
-{
-flag: "logos/itflag.jpg",
-grandPrix: "Italian Grand Prix",
-dateISO: "2025-09-07T15:00:00+02:00",
-location: "Monza, Italy"
-},
-{
-flag: "logos/bakuflag.webp",  // ← add this PNG to /logos/ if not there yet
-grandPrix: "Azerbaijan Grand Prix",
-dateISO: "2025-09-21T15:00:00+04:00",
-location: "Baku, Azerbaijan"
-},
-{
-flag: "logos/singaporeflag.webp",  // ← add this PNG to /logos/ if not there yet
-grandPrix: "Singapore Grand Prix",
-dateISO: "2025-09-28T20:00:00+08:00",
-location: "Marina Bay, Singapore"
-}
+  {
+    flag: "logos/nlflag.png",
+    grandPrix: "Dutch Grand Prix",
+    dateISO: "2025-08-31T15:00:00+02:00",
+    location: "Zandvoort, Netherlands"
+  },
+  {
+    flag: "logos/itflag.jpg",
+    grandPrix: "Italian Grand Prix",
+    dateISO: "2025-09-07T15:00:00+02:00",
+    location: "Monza, Italy"
+  },
+  {
+    flag: "logos/bakuflag.webp",
+    grandPrix: "Azerbaijan Grand Prix",
+    dateISO: "2025-09-21T15:00:00+04:00",
+    location: "Baku, Azerbaijan"
+  },
+  {
+    flag: "logos/singaporeflag.webp",
+    grandPrix: "Singapore Grand Prix",
+    dateISO: "2025-09-28T20:00:00+08:00",
+    location: "Marina Bay, Singapore"
+  }
 ];
+
 
 
 // ========== Upcoming Races: Utilities ==========
@@ -577,60 +578,45 @@ return `${parts.d}d ${pad(parts.h)}h ${pad(parts.m)}m`;
 
 // ========== Upcoming Races: Render ==========
 function renderRaces() {
-const tbody = document.getElementById("races-body");
-tbody.innerHTML = "";
+  const tbody = document.getElementById("races-body");
+  tbody.innerHTML = "";
 
-UPCOMING_RACES.forEach((race) => {
-const tr = document.createElement("tr");
-tr.setAttribute("role", "row");
+  UPCOMING_RACES.forEach((race) => {
+    const tr = document.createElement("tr");
+    tr.setAttribute("role", "row");
 
-// --- Column 1: Flag ---
-const tdFlag = document.createElement("td");
-tdFlag.className = "td-flag";
+    // Flag column
+    const tdFlag = document.createElement("td");
+    tdFlag.className = "td-flag";
+    tdFlag.innerHTML = `<img class="flag-icon" src="${race.flag}" alt="${race.location} flag" width="20" height="14" loading="lazy">`;
+    tr.appendChild(tdFlag);
 
-// UPDATED: accept .png, .jpg, .jpeg, .gif, .webp
-if (race.flag && /\.(png|jpe?g|gif|webp)$/i.test(race.flag.trim())) {
-const src = race.flag.trim().startsWith("/")
-? race.flag.trim()
-: "/" + race.flag.trim();
-tdFlag.innerHTML = `<img class="flag-icon" src="${src}" alt="${race.location} flag" width="20" height="14" loading="lazy">`;
-} else {
-tdFlag.innerHTML = `<span class="flag" aria-hidden="true">${race.flag}</span><span class="sr-only">${race.location} flag</span>`;
-}
+    // Grand Prix name
+    const tdGP = document.createElement("td");
+    tdGP.className = "td-gp";
+    tdGP.innerHTML = `<span class="gp-name">${race.grandPrix}</span>`;
+    tr.appendChild(tdGP);
 
-tr.appendChild(tdFlag);
+    // Date
+    const tdDate = document.createElement("td");
+    tdDate.className = "td-date";
+    tdDate.innerHTML = `<time datetime="${race.dateISO}">${formatLocalDate(race.dateISO)}</time>`;
+    tr.appendChild(tdDate);
 
-// --- Column 2: Grand Prix name (prepend NL image if Dutch GP) ---
-const tdGP = document.createElement("td");
-tdGP.className = "td-gp";
+    // Location
+    const tdLoc = document.createElement("td");
+    tdLoc.className = "td-loc";
+    tdLoc.textContent = race.location;
+    tr.appendChild(tdLoc);
 
-const prependImg =
-race.grandPrix === "Dutch Grand Prix"
-? `<img class="flag-icon" src="${race.flag.trim()}" alt="Netherlands flag"> `
-: "";
-tdGP.innerHTML = `${prependImg}<span class="gp-name">${race.grandPrix}</span>`;
-tr.appendChild(tdGP);
+    // Countdown
+    const tdCtd = document.createElement("td");
+    tdCtd.className = "td-ctd";
+    tdCtd.innerHTML = `<span class="countdown" data-countdown="${race.dateISO}" aria-label="Countdown to ${race.grandPrix}"></span>`;
+    tr.appendChild(tdCtd);
 
-// --- Column 3: Date ---
-const tdDate = document.createElement("td");
-tdDate.className = "td-date";
-tdDate.innerHTML = `<time datetime="${race.dateISO}">${formatLocalDate(race.dateISO)}</time>`;
-tr.appendChild(tdDate);
-
-// --- Column 4: Location ---
-const tdLoc = document.createElement("td");
-tdLoc.className = "td-loc";
-tdLoc.textContent = race.location;
-tr.appendChild(tdLoc);
-
-// --- Column 5: Countdown ---
-const tdCtd = document.createElement("td");
-tdCtd.className = "td-ctd";
-tdCtd.innerHTML = `<span class="countdown" data-countdown="${race.dateISO}" aria-label="Countdown to ${race.grandPrix}"></span>`;
-tr.appendChild(tdCtd);
-
-tbody.appendChild(tr);
-});
+    tbody.appendChild(tr);
+  });
 }
 
 
