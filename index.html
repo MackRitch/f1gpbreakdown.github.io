@@ -125,12 +125,14 @@ text-align: left;
 }
 
 /* Flag image beside GP name */
-.upcoming-races-card .flag-icon {
-width: 20px;
-height: 14px;
-margin-right: 8px;
-vertical-align: -2px;
-border-radius: 2px;
+.flag-icon {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  vertical-align: -2px;
+  margin-right: 8px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
 /* ▲ End new table layout rules ▲ */
@@ -199,13 +201,10 @@ font-weight: 400;
 
 /* The Paddock: read left-to-right like a book */
 .card.paddock {
-  grid-column: 1 / 2; /* Move to left column */
-  max-width: 350px;   /* Optional: match other left-column cards */
+  grid-column: 1 / 2;
+  max-width: 350px;
   justify-self: start;
-  padding: 1rem;
-  font-family: 'Roboto', sans-serif;
 }
-
 .card.paddock h1,
 .card.paddock h2,
 .card.paddock h3 {
@@ -305,21 +304,14 @@ background-blend-mode: lighten; /* helps with subtle overlays */
   background: none;
 }
 
-
-
 /* Driver Standings card watermark */
-.card.standings {
+    .card.standings {
   background-image: url('images/helmet-watermark.svg');
 }
 
 /* Tech Bites card watermark */
 .card.tech-talk {
   background-image: url('images/tech-schematic.png');
-}
-
-/* Team Radio card watermark */
-.card:nth-of-type(4) {
-background-image: url('images/radio-wave.svg');
 }
 
 /* Flag icon styling for race tables */
@@ -357,10 +349,13 @@ Your pit wall for everything Formula 1 — race recaps, standings, strategy, and
   <p><strong>Fastest Lap:</strong> Piastri, sealing a McLaren 1–2 and tightening the constructors’ fight.</p>
 </div>
 
-<div class="card paddock upcoming-races">
-<!-- ===== Upcoming Races: START ===== -->
-<section class="card upcoming-races-card" aria-labelledby="upcoming-races-title">
-<h2 id="upcoming-races-title">Upcoming races</h2>
+<div class="card paddock">
+  <!-- Paddock content only -->
+</div>
+
+<div class="card upcoming-races-card">
+  <!-- Upcoming races table -->
+</div>
 
 <div class="races-table-wrap">
 <table class="races-table" role="table" aria-describedby="upcoming-races-title">
