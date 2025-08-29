@@ -356,34 +356,29 @@ Your pit wall for everything Formula 1 — race recaps, standings, strategy, and
 <div class="card upcoming-races-card">
   <h2 id="upcoming-races-title">Upcoming Races</h2>
   <div class="races-table-wrap">
-    <table class="races-table">...</table>
+    <table class="races-table" role="table" aria-describedby="upcoming-races-title">
+      <colgroup>
+        <col style="width: 3.5rem" />
+        <col />
+        <col style="width: 12.5rem" />
+        <col style="width: 12.5rem" />
+        <col style="width: 10.5rem" />
+      </colgroup>
+      <thead>
+        <tr role="row">
+          <th scope="col" class="col-flag">Flag</th>
+          <th scope="col" class="col-gp">Grand Prix</th>
+          <th scope="col" class="col-date">Date</th>
+          <th scope="col" class="col-loc">Location</th>
+          <th scope="col" class="col-ctd">Countdown</th>
+        </tr>
+      </thead>
+      <tbody id="races-body">
+        <!-- Rows injected by JS -->
+      </tbody>
+    </table>
   </div>
 </div>
-
-<div class="races-table-wrap">
-<table class="races-table" role="table" aria-describedby="upcoming-races-title">
-<colgroup>
-<col style="width: 3.5rem" />   <!-- Flag -->
-<col />                         <!-- Grand Prix -->
-<col style="width: 12.5rem" />  <!-- Date -->
-<col style="width: 12.5rem" />  <!-- Location -->
-<col style="width: 10.5rem" />  <!-- Countdown -->
-</colgroup>
-<thead>
-<tr role="row">
-<th scope="col" class="col-flag">Flag</th>
-<th scope="col" class="col-gp">Grand Prix</th>
-<th scope="col" class="col-date">Date</th>
-<th scope="col" class="col-loc">Location</th>
-<th scope="col" class="col-ctd">Countdown</th>
-</tr>
-</thead>
-<tbody id="races-body">
-<!-- Rows are injected here by JS -->
-</tbody>
-</table>
-</div>
-</section>
 
 <style>
 /* ========== Upcoming Races: Styles ========== */
@@ -508,6 +503,19 @@ padding: 0.35rem 0.5rem;
 .td-loc { order: 4; }
 .td-ctd { order: 5; margin-top: 0.25rem; }
 }
+    .upcoming-races-card {
+  background: #0b0b10;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border: 1px solid #1f2130;
+}
+
+.races-table {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
 </style>
 
 <script>
