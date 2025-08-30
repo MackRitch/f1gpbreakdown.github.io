@@ -383,7 +383,8 @@ Your pit wall for everything Formula 1 — race recaps, standings, strategy, and
 <style>
 /* ========== Upcoming Races: Styles ========== */
 .upcoming-races-card {
-padding: 1rem 1.25rem;
+  width: 100%;
+  max-width: none;
 }
 
 .upcoming-races-card h2 {
@@ -503,12 +504,18 @@ padding: 0.35rem 0.5rem;
 .td-loc { order: 4; }
 .td-ctd { order: 5; margin-top: 0.25rem; }
 }
-    .upcoming-races-card {
+  .upcoming-races-card {
   background: #0b0b10;
   border-radius: 8px;
   padding: 1rem 1.25rem;
   border: 1px solid #1f2130;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  width: 100%;
+  max-width: none;
 }
+
 
 .races-table {
   background: transparent;
