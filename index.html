@@ -515,6 +515,41 @@ padding: 0.35rem 0.5rem;
   border: none;
   border-radius: 0;
 }
+/* Fix card styling and remove visual artifact */
+.upcoming-races-card {
+  background: #0b0b10;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border: 1px solid #1f2130;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Remove any pseudo-elements that might be causing watermark */
+.upcoming-races-card::before,
+.upcoming-races-card::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Table styling to match card and nest cleanly */
+.races-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: transparent;
+  color: #e8e8ef;
+  border: none;
+  border-radius: 0;
+}
+
+/* Optional: subtle padding for scroll container */
+.races-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+}
 
 </style>
 
