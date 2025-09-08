@@ -339,19 +339,20 @@ Your pit wall for everything Formula 1 — race recaps, standings, strategy, and
 <!-- Hero card -->
 <div class="card race-recap">
   <h2>Race Recap</h2>
-  <h3>🏁 Hungarian Grand Prix — July 20, 2025</h3>
-  <p>
-    A tense McLaren duel lit up Budapest. <strong>Lando Norris</strong> seized the lead with an early undercut, but <strong>Oscar Piastri</strong> stayed glued to his gearbox, finishing just <strong>0.7s</strong behind. <strong>George Russell</strong> executed a clever one-stop strategy to secure P3 for Mercedes, fending off late pressure from <strong>Charles Leclerc</strong>.
-  </p>
-  <p><strong>Key Moment:</strong> McLaren split tyre strategies on lap 18, forcing Red Bull’s hand and leaving <strong>Max Verstappen</strong> stuck in traffic.</p>
-  <p><strong>Fastest Lap:</strong> Piastri, sealing a McLaren 1–2 and tightening the constructors’ fight.</p>
+  <h3>🏁 Italian Grand Prix — September 7, 2025</h3>
+  <p><strong>Max Verstappen</strong> delivered a dominant drive at Monza, winning by over <strong>19 seconds</strong> and setting a new record for the fastest race in F1 history. <strong>Lando Norris</strong> and <strong>Oscar Piastri</strong> completed the podium for McLaren, though not without late-race team orders that stirred controversy.</p>
+  <p><strong>Key Moment:</strong> Verstappen reclaimed the lead on lap 4 using DRS after ceding it to Norris due to a Turn 1 shortcut. McLaren’s pit strategy unraveled when Norris suffered a slow stop, prompting a team swap with Piastri.</p>
+  <p><strong>Fastest Lap:</strong> Verstappen, showcasing Red Bull’s low-drag efficiency and blistering pace through Parabolica.</p>
 </div>
 
 <div class="card paddock">
   <section id="paddock" aria-labelledby="paddock-title">
-    <!-- Paddock content here -->
+    <h2 id="paddock-title">The Paddock</h2>
+    <p><strong>Ferrari</strong> has introduced a radical new floor concept ahead of the Singapore Grand Prix, aimed at improving rear stability and reducing tyre degradation. The upgrade comes after a string of disappointing results in high-downforce circuits.</p>
+    <p><strong>Red Bull</strong> continues to refine its suspension geometry, with Verstappen praising the car’s balance through Monza’s high-speed corners. Meanwhile, <strong>Mercedes</strong> has hinted at a major aero package for Suzuka, hoping to claw back performance lost in recent races.</p>
   </section>
 </div>
+
 
 <div class="card upcoming-races-card">
   <h2 id="upcoming-races-title">Upcoming Races</h2>
@@ -564,30 +565,57 @@ padding: 0.35rem 0.5rem;
 // ========== Upcoming Races: Data ==========
 const UPCOMING_RACES = [
   {
-    flag: "logos/nlflag.png",
-    grandPrix: "Dutch Grand Prix",
-    dateISO: "2025-08-31T15:00:00+02:00",
-    location: "Zandvoort, Netherlands"
-  },
-  {
-    flag: "logos/itflag.jpg",
-    grandPrix: "Italian Grand Prix",
-    dateISO: "2025-09-07T15:00:00+02:00",
-    location: "Monza, Italy"
-  },
-  {
-    flag: "logos/bakuflag.webp",
-    grandPrix: "Azerbaijan Grand Prix",
-    dateISO: "2025-09-21T15:00:00+04:00",
+    flag: "azerbaijan.png", // Add this image to your assets later
+    name: "Azerbaijan Grand Prix",
+    date: "2025-09-21T15:00:00+04:00", // Local time in Baku
     location: "Baku, Azerbaijan"
   },
   {
-    flag: "logos/singaporeflag.webp",
-    grandPrix: "Singapore Grand Prix",
-    dateISO: "2025-09-28T20:00:00+08:00",
+    flag: "singapore.png",
+    name: "Singapore Grand Prix",
+    date: "2025-10-05T20:00:00+08:00",
     location: "Marina Bay, Singapore"
+  },
+  {
+    flag: "usa.png",
+    name: "United States Grand Prix",
+    date: "2025-10-19T15:00:00-05:00",
+    location: "Austin, Texas"
   }
 ];
+
+function updateRaceTable() {
+  const tbody = document.getElementById("races-body");
+  tbody.innerHTML = "";
+
+  UPCOMING_RACES.forEach(race => {
+    const raceDate = new Date(race.date);
+    const now = new Date();
+    const timeDiff = raceDate - now;
+
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+
+    const countdown = timeDiff > 0
+      ? `${days}d ${hours}h ${minutes}m`
+      : "Race in progress or completed";
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td><img src="flags/${race.flag}" alt="" class="flag-icon" /></td>
+      <td>${race.name}</td>
+      <td>${raceDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</td>
+      <td>${race.location}</td>
+      <td>${countdown}</td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+
+// Refresh countdown every minute
+setInterval(updateRaceTable, 60000);
+updateRaceTable();
 
 
 
