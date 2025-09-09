@@ -161,7 +161,11 @@ grid-template-columns: 2fr 1fr;
 grid-auto-rows: minmax(200px, auto);
 gap: 1.5rem;
 padding: 2rem;
+width: 100%;
+max-width: none;
+margin: 0;
 }
+
 
 /* Layout: two columns (fixed 350px sidebar + flexible main) */
 /* Layout: two columns (fixed 350px sidebar + flexible main) */
@@ -200,8 +204,8 @@ font-weight: 400;
 /* The Paddock: read left-to-right like a book */
 .card.paddock {
   grid-column: 1 / -1;
-  max-width: none;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   justify-self: stretch;
   background-color: #0b0b10;
   padding: 1.5rem;
