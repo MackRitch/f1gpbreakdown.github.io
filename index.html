@@ -199,10 +199,16 @@ font-weight: 400;
 
 /* The Paddock: read left-to-right like a book */
 .card.paddock {
-  grid-column: 1 / 2;
-  max-width: 350px;
-  justify-self: start;
+  grid-column: 1 / -1;
+  max-width: none;
+  width: 100%;
+  justify-self: stretch;
+  background-color: #0b0b10;
+  padding: 1.5rem;
+  border: 1px solid #1f2130;
+  border-radius: 8px;
 }
+
 .card.paddock h1,
 .card.paddock h2,
 .card.paddock h3 {
