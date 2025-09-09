@@ -52,8 +52,6 @@ filter: none;
 <style>
 /* ...your existing sitewide styles... */
 
-/* existing .card styles here */
-
 /* New styles for the Tech Talk card font & layout */
 .tech-talk.card {
 font-family: 'Exo 2', sans-serif !important;
@@ -343,14 +341,15 @@ box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
 
 </head>
 <body>
-<main>
 <header class="site-banner">
-<h1 class="title-with-stripe">🏎️ F1 GP Breakdown</h1>
-<p style="font-size: 1.2em; font-weight: 500;">
-Your pit wall for everything Formula 1 — race recaps, standings, strategy, and tech insight from the heart of the paddock.
-</p>
+  <h1 class="title-with-stripe">🏎️ F1 GP Breakdown</h1>
+  <p style="font-size: 1.2em; font-weight: 500;">
+    Your pit wall for everything Formula 1 — race recaps, standings, strategy, and tech insight from the heart of the paddock.
+  </p>
 </header>
-
+<main>
+  <!-- All your cards and content -->
+ <main>
 <div class="card paddock">
   <section id="paddock" aria-labelledby="paddock-title">
     <h2 id="paddock-title">The Paddock</h2>
@@ -358,7 +357,6 @@ Your pit wall for everything Formula 1 — race recaps, standings, strategy, and
     <p><strong>Red Bull</strong> continues to refine its suspension geometry, with Verstappen praising the car’s balance through Monza’s high-speed corners. Meanwhile, <strong>Mercedes</strong> has hinted at a major aero package for Suzuka, hoping to claw back performance lost in recent races.</p>
   </section>
 </div>
-
 
 <div class="card upcoming-races-card">
   <h2 id="upcoming-races-title">Upcoming Races</h2>
