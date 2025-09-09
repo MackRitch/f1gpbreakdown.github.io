@@ -52,6 +52,8 @@ filter: none;
 <style>
 /* ...your existing sitewide styles... */
 
+/* existing .card styles here */
+
 /* New styles for the Tech Talk card font & layout */
 .tech-talk.card {
 font-family: 'Exo 2', sans-serif !important;
@@ -161,11 +163,7 @@ grid-template-columns: 2fr 1fr;
 grid-auto-rows: minmax(200px, auto);
 gap: 1.5rem;
 padding: 2rem;
-width: 100%;
-max-width: none;
-margin: 0;
 }
-
 
 /* Layout: two columns (fixed 350px sidebar + flexible main) */
 /* Layout: two columns (fixed 350px sidebar + flexible main) */
@@ -203,16 +201,10 @@ font-weight: 400;
 
 /* The Paddock: read left-to-right like a book */
 .card.paddock {
-  grid-column: 1 / -1;
-   width: 100%;
-  max-width: none;
-  justify-self: stretch;
-  background-color: #0b0b10;
-  padding: 1.5rem;
-  border: 1px solid #1f2130;
-  border-radius: 8px;
+  grid-column: 1 / 2;
+  max-width: 350px;
+  justify-self: start;
 }
-
 .card.paddock h1,
 .card.paddock h2,
 .card.paddock h3 {
@@ -351,15 +343,14 @@ box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
 
 </head>
 <body>
-<header class="site-banner">
-  <h1 class="title-with-stripe">🏎️ F1 GP Breakdown</h1>
-  <p style="font-size: 1.2em; font-weight: 500;">
-    Your pit wall for everything Formula 1 — race recaps, standings, strategy, and tech insight from the heart of the paddock.
-  </p>
-</header>
 <main>
-  <!-- All your cards and content -->
- <main>
+<header class="site-banner">
+<h1 class="title-with-stripe">🏎️ F1 GP Breakdown</h1>
+<p style="font-size: 1.2em; font-weight: 500;">
+Your pit wall for everything Formula 1 — race recaps, standings, strategy, and tech insight from the heart of the paddock.
+</p>
+</header>
+
 <div class="card paddock">
   <section id="paddock" aria-labelledby="paddock-title">
     <h2 id="paddock-title">The Paddock</h2>
@@ -367,6 +358,7 @@ box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
     <p><strong>Red Bull</strong> continues to refine its suspension geometry, with Verstappen praising the car’s balance through Monza’s high-speed corners. Meanwhile, <strong>Mercedes</strong> has hinted at a major aero package for Suzuka, hoping to claw back performance lost in recent races.</p>
   </section>
 </div>
+
 
 <div class="card upcoming-races-card">
   <h2 id="upcoming-races-title">Upcoming Races</h2>
@@ -393,6 +385,13 @@ box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
       </tbody>
     </table>
   </div>
+</div>
+<div class="card race-recap">
+  <h2>Race Recap</h2>
+  <h3>🏁 Italian Grand Prix — September 7, 2025</h3>
+  <p><strong>Max Verstappen</strong> delivered a dominant drive at Monza, winning by over <strong>19 seconds</strong> and setting a new record for the fastest race in F1 history. <strong>Lando Norris</strong> and <strong>Oscar Piastri</strong> completed the podium for McLaren, though not without late-race team orders that stirred controversy.</p>
+  <p><strong>Key Moment:</strong> Verstappen reclaimed the lead on lap 4 using DRS after ceding it to Norris due to a Turn 1 shortcut. McLaren’s pit strategy unraveled when Norris suffered a slow stop, prompting a team swap with Piastri.</p>
+  <p><strong>Fastest Lap:</strong> Verstappen, showcasing Red Bull’s low-drag efficiency and blistering pace through Parabolica.</p>
 </div>
 <div class="bottom-row">
   <div class="card race-recap">
