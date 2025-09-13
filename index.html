@@ -91,26 +91,6 @@ overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;
 }
-#standings-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  grid-column: 1 / -1;
-}
-
-.standings-column {
-  background: #f9f9f9;
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.standings-column h3 {
-  margin-bottom: 0.5rem;
-}
-
-.standings-column ol {
-  padding-left: 1.2rem;
-}
 
 /* Col 1: flag */
 .upcoming-races-card thead th:nth-child(1),
@@ -230,6 +210,26 @@ grid-column: 1 / -1;
 grid-column: 1 / 2;
 max-width: 350px;
 justify-self: start;
+}
+#standings-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  grid-column: 1 / -1;
+}
+
+.standings-column {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.standings-column h3 {
+  margin-bottom: 0.5rem;
+}
+
+.standings-column ol {
+  padding-left: 1.2rem;
 }
 
 /* Card body font reset */
