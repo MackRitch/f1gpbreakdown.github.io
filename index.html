@@ -430,7 +430,15 @@ background-blend-mode: lighten; /* helps with subtle overlays */
 /* Tech Bites card watermark */
 .card.tech-talk {
   background-image: url('images/tech-schematic.png');
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding: 0;
+  background-color: transparent;
+  border: none;
 }
+
 .card.race-recap {
   grid-column: 1 / -1;
 
