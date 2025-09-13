@@ -164,6 +164,58 @@ text-align: left;
   #standings-wrapper {
     grid-template-columns: 1fr;
   }
+/* Tech Talk: make the card full-width and stack inner sections */
+.card.tech-talk {
+  grid-column: 1 / -1;           /* span both columns of the main grid */
+  display: grid;
+  grid-template-columns: 1fr;     /* single column inside the card */
+  gap: 1.25rem;                   /* spacing between sections */
+  padding: 0;                     /* let sections own their padding */
+  background: transparent;        /* we’ll give each section its own panel */
+  border: none;                   /* remove any default card border if present */
+}
+
+/* Full-width “panels” inside Tech Talk */
+.card.tech-talk .tech-section {
+  grid-column: 1 / -1;            /* ensure each section takes full width */
+  background: #0b0b10;
+  border: 1px solid #1f2130;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+}
+
+/* Headings and spacing */
+.card.tech-talk h2 {
+  margin: 1rem 1.25rem 0.5rem;    /* create a title area above the first section */
+  color: #e10600;
+}
+.card.tech-talk h3 {
+  margin: 0 0 0.5rem;
+}
+
+/* Lists inside sections */
+.card.tech-talk ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.card.tech-talk li + li {
+  margin-top: 0.25rem;
+}
+
+/* Make any images truly full-width within their section */
+.card.tech-talk .tech-section img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Optional: a subtle divider feel between sections on small screens */
+@media (max-width: 700px) {
+  .card.tech-talk .tech-section {
+    border-radius: 8px;
+  }
+}
 
 }
 .title-banner {
