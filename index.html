@@ -29,10 +29,7 @@ gap: 0.4rem;
   flex: 0 0 24px;
   object-fit: contain;
   vertical-align: middle;
-}
-
-/* Optional: make PNG icons blend with text color on dark backgrounds */
-/* filter: brightness(0) invert(1); */
+display: none !important;
 }
 
 /* Optional: tone down brightness when title is a link with hover color */
@@ -41,7 +38,10 @@ filter: none;
 }
 
 /* If you want the icon on the right instead of left, swap prepend->append in JS and/or use order */
-/* .helmet-icon { order: 2; } */
+.helmet-icon {
+  display: none !important;
+}
+
 </style>
 
 <!-- Orbitron font from Google Fonts -->
