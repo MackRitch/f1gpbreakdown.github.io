@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -172,20 +172,21 @@ text-align: left;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 .card.driver-standings {
-  grid-column: 1 / -1; /* span full width */
+  background-color: transparent;
+  grid-column: 1 / -1;
 }
 
 #standings-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
   gap: 1.25rem;
 }
 
 .standings-column {
-  min-width: 0;         /* prevents overflow forcing a wrap */
-  width: 100%;          /* safe inside grid tracks */
-  background: #0b0b10;
-  border: 1px solid #1f2130;
+  min-width: 0;
+  width: 100%;
+  background: #1c1c1c;
+  border: 1px solid #2a2a2a;
   border-radius: 8px;
   padding: 1rem;
 }
@@ -199,10 +200,9 @@ text-align: left;
 }
 
 @media (max-width: 700px) {
- #standings-wrapper {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 1.25rem;
+  #standings-wrapper {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* Tech Talk: make the card full-width and stack inner sections */
