@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -79,6 +79,9 @@ font-weight : 600;
   background: linear-gradient(to right, #1c1c1c, #0b0b10);
 }
 
+/* Monza Layout Image */
+.monza-layout-image.tech-section {
+  border-left: 6px solid #ffcc00; /* Yellow for track visuals */
 .baku-layout-image.tech-section {
   border-left: 6px solid #ffcc00;
   background: #0b0b10;
@@ -203,7 +206,6 @@ text-align: left;
   }
 /* Tech Talk: make the card full-width and stack inner sections */
 .card.tech-talk {
-  background-color: #0b0b10; /* dark base for contrast */
   grid-column: 1 / -1;           /* span both columns of the main grid */
   display: grid;
   grid-template-columns: 1fr;     /* single column inside the card */
@@ -277,16 +279,15 @@ text-align: left;
   color: #cccccc;
 }
 /* ▲ End new table layout rules ▲ */
-<head>
-  <style>
-    /* All your CSS — including the new image stretch rules — goes here */
-  </style>
+</style>
+<body>
+  <div class="title-banner">
+    <h1>🏎️ F1 GP Breakdown</h1>
+    <p>Your pit wall for everything Formula 1 — race recaps, standings, strategy, and tech insight from the heart of the paddock.</p>
+  </div>
 </head>
 
-<body>
-  <!-- Your title banner, cards, and Tech Talk sections -->
-</body>
-
+<style>
 body {
 background-color: #1c1c1c; /* sleek dark grey */
 color: #ffffff;
@@ -585,7 +586,7 @@ box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
   </div>
 </div>
 
- 
+
  <style>
 /* ========== Upcoming Races: Styles ========== */
 .upcoming-races-card {
