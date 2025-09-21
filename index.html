@@ -555,30 +555,24 @@ body {
   <img src="images/drivers/lando-norris.jpg" alt="Lando Norris" style="width:100%; border-radius:8px; margin-top:10px;">
 </div>
 
-<div class="card upcoming-races">
+<div class="card upcoming-races-card">
   <h2 class="card-title">📅 Upcoming Races</h2>
-  <ul>
-    <li>
-      <strong>🇸🇬 Singapore GP</strong><br>
-      <span>Date:</span> Oct 3–5, 2025<br>
-      <span>Location:</span> Marina Bay Street Circuit<br>
-      <span>Countdown:</span> <span id="countdown-singapore"></span>
-    </li>
-    <li>
-      <strong>🇺🇸 United States GP</strong><br>
-      <span>Date:</span> Oct 17–19, 2025<br>
-      <span>Location:</span> Circuit of The Americas, Austin<br>
-      <span>Countdown:</span> <span id="countdown-usgp"></span>
-    </li>
-    <li>
-      <strong>🇲🇽 Mexico City GP</strong><br>
-      <span>Date:</span> Oct 24–26, 2025<br>
-      <span>Location:</span> Autódromo Hermanos Rodríguez<br>
-      <span>Countdown:</span> <span id="countdown-mexico"></span>
-    </li>
-  </ul>
-</div>
-
+  <div class="races-table-wrap">
+    <table class="races-table">
+      <thead>
+        <tr>
+          <th class="col-flag">Flag</th>
+          <th>Grand Prix</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Countdown</th>
+        </tr>
+      </thead>
+      <tbody id="races-body">
+        <!-- Rows injected by JavaScript -->
+      </tbody>
+    </table>
+  </div>
 </div>
 
  <div class="card race-recap">
@@ -842,18 +836,19 @@ padding: 0.35rem 0.5rem;
 
 <script>
 // ========== Upcoming Races: Data ==========
+<script>
 const UPCOMING_RACES = [
   {
     flag: "singapore.png",
     name: "Singapore Grand Prix",
     date: "2025-10-05T20:00:00+08:00",
-    location: "Marina Bay, Singapore"
+    location: "Marina Bay Street Circuit"
   },
   {
     flag: "usa.png",
     name: "United States Grand Prix",
     date: "2025-10-19T15:00:00-05:00",
-    location: "Austin, Texas"
+    location: "Circuit of The Americas, Austin"
   },
   {
     flag: "mexico.png",
@@ -863,38 +858,45 @@ const UPCOMING_RACES = [
   }
 ];
 
+function getCountdown(targetDate) {
+  const now = new Date();
+  const raceDate = new Date(targetDate);
+  const diff = raceDate - now;
+
+  if (diff <= 0) return "Race weekend underway!";
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+  return `${days}d ${hours}h ${minutes}m`;
+}
+
 function updateRaceTable() {
-  const tbody = document.getElementById("races-body");
-  tbody.innerHTML = "";
+  const tableBody = document.getElementById("races-body");
+  tableBody.innerHTML = "";
 
   UPCOMING_RACES.forEach(race => {
-    const raceDate = new Date(race.date);
-    const now = new Date();
-    const timeDiff = raceDate - now;
-
-    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
-
-    const countdown = timeDiff > 0
-      ? `${days}d ${hours}h ${minutes}m`
-      : "Race in progress or completed";
-
     const row = document.createElement("tr");
+
     row.innerHTML = `
-      <td><img src="flags/${race.flag}" alt="" class="flag-icon" /></td>
+      <td><img src="flags/${race.flag}" alt="${race.name} Flag" class="flag-icon"></td>
       <td>${race.name}</td>
-      <td>${raceDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</td>
+      <td>${new Date(race.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</td>
       <td>${race.location}</td>
-      <td>${countdown}</td>
+      <td>${getCountdown(race.date)}</td>
     `;
-    tbody.appendChild(row);
+
+    tableBody.appendChild(row);
   });
 }
 
-// Refresh countdown every minute
-setInterval(updateRaceTable, 60000);
+// Initial render
 updateRaceTable();
+
+// Refresh every 60 seconds
+setInterval(updateRaceTable, 60000);
+</script>
 
 
 
