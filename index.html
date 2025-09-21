@@ -555,31 +555,30 @@ body {
   <img src="images/drivers/lando-norris.jpg" alt="Lando Norris" style="width:100%; border-radius:8px; margin-top:10px;">
 </div>
 
-<div class="card upcoming-races-card">
-  <h2 id="upcoming-races-title">Upcoming Races</h2>
-  <div class="races-table-wrap">
-    <table class="races-table" role="table" aria-describedby="upcoming-races-title">
-      <colgroup>
-        <col style="width: 3.5rem" />
-        <col />
-        <col style="width: 12.5rem" />
-        <col style="width: 12.5rem" />
-        <col style="width: 10.5rem" />
-      </colgroup>
-      <thead>
-        <tr role="row">
-          <th scope="col" class="col-flag">Flag</th>
-          <th scope="col" class="col-gp">Grand Prix</th>
-          <th scope="col" class="col-date">Date</th>
-          <th scope="col" class="col-loc">Location</th>
-          <th scope="col" class="col-ctd">Countdown</th>
-        </tr>
-      </thead>
-      <tbody id="races-body">
-        <!-- Rows injected by JS -->
-      </tbody>
-    </table>
-  </div>
+<div class="card upcoming-races">
+  <h2 class="card-title">📅 Upcoming Races</h2>
+  <ul>
+    <li>
+      <strong>🇸🇬 Singapore GP</strong><br>
+      <span>Date:</span> Oct 3–5, 2025<br>
+      <span>Location:</span> Marina Bay Street Circuit<br>
+      <span>Countdown:</span> <span id="countdown-singapore"></span>
+    </li>
+    <li>
+      <strong>🇺🇸 United States GP</strong><br>
+      <span>Date:</span> Oct 17–19, 2025<br>
+      <span>Location:</span> Circuit of The Americas, Austin<br>
+      <span>Countdown:</span> <span id="countdown-usgp"></span>
+    </li>
+    <li>
+      <strong>🇲🇽 Mexico City GP</strong><br>
+      <span>Date:</span> Oct 24–26, 2025<br>
+      <span>Location:</span> Autódromo Hermanos Rodríguez<br>
+      <span>Countdown:</span> <span id="countdown-mexico"></span>
+    </li>
+  </ul>
+</div>
+
 </div>
 
  <div class="card race-recap">
