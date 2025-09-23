@@ -248,7 +248,7 @@ v
 /* Full-width “panels” inside Tech Talk */
 .card.tech-talk .tech-section {
   grid-column: 1 / -1;            /* ensure each section takes full width */
-  background: #0b0b10;
+  background: #1c1c1c;
   border: 1px solid #1f2130;
   border-radius: 10px;
   padding: 1rem 1.25rem;
@@ -662,19 +662,20 @@ body {
  <style>
 
 .upcoming-races-card {
-  grid-column: 1 / -1;
-  width: 100%;
-  max-width: none;
-  justify-self: stretch;
-  padding: 1.5rem 2rem;
+  background-color: #1c1c1c;
   background-image: url('logos/F1GPBLogoC.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  box-sizing: border-box;
-  border-radius: 10px;
-  opacity: 0.18; /* optional for subtlety */
+  opacity: 0.12;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border: 1px solid #1f2130;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
+
 
 .upcoming-races-card h2 {
 font-family: 'Orbitron', system-ui, sans-serif;
