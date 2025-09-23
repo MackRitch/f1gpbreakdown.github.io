@@ -384,29 +384,30 @@ font-family: 'Orbitron', sans-serif;
 /* Ensure overlay layers correctly */
 .card {
   position: relative;
-  background-color: #1c1c1c; /* or whatever your base is */
+  background-color: #0b0b10; /* solid dark base */
   overflow: hidden;
+  z-index: 1;
 }
 
 .card::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('your-watermark.png');
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  background-image: url('logos/F1GPBLogoC.jpg'); /* or your watermark path */
   background-repeat: no-repeat;
-  background-position: center;
   background-size: contain;
-  opacity: 0.1; /* adjust to taste */
+  opacity: 0.12;
   pointer-events: none;
   z-index: 0;
 }
 
 .card > * {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .card:hover {
