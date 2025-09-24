@@ -662,19 +662,37 @@ body {
  <style>
 
 .upcoming-races-card {
-  background-color: #1c1c1c;
-  background-image: url('logos/F1GPBLogoC.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  opacity: 0.12;
+  position: relative;
+  background: #0b0b10;
   border-radius: 8px;
   padding: 1rem 1.25rem;
   border: 1px solid #1f2130;
-  position: relative;
+  grid-column: 1 / -1; /* Full width across grid */
   z-index: 1;
   overflow: hidden;
 }
+
+.upcoming-races-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  background-image: url('logos/F1GPBLogoC.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.upcoming-races-card > * {
+  position: relative;
+  z-index: 1;
+}
+
 
 
 .upcoming-races-card h2 {
