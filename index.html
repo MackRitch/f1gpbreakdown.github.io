@@ -411,28 +411,7 @@ font-size: 2.5rem;
 color: #ffffff;
 }
 
-.title-with-stripe::after {
-content: "";
-position: absolute;
-top: 50%;
-left: -5%;
-width: 110%;
-height: 8px;
-background: linear-gradient(
-135deg,
-#ff2b2b 0%,
-#e10600 40%,
-#990000 100%
-);
-transform: translateY(-50%) skewX(-20deg);
-border-radius: 4px;
-z-index: -1;
 
-/* Motion blur illusion */
-filter: blur(1.5px);
-box-shadow: 0 0 10px rgba(225, 6, 0, 0.6),
-0 0 20px rgba(225, 6, 0, 0.4);
-}
 /* Generic card styling so the text stays readable */
 .card {
 position: relative;
