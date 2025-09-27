@@ -12,7 +12,7 @@
 </head>
 <body>
   <div class="title-banner">
-    <h1 class="title-with-stripe">🏎️ F1 GP Breakdown</h1>
+    <h1><span></span> class="title-with-stripe">🏎️ F1 GP Breakdown</h1>
     <p class="subtitle">Your pit wall for everything Formula 1 — race recaps, standings, strategy, and tech insight.</p>
   </div>
 
@@ -284,7 +284,10 @@ v
   pointer-events: none;
 }
 
-.title-banner h1,
+.title-banner h1 {
+  display: block;
+  width: 100%;
+}
 .title-banner p {
   text-align: center; /* Ensures each block of text is centered */
   margin: 0 auto;
@@ -301,6 +304,7 @@ v
   background: linear-gradient(to right, #e10600, #ffcc00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+   text-align: center;
 }
 
 
