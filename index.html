@@ -299,16 +299,15 @@ v
 }
 
 .title-with-stripe {
-  position: relative;
-  display: inline-block;
+  display: block;                  /* Ensures full-width block behavior */
+  margin: 0 auto;                  /* Centers the block horizontally */
   font-size: 2.5rem;
   letter-spacing: 1px;
   padding: 0 1rem;
   background: linear-gradient(to right, #e10600, #ffcc00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin: 0 auto;           /* ✅ Centers the inline-block element */
-  text-align: center;       /* ✅ Ensures text inside is centered */
+  text-align: center;              /* Ensures text inside is centered */
 }
 
 /* ▲ End new table layout rules ▲ */
