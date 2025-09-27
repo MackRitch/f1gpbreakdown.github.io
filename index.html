@@ -259,29 +259,52 @@ v
 }
 .title-banner {
   width: 100%;
-  background: radial-gradient(circle at center, #1a1a1f 0%, #0b0b10 60%);
-  color: #ffffff;
   padding: 2rem;
   text-align: center;
-  border-bottom: 1px solid #1f2130;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: #ffffff;
+  background: linear-gradient(to right, #0b0b10, #1a1a1f 60%);
+  background-image: url('logos/F1GPBLogoC.jpg'), url('images/textures/carbon-fiber.png');
+  background-repeat: no-repeat, repeat;
+  background-position: center center, top left;
+  background-size: 60%, 200px;
+  border-bottom: 1px solid #1f2130;
+  position: relative;
+  overflow: hidden;
 }
 
+.title-banner::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  background: url('images/textures/motion-blur.png') center center / cover no-repeat;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
 
-.title-banner h1 {
-  margin: 0;
+.title-banner h1,
+.title-banner p {
+  position: relative;
+  z-index: 1;
+}
+
+.title-with-stripe {
   font-size: 2.5rem;
   letter-spacing: 1px;
+  padding: 0 1rem;
+  background: linear-gradient(to right, #e10600, #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.title-banner p {
-  margin-top: 0.5rem;
-  font-size: 1.2rem;
-  color: #cccccc;
-}
 /* ▲ End new table layout rules ▲ */
 body {
 background-color: #1c1c1c; /* sleek dark grey */
