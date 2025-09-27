@@ -258,13 +258,13 @@ v
 
 }
 .title-banner {
-  width: 100%;
-  padding: 2rem;
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center; /* Ensures text inside h1 and p is centered */
+  padding: 2rem;
+  width: 100%;
   color: #ffffff;
   background: linear-gradient(to right, #0b0b10, #1a1a1f 60%);
   background-image: url('logos/F1GPBLogoC.jpg'), url('images/textures/carbon-fiber.png');
@@ -292,6 +292,8 @@ v
 
 .title-banner h1,
 .title-banner p {
+  text-align: center; /* Ensures each block of text is centered */
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
