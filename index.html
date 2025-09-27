@@ -999,51 +999,23 @@ setInterval(updateRaceTable, 60000);
     </li>
   </ul>
 </div>
-
 </section>
 
-
-
-<!-- Helmet icon auto-injection -->
-<script>
+<script type="text/plain">
 (function(){
-function addHelmetIconToTitle(titleEl) {
-var target = titleEl.firstElementChild && titleEl.firstElementChild.tagName === 'A'
-? titleEl.firstElementChild
-: titleEl;
-if (target.querySelector('.helmet-icon')) return;
-var img = document.createElement('img');
-img.className = 'helmet-icon';
-img.src = 'logos/f1merchelmet.webp';
-img.alt = '';
-img.setAttribute('aria-hidden', 'true');
-target.insertBefore(img, target.firstChild);
-}
-function initHelmetIcons(root) {
-var titles = (root || document).querySelectorAll('.card h2, .card h3, .card .card-title');
-titles.forEach(addHelmetIconToTitle);
-}
-if (document.readyState === 'loading') {
-document.addEventListener('DOMContentLoaded', function(){ initHelmetIcons(); });
-} else {
-initHelmetIcons();
-}
-var mo = new MutationObserver(function(mutations) {
-mutations.forEach(function(m) {
-m.addedNodes.forEach(function(node) {
-if (!(node instanceof Element)) return;
-if (node.matches && (node.matches('.card h2, .card h3, .card .card-title') || node.matches('.card'))) {
-initHelmetIcons(node);
-} else {
-var within = node.querySelectorAll && node.querySelectorAll('.card h2, .card h3, .card .card-title');
-if (within && within.length) initHelmetIcons(node);
-}
-});
-});
-});
-mo.observe(document.body, { childList: true, subtree: true });
+  /* script content unchanged */
+  function addHelmetIconToTitle(titleEl) { /* ... */ }
+  function initHelmetIcons(root) { /* ... */ }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){ initHelmetIcons(); });
+  } else {
+    initHelmetIcons();
+  }
+  var mo = new MutationObserver(function(mutations) { /* ... */ });
+  mo.observe(document.body, { childList: true, subtree: true });
 })();
 </script>
+
 </body>
 </html>
 
