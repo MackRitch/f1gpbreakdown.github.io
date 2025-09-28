@@ -308,10 +308,13 @@ v
 }
 
 .title-banner .subtitle {
-  color: #e10600; /* F1 red */
-  font-weight: 700; /* Bold like the main title */
+  font-weight: 700;
   font-family: 'Orbitron', sans-serif;
-
+  background: linear-gradient(to right, #e10600, #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* fallback override */
+  text-align: center;
 }
 
 body {
