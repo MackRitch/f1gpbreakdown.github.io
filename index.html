@@ -745,21 +745,23 @@ body {
   overflow: hidden;
 }
 
-.upcoming-races-card::before {
+.card.upcoming-races::before {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   transform: translate(-50%, -50%);
-  background-image: url('logos/F1GPBLogoC.jpg');
+  background-image: url('logos/singaporeflag.webp');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: contain; /* or 'cover' if you want full fill */
+  background-position: center;
   opacity: 0.12;
   pointer-events: none;
   z-index: 0;
 }
+
 
 .upcoming-races-card > * {
   position: relative;
