@@ -258,10 +258,10 @@ v
 
 }
 .title-banner {
-  width: 100%;
-  padding: 2rem;
+  background-color: #111; /* Dark base to contrast with flag or text */
+  padding: 40px 20px;
   text-align: center;
-  color: #ffffff;
+  color: white;
   background-image: url('logos/CFBG.gif');
   background-repeat: no-repeat;
   background-position: center center;
@@ -280,7 +280,7 @@ v
   height: 100%;
   transform: translate(-50%, -50%);
   background: url('images/textures/motion-blur.png') center center / cover no-repeat;
-  opacity: 0.08;
+  opacity: 0.08; /* Try bumping this to 0.12 or 0.15 for more contrast */
   z-index: 0;
   pointer-events: none;
 }
