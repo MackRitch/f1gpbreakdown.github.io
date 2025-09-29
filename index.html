@@ -197,6 +197,21 @@ text-align: left;
   padding-left: 1.2rem;
 }
 
+  .team-name {
+  font-weight: bold;
+  margin-left: 0.25rem;
+}
+
+.team-name.mclaren { color: #FF8000; }       /* Papaya orange */
+.team-name.redbull { color: #1E41FF; }       /* Deep blue */
+.team-name.mercedes { color: #00D2BE; }      /* Teal green */
+.team-name.ferrari { color: #DC0000; }       /* Ferrari red */
+.team-name.williams { color: #005AFF; }      /* Royal blue */
+.team-name.haas { color: #B6BABD; }          /* Silver grey */
+.team-name.astonmartin { color: #006F62; }   /* British racing green */
+.team-name.rb { color: #5E00FF; }            /* Racing Bulls purple */
+.team-name.alpine { color: #0090FF; }        /* Alpine blue */
+
 @media (max-width: 700px) {
   #standings-wrapper {
     grid-template-columns: 1fr !important;
@@ -716,36 +731,39 @@ body {
 <div class="card driver-standings">
   <div id="standings-wrapper">
     <div class="standings-column">
-  <h3>Driver Standings (1–10)</h3>
-  <ol>
-    <li>Oscar Piastri (McLaren) — 324 pts</li>
-    <li>Lando Norris (McLaren) — 299 pts</li>
-    <li>Max Verstappen (Red Bull) — 255 pts</li>
-    <li>George Russell (Mercedes) — 212 pts</li>
-    <li>Charles Leclerc (Ferrari) — 165 pts</li>
-    <li>Lewis Hamilton (Mercedes) — 121 pts</li>
-    <li>Kimi Antonelli (Mercedes) — 78 pts</li>
-    <li>Alex Albon (Williams) — 70 pts</li>
-    <li>Isack Hadjar (Red Bull) — 39 pts</li>
-    <li>Nico Hülkenberg (Haas) — 37 pts</li>
-  </ol>
+      <h3>Driver Standings (1–10)</h3>
+      <ol>
+        <li>Oscar Piastri <span class="team-name mclaren">(McLaren)</span> — 324 pts</li>
+        <li>Lando Norris <span class="team-name mclaren">(McLaren)</span> — 299 pts</li>
+        <li>Max Verstappen <span class="team-name redbull">(Red Bull)</span> — 255 pts</li>
+        <li>George Russell <span class="team-name mercedes">(Mercedes)</span> — 212 pts</li>
+        <li>Charles Leclerc <span class="team-name ferrari">(Ferrari)</span> — 165 pts</li>
+        <li>Lewis Hamilton <span class="team-name mercedes">(Mercedes)</span> — 121 pts</li>
+        <li>Kimi Antonelli <span class="team-name mercedes">(Mercedes)</span> — 78 pts</li>
+        <li>Alex Albon <span class="team-name williams">(Williams)</span> — 70 pts</li>
+        <li>Isack Hadjar <span class="team-name redbull">(Red Bull)</span> — 39 pts</li>
+        <li>Nico Hülkenberg <span class="team-name haas">(Haas)</span> — 37 pts</li>
+      </ol>
+    </div>
+
+    <div class="standings-column">
+      <h3>Driver Standings (11–20)</h3>
+      <ol start="11">
+        <li>Lance Stroll <span class="team-name astonmartin">(Aston Martin)</span> — 32 pts</li>
+        <li>Carlos Sainz <span class="team-name ferrari">(Ferrari)</span> — 31 pts</li>
+        <li>Fernando Alonso <span class="team-name astonmartin">(Aston Martin)</span> — 30 pts</li>
+        <li>Liam Lawson <span class="team-name rb">(RB)</span> — 30 pts</li>
+        <li>Esteban Ocon <span class="team-name alpine">(Alpine)</span> — 28 pts</li>
+        <li>Yuki Tsunoda <span class="team-name rb">(RB)</span> — 20 pts</li>
+        <li>Pierre Gasly <span class="team-name alpine">(Alpine)</span> — 20 pts</li>
+        <li>Gabriel Bortoleto <span class="team-name mclaren">(McLaren)</span> — 18 pts</li>
+        <li>Oliver Bearman <span class="team-name ferrari">(Ferrari)</span> — 16 pts</li>
+        <li>Franco Colapinto <span class="team-name williams">(Williams)</span> — 0 pts</li>
+      </ol>
+    </div>
+  </div>
 </div>
 
-   <div class="standings-column">
-  <h3>Driver Standings (11–20)</h3>
-  <ol start="11">
-    <li>Lance Stroll (Aston Martin) — 32 pts</li>
-    <li>Carlos Sainz (Ferrari) — 31 pts</li>
-    <li>Fernando Alonso (Aston Martin) — 30 pts</li>
-    <li>Liam Lawson (RB) — 30 pts</li>
-    <li>Esteban Ocon (Alpine) — 28 pts</li>
-    <li>Yuki Tsunoda (RB) — 20 pts</li>
-    <li>Pierre Gasly (Alpine) — 20 pts</li>
-    <li>Gabriel Bortoleto (McLaren) — 18 pts</li>
-    <li>Oliver Bearman (Ferrari) — 16 pts</li>
-    <li>Franco Colapinto (Williams) — 0 pts</li>
-  </ol>
-</div>
 
 
  <style>
