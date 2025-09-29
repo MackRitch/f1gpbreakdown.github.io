@@ -213,6 +213,27 @@ text-align: left;
 .team-name.alpine { color: #0090FF; }        /* Alpine blue */
 .team-name.sauber { color: #52E252; }        /* Kick Sauber green */
 
+  .fb-button {
+  display: inline-block;
+  background-color: #1877F2; /* Facebook blue */
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.fb-button:hover {
+  background-color: #145DBF;
+}
+
+.bottom-link {
+  text-align: center;
+  margin: 2rem 0;
+}
+
 @media (max-width: 700px) {
   #standings-wrapper {
     grid-template-columns: 1fr !important;
@@ -1102,6 +1123,12 @@ setInterval(updateRaceTable, 60000);
   </ul>
 </div>
 </section>
+
+<div class="bottom-link">
+  <a href="https://mackritch.github.io/f1gpbreakdown.github.io/" target="_blank" class="fb-button">
+    🔎 View F1 GP Breakdown
+  </a>
+</div>
 
 <script type="text/plain">
 (function(){
