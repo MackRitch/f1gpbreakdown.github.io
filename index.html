@@ -572,6 +572,19 @@ background-blend-mode: lighten; /* helps with subtle overlays */
 }
 
 /* McLaren Championship Watermark */
+.card.race-recap.mclaren-champ {
+  position: relative;
+  background: #0b0b10; /* Match dark base */
+  border: 1px solid #1f2130; /* Match border */
+  border-radius: 8px;
+  padding: 1.5rem 2rem; /* Match spacing */
+  grid-column: 1 / -1; /* Full-width stacking */
+  max-width: none;
+  justify-self: stretch;
+  overflow: hidden;
+  z-index: 1;
+}
+
 .card.race-recap.mclaren-champ::before {
   content: "";
   position: absolute;
@@ -601,9 +614,7 @@ background-blend-mode: lighten; /* helps with subtle overlays */
 .card.race-recap.mclaren-champ ul li {
   color: #f0b47a;
 }
-.card.race-recap {
-  grid-column: 1 / -1; /* Force full-width stacking */
-}
+
 .upcoming-races-card {
   grid-column: 1 / -1; /* Force full-width stacking */
 }
