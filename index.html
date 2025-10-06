@@ -797,7 +797,7 @@ body {
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
-  background-image: url('logos/singaporeflag.webp');
+  background-image: url('logos/f1gpblogoc.jpg');
   background-repeat: no-repeat;
   background-size: cover; /* or 'cover' if you want full fill */
   background-position: center;
@@ -986,50 +986,30 @@ padding: 0.35rem 0.5rem;
 </style>
 
 <script>
-const upcomingRaces = [
+const UPCOMING_RACES = [
   {
-    flag: "🇺🇸",
+    flag: "us.webp",
     name: "United States Grand Prix",
-    date: "Oct 19, 2025",
-    location: "Circuit of The Americas, Austin",
-    countdown: "13d 19h 41m"
+    date: "2025-10-19T00:00:00",
+    location: "Circuit of The Americas, Austin"
   },
   {
-    flag: "🇲🇽",
+    flag: "mexico.webp",
     name: "Mexico City Grand Prix",
-    date: "Oct 26, 2025",
-    location: "Autódromo Hermanos Rodríguez",
-    countdown: "20d 19h 41m"
+    date: "2025-10-26T00:00:00",
+    location: "Autódromo Hermanos Rodríguez"
   },
   {
-    flag: "🇧🇷",
+    flag: "brazil.webp",
     name: "Brazilian Grand Prix",
-    date: "Nov 9, 2025",
-    location: "Interlagos, São Paulo",
-    countdown: "34d 19h 41m"
+    date: "2025-11-09T00:00:00",
+    location: "Interlagos, São Paulo"
   }
 ];
 
-const racesBody = document.getElementById("races-body");
-racesBody.innerHTML = ""; // Clear existing rows
-
-upcomingRaces.forEach(race => {
-  const row = document.createElement("tr");
-
-  row.innerHTML = `
-    <td class="td-flag"><span class="flag">${race.flag}</span></td>
-    <td class="td-gp"><span class="gp-name">${race.name}</span></td>
-    <td class="td-date"><time>${race.date}</time></td>
-    <td class="td-loc">${race.location}</td>
-    <td class="td-ctd"><span class="countdown">${race.countdown}</span></td>
-  `;
-
-  racesBody.appendChild(row);
-});
-
-function getCountdown(targetDate) {
+function getCountdown(dateString) {
   const now = new Date();
-  const raceDate = new Date(targetDate);
+  const raceDate = new Date(dateString);
   const diff = raceDate - now;
 
   if (diff <= 0) return "Race weekend underway!";
@@ -1065,6 +1045,7 @@ updateRaceTable();
 
 // Refresh every 60 seconds
 setInterval(updateRaceTable, 60000);
+
 </script>
 
 </div>
