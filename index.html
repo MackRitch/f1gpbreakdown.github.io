@@ -986,26 +986,46 @@ padding: 0.35rem 0.5rem;
 </style>
 
 <script>
-const UPCOMING_RACES = [
+const upcomingRaces = [
   {
-    flag: "singaporeflag.webp",
-    name: "Singapore Grand Prix",
-    date: "2025-10-05T20:00:00+08:00",
-    location: "Marina Bay Street Circuit"
-  },
-  {
-    flag: "usa.png",
+    flag: "🇺🇸",
     name: "United States Grand Prix",
-    date: "2025-10-19T15:00:00-05:00",
-    location: "Circuit of The Americas, Austin"
+    date: "Oct 19, 2025",
+    location: "Circuit of The Americas, Austin",
+    countdown: "13d 19h 41m"
   },
   {
-    flag: "mexico.png",
+    flag: "🇲🇽",
     name: "Mexico City Grand Prix",
-    date: "2025-10-26T14:00:00-06:00",
-    location: "Autódromo Hermanos Rodríguez"
+    date: "Oct 26, 2025",
+    location: "Autódromo Hermanos Rodríguez",
+    countdown: "20d 19h 41m"
+  },
+  {
+    flag: "🇧🇷",
+    name: "Brazilian Grand Prix",
+    date: "Nov 9, 2025",
+    location: "Interlagos, São Paulo",
+    countdown: "34d 19h 41m"
   }
 ];
+
+const racesBody = document.getElementById("races-body");
+racesBody.innerHTML = ""; // Clear existing rows
+
+upcomingRaces.forEach(race => {
+  const row = document.createElement("tr");
+
+  row.innerHTML = `
+    <td class="td-flag"><span class="flag">${race.flag}</span></td>
+    <td class="td-gp"><span class="gp-name">${race.name}</span></td>
+    <td class="td-date"><time>${race.date}</time></td>
+    <td class="td-loc">${race.location}</td>
+    <td class="td-ctd"><span class="countdown">${race.countdown}</span></td>
+  `;
+
+  racesBody.appendChild(row);
+});
 
 function getCountdown(targetDate) {
   const now = new Date();
