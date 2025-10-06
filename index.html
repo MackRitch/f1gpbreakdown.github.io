@@ -571,16 +571,34 @@ background-blend-mode: lighten; /* helps with subtle overlays */
   z-index: 0;
 }
 
-.card.race-recap {
-  grid-column: 1 / -1;
+.card.race-recap.mclaren-champ::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 100%;
-  max-width: none;
-  justify-self: stretch;
-  padding: 1.5rem 2rem;
-  box-sizing: border-box;
-  background-color: #0b0b10;
-  border: 1px solid #1f2130;
-  border-radius: 10px;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  background-image: url('logos/mclarenpapaya.webp'); /* Update path if needed */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card.race-recap.mclaren-champ > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card.race-recap.mclaren-champ h3 {
+  color: #FF8000;
+}
+
+.card.race-recap.mclaren-champ ul li {
+  color: #f0b47a;
 }
 
 .card.paddock {
@@ -709,12 +727,20 @@ body {
   </div>
 </div>
 
-<div class="card race-recap">
+<div class="card race-recap mclaren-champ">
   <h3>🏁 Race Recap: Singapore GP</h3>
-  <p>Results pending the conclusion of the Singapore GP</p>
+  <p><strong>Winner:</strong> George Russell (Mercedes)</p>
+  <p><strong>Podium:</strong> Russell 🥇, Verstappen 🥈, Norris 🥉</p>
+  <p><strong>McLaren Secures Constructors’ Title:</strong><br>
+    With P3 and P4 finishes from Norris and Piastri, McLaren clinched the 2025 Constructors’ Championship—back-to-back titles with six races to spare. Despite a tense Lap 1 moment between teammates, the papaya squad delivered under pressure.
+  </p>
+  <ul>
+    <li>🏆 McLaren: 650 points after Singapore</li>
+    <li>📈 On pace to break Red Bull’s all-time record</li>
+    <li>🧡 Andrea Stella: “An unbelievable effort from everyone. We’re proud, and we’re not done yet.”</li>
+  </ul>
 </div>
 
-</ul>
 </li>
 
     <li><strong>Tech Talk – Baku Circuit:</strong>
