@@ -654,20 +654,18 @@ background-blend-mode: lighten; /* helps with subtle overlays */
   z-index: 1;
 }
 
-    .card.driver-spotlight {
+ .driver-spotlight {
   position: relative;
-  background: #0b0b10;
-  border: 1px solid #1f2130;
-  border-radius: 8px;
-  padding: 1.5rem 2rem;
-  grid-column: 1 / -1;
-  max-width: none;
-  justify-self: stretch;
+  background-color: #0d1b2a; /* Deep navy base */
+  color: #f0f0f0; /* Light text for contrast */
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  z-index: 1;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.card.driver-spotlight::before {
+.driver-spotlight::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -675,18 +673,16 @@ background-blend-mode: lighten; /* helps with subtle overlays */
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
-  background-image: url('logos/op81head.png');
+  background-image: url('logos/hadjar.webp'); /* Update once uploaded */
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
-  opacity: 0.12;
+  opacity: 0.08;
   pointer-events: none;
   z-index: 0;
-  animation: watermarkZoom 8s ease-in-out infinite,
-             watermarkFade 6s ease-in-out infinite;
 }
 
-.card.driver-spotlight > * {
+.driver-spotlight > * {
   position: relative;
   z-index: 1;
 }
