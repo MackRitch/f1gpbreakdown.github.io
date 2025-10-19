@@ -571,8 +571,7 @@ background-blend-mode: lighten; /* helps with subtle overlays */
   z-index: 0;
 }
 
-/* McLaren Championship Watermark */
-.card.race-recap.mclaren-champ {
+.card.race-recap.qualifying-usgp {
   position: relative;
   background: #0b0b10; /* Match dark base */
   border: 1px solid #1f2130; /* Match border */
@@ -585,7 +584,7 @@ background-blend-mode: lighten; /* helps with subtle overlays */
   z-index: 1;
 }
 
-.card.race-recap.mclaren-champ::before {
+.card.race-recap.qualifying-usgp::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -593,27 +592,28 @@ background-blend-mode: lighten; /* helps with subtle overlays */
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
-  background-image: url('logos/mcllogo.png'); /* McLaren logo watermark */
+  background-image: none; /* Clear watermark */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  opacity: 0.25;
+  opacity: 0;
   pointer-events: none;
   z-index: 0;
 }
 
-.card.race-recap.mclaren-champ > * {
+.card.race-recap.qualifying-usgp > * {
   position: relative;
   z-index: 1;
 }
 
-.card.race-recap.mclaren-champ h3 {
-  color: #FF8000; /* McLaren papaya */
+.card.race-recap.qualifying-usgp h2 {
+  color: #ffffff; /* Neutral title color */
 }
 
-.card.race-recap.mclaren-champ ul li {
-  color: #f0b47a;
+.card.race-recap.qualifying-usgp ul li {
+  color: #d0d0d0; /* Soft contrast for list items */
 }
+
 
 .upcoming-races-card {
   grid-column: 1 / -1; /* Force full-width stacking */
@@ -745,8 +745,8 @@ body {
   </div>
 </div>
 
+  <div class="card race-recap qualifying-usgp">
   <h2 class="card-title">Qualifying Recap: USGP</h2>
-  <div class="card-content">
   <p><strong>Max Verstappen</strong> stormed to pole position at the Circuit of the Americas with a blistering lap of <strong>1:32.510</strong>, nearly three-tenths clear of <strong>Lando Norris</strong> in P2.</p>
   <p><strong>Charles Leclerc</strong> secured third for Ferrari, while Oscar Piastri—despite leading the championship—could only manage sixth after a disrupted session.</p>
   <p>The session was red-flagged early due to a heavy crash involving <strong>Isack Hadjar</strong>, but resumed with Verstappen dominating Q3 from the outset.</p>
