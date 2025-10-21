@@ -654,35 +654,26 @@ background-blend-mode: lighten; /* helps with subtle overlays */
   z-index: 1;
 }
 
- .driver-spotlight {
+.driver-spotlight {
   position: relative;
-  background-color: #0d1b2a; /* Deep navy base */
-  color: #f0f0f0; /* Light text for contrast */
+  background-color: #0d1b2a; /* Racing Bulls deep navy */
+  color: #f0f0f0;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-}
-
-/* Scoped font styling to avoid global override */
-.driver-spotlight h2,
-.driver-spotlight p {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'orbitron', sans-serif;
 }
 
 .driver-spotlight::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  transform: translate(-50%, -50%);
-  background-image: url('logos/hadjar.webp'); /* Update once uploaded */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.08;
+  background: url('logos/hadjar.png') center/contain no-repeat;
+  opacity: 0.12;
   pointer-events: none;
   z-index: 0;
 }
@@ -693,8 +684,8 @@ background-blend-mode: lighten; /* helps with subtle overlays */
 }
 
 
-/* Flag icon styling for race tables */
-.flag-icon {
+  /* Flag icon styling for race tables */.
+  flag-icon {
 width: 20px;
 height: 14px;
 object-fit: cover;
