@@ -7,6 +7,8 @@
 <meta property="og:description" content="Your pit wall for everything Formula 1—race recaps, standings, strategy, and tech insight.">
 <meta property="og:image" content="https://mackritch.github.io/f1gpbreakdown.github.io/logos/F1GPBLogoC.jpg">
 
+
+</style>
 </head>
 <body>
   <div class="title-banner">
@@ -195,49 +197,15 @@ text-align: left;
   padding-left: 1.2rem;
 }
 
-  .team-name {
-  font-weight: bold;
-  margin-left: 0.25rem;
-}
-
-.team-name.mclaren { color: #FF8000; }       /* Papaya orange */
-.team-name.redbull { color: #1E41FF; }       /* Deep blue */
-.team-name.mercedes { color: #00D2BE; }      /* Teal green */
-.team-name.ferrari { color: #DC0000; }       /* Ferrari red */
-.team-name.williams { color: #005AFF; }      /* Royal blue */
-.team-name.haas { color: #B6BABD; }          /* Silver grey */
-.team-name.astonmartin { color: #006F62; }   /* British racing green */
-.team-name.rb { color: #5E00FF; }            /* Racing Bulls purple */
-.team-name.alpine { color: #0090FF; }        /* Alpine blue */
-.team-name.sauber { color: #52E252; }        /* Kick Sauber green */
-
-  .fb-button {
-  display: inline-block;
-  background-color: #1877F2; /* Facebook blue */
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  font-family: sans-serif;
-  transition: background-color 0.3s ease;
-}
-
-.fb-button:hover {
-  background-color: #145DBF;
-}
-
-.bottom-link {
-  text-align: center;
-  margin: 2rem 0;
-}
-
 @media (max-width: 700px) {
   #standings-wrapper {
     grid-template-columns: 1fr !important;
   }
+}
 
-  /* Tech Talk: make the card full-width and stack inner sections */
+
+v
+/* Tech Talk: make the card full-width and stack inner sections */
 .card.tech-talk {
   grid-column: 1 / -1;           /* span both columns of the main grid */
   display: grid;
@@ -351,6 +319,32 @@ text-align: left;
   text-align: center;
 }
 
+body {
+background-color: #1c1c1c; /* sleek dark grey */
+color: #ffffff;
+font-family: 'Orbitron', sans-serif;
+margin: 0;
+padding: 0;
+}
+header {
+text-align: center;
+padding: 2rem 1rem;
+border-bottom: 2px solid #e10600; /* F1 red accent */
+}
+h1 {
+margin: 0;
+font-size: 2.5rem;
+letter-spacing: 2px;
+}
+main {
+display: grid;
+grid-template-columns: 2fr 1fr;
+grid-auto-rows: minmax(200px, auto);
+gap: 1.5rem;
+padding: 2rem;
+}
+
+
 /* ▲ End new table layout rules ▲ */
 body {
 background-color: #1c1c1c; /* sleek dark grey */
@@ -372,6 +366,16 @@ letter-spacing: 2px;
 main {
 display: grid;
 grid-template-columns: 2fr 1fr;
+grid-auto-rows: minmax(200px, auto);
+gap: 1.5rem;
+padding: 2rem;
+}
+
+/* Layout: two columns (fixed 350px sidebar + flexible main) */
+/* Layout: two columns (fixed 350px sidebar + flexible main) */
+main {
+display: grid;
+grid-template-columns: 350px 1fr;
 grid-auto-rows: minmax(200px, auto);
 gap: 1.5rem;
 padding: 2rem;
@@ -430,10 +434,10 @@ font-family: 'Orbitron', sans-serif;
   width: 80%;
   height: 80%;
   transform: translate(-50%, -50%);
-  /* background-image removed */
+  background-image: url('logos/F1GPBLogoC.jpg'); /* or your watermark path */
   background-repeat: no-repeat;
   background-size: contain;
-  opacity: 0;
+  opacity: 0.12;
   pointer-events: none;
   z-index: 0;
 }
@@ -504,7 +508,7 @@ background-blend-mode: lighten; /* helps with subtle overlays */
 
 /* Tech Bites card watermark */
 .card.tech-talk {
-  background-image: url('images/logos/usgplogo.webp');
+  background-image: url('images/tech-schematic.png');
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 1fr;
@@ -521,71 +525,25 @@ background-blend-mode: lighten; /* helps with subtle overlays */
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
-  background-image: url('images/logos/usgplogo.webp');
+  background-image: url('logos/singaporeflag.webp');
   background-repeat: no-repeat;
-  background-size: cover; /* fills the card more dynamically */
+  background-size: contain; /* or 'cover' for full fill */
   background-position: center;
   opacity: 0.12;
   pointer-events: none;
   z-index: 0;
 }
 
-.card.race-recap.qualifying-usgp {
-  position: relative;
-  background: #0b0b10; /* Match dark base */
-  border: 1px solid #1f2130; /* Match border */
-  border-radius: 8px;
-  padding: 1.5rem 2rem; /* Match spacing */
-  grid-column: 1 / -1; /* Full-width stacking */
+.card.race-recap {
+  grid-column: 1 / -1;
+  width: 100%;
   max-width: none;
   justify-self: stretch;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.card .race-recap .qualifying-usgp::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  transform: translate(-50%, -50%);
-  background-image: url('logos/usgplogo.webp');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  opacity: 0.12; /* Adjust for subtlety */
-  pointer-events: none;
-  z-index: 0;
-}
-
-
-.card.race-recap.qualifying-usgp > * {
-  position: relative;
-  z-index: 1;
-}
-
-.card.race-recap.qualifying-usgp h2 {
-  color: #e10600; /* F1 red */
-}
-
-.card.race-recap.qualifying-usgp ul li {
-  color: #d0d0d0; /* Soft contrast for list items */
-}
-
-.upcoming-races-card {
-  grid-column: 1 / -1; /* Force full-width stacking */
-}
-.upcoming-races-card {
-  background-color: #1c1c1c; /* Matches body and other cards */
-  color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-  font-family: 'Orbitron', sans-serif;
-  position: relative;
-  overflow: hidden;
+  padding: 1.5rem 2rem;
+  box-sizing: border-box;
+  background-color: #0b0b10;
+  border: 1px solid #1f2130;
+  border-radius: 10px;
 }
 
 .card.paddock {
@@ -622,40 +580,45 @@ background-blend-mode: lighten; /* helps with subtle overlays */
   z-index: 1;
 }
 
-.driver-spotlight {
+    .card.driver-spotlight {
   position: relative;
-  background-color: #0d1b2a; /* Racing Bulls deep navy */
-  color: #f0f0f0;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  background: #0b0b10;
+  border: 1px solid #1f2130;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  grid-column: 1 / -1;
+  max-width: none;
+  justify-self: stretch;
   overflow: hidden;
-  font-family: 'Orbitron', sans-serif;
+  z-index: 1;
 }
 
-.driver-spotlight::before {
+.card.driver-spotlight::before {
   content: "";
-  position: center;
+  position: absolute;
   top: 50%;
   left: 50%;
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   transform: translate(-50%, -50%);
-  background-image: url('logos/hadjar.png');
+  background-image: url('logos/op81head.png');
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: center;
   opacity: 0.12;
   pointer-events: none;
   z-index: 0;
+  animation: watermarkZoom 8s ease-in-out infinite,
+             watermarkFade 6s ease-in-out infinite;
 }
 
-.driver-spotlight > * {
+.card.driver-spotlight > * {
   position: relative;
   z-index: 1;
 }
 
-  /* Flag icon styling for race tables */.
-  flag-icon {
+/* Flag icon styling for race tables */
+.flag-icon {
 width: 20px;
 height: 14px;
 object-fit: cover;
@@ -664,8 +627,7 @@ margin-right: 8px;
 border-radius: 2px;
 box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
-
-  body {
+body {
   background-color: #1c1c1c; /* sleek dark grey */
   color: #ffffff;
   font-family: 'Orbitron', sans-serif;
@@ -679,15 +641,16 @@ box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
 <main>
 
 <div class="card driver-spotlight">
-  <div class="driver-spotlight">
-  <h2>Driver Spotlight: Isack Hadjar</h2>
-  <p><strong>Team:</strong> Racing Bulls</p>
-  <p><strong>Nationality:</strong> French</p>
-  <p><strong>2025 Championship Position:</strong> 14th</p>
-  <p><strong>2025 Points:</strong> 28</p>
-  <p><strong>Notable 2025 Moment:</strong> Survived a heavy crash in USGP qualifying, showing resilience and grit</p>
-  <p><strong>Fun Fact:</strong> Former Red Bull junior with standout performances in F2 before stepping up to F1</p>
+  <h2 class="card-title">Driver Spotlight: Oscar Piastri</h2>
+  <p><strong>Team:</strong> McLaren</p>
+  <p><strong>Nationality:</strong> Australian</p>
+  <p><strong>2025 Championship Position:</strong> 1st</p>
+  <p><strong>2025 Points:</strong> 284</p>
+  <p><strong>Notable 2025 Moment:</strong> Crashed out on Lap 1 at the Azerbaijan GP</p>
+  <p><strong>Fun Fact:</strong> Rapidly rose through junior categories en route to F1.</p>
+  <img src="images/drivers/oscar-piastri.jpg" alt="Oscar Piastri" style="width:100%; border-radius:8px; margin-top:10px;">
 </div>
+
 
 <div class="card upcoming-races-card">
   <h2 class="card-title">📅 Upcoming Races</h2>
@@ -709,16 +672,44 @@ box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
   </div>
 </div>
 
-  <div class="card race-recap qualifying-usgp">
-  <h2 class="card-title">Qualifying Recap: USGP</h2>
-  <p><strong>Max Verstappen</strong> stormed to pole position at the Circuit of the Americas with a blistering lap of <strong>1:32.510</strong>, nearly three-tenths clear of <strong>Lando Norris</strong> in P2.</p>
-  <p><strong>Charles Leclerc</strong> secured third for Ferrari, while Oscar Piastri—despite leading the championship—could only manage sixth after a disrupted session.</p>
-  <p>The session was red-flagged early due to a heavy crash involving <strong>Isack Hadjar</strong>, but resumed with Verstappen dominating Q3 from the outset.</p>
-  <p>Top 3 Qualifiers:</p>
+ <div class="card race-recap">
+  <h2 class="card-title">🏁 Azerbaijan GP 2025 Recap</h2>
   <ul>
-    <li>🥇 Max Verstappen – 1:32.510</li>
-    <li>🥈 Lando Norris – 1:32.801</li>
-    <li>🥉 Charles Leclerc – 1:32.807</li>
+    <li><strong>Winner:</strong> Max Verstappen (Red Bull)</li>
+    <li><strong>Podium:</strong> Verstappen 🥇, George Russell 🥈, Carlos Sainz 🥉</li>
+    <li><strong>Race Drama:</strong>
+      <ul>
+        <li>Piastri crashed out on Lap 1—locked up at Turn 5</li>
+        <li>Norris held P7, trimmed Piastri’s lead to 25 pts</li>
+        <li>Lawson scored career-best P5 for Racing Bulls</li>
+        <li>Tsunoda finished P6—his best result yet</li>
+        <li>Antonelli narrowly missed podium in P4</li>
+      </ul>
+    </li>
+    <li><strong>Penalties:</strong>
+      <ul>
+        <li>Albon: 10s for contact with Colapinto</li>
+        <li>Alonso: penalized for jumping the start</li>
+      </ul>
+    </li>
+    <li><strong>Tech Talk – Baku Circuit:</strong>
+      <ul>
+        <li>Length: 6.003 km | Laps: 51 | Street circuit</li>
+        <li>Setup: Medium-low downforce for straight-line speed</li>
+        <li>Tyres: Pirelli C3–C5; rear degradation a key factor</li>
+        <li>Strategy: One-stop common, but Safety Cars frequent</li>
+        <li>Cooling: High demand due to long straights + stop-start zones</li>
+      </ul>
+    </li>
+    <li><strong>Sections to Watch:</strong>
+      <ul>
+        <li><strong>Turn 1:</strong> Heavy braking after 2.2 km flat-out stretch</li>
+        <li><strong>Castle (Turns 8–12):</strong> Narrowest section on calendar</li>
+        <li><strong>Turn 15:</strong> Off-camber left; frequent lockups</li>
+        <li><strong>Final Sector:</strong> Flat-out drag race to the line</li>
+      </ul>
+    </li>
+    <li><strong>Weather:</strong> Low 30s °C, gusty winds off Caspian Sea</li>
   </ul>
 </div>
 
@@ -727,61 +718,270 @@ box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
     <div class="standings-column">
       <h3>Driver Standings (1–10)</h3>
       <ol>
-        <li>Oscar Piastri <span class="team-name mclaren">(McLaren)</span> — 324 pts</li>
-        <li>Lando Norris <span class="team-name mclaren">(McLaren)</span> — 299 pts</li>
-        <li>Max Verstappen <span class="team-name redbull">(Red Bull)</span> — 255 pts</li>
-        <li>George Russell <span class="team-name mercedes">(Mercedes)</span> — 212 pts</li>
-        <li>Charles Leclerc <span class="team-name ferrari">(Ferrari)</span> — 165 pts</li>
-        <li>Lewis Hamilton <span class="team-name ferrari">(Ferrari)</span> — 121 pts</li>
-        <li>Kimi Antonelli <span class="team-name mercedes">(Mercedes)</span> — 78 pts</li>
-        <li>Carlos Sainz <span class="team-name williams">(Williams)</span> — 70 pts</li>
-        <li>Liam Lawson <span class="team-name redbull">(Red Bull)</span> — 39 pts</li>
-        <li>Esteban Ocon <span class="team-name haas">(Haas)</span> — 37 pts</li>
+        <li>Oscar Piastri — 324 pts</li>
+        <li>Lando Norris — 299 pts</li>
+        <li>Max Verstappen — 255 pts</li>
+        <li>George Russell — 212 pts</li>
+        <li>Charles Leclerc — 165 pts</li>
+        <li>Lewis Hamilton — 121 pts</li>
+        <li>Kimi Antonelli — 78 pts</li>
+        <li>Alex Albon — 70 pts</li>
+        <li>Isack Hadjar — 39 pts</li>
+        <li>Nico Hülkenberg — 37 pts</li>
       </ol>
     </div>
     <div class="standings-column">
       <h3>Driver Standings (11–20)</h3>
       <ol start="11">
-        <li>Fernando Alonso <span class="team-name astonmartin">(Aston Martin)</span> — 32 pts</li>
-        <li>Lance Stroll <span class="team-name astonmartin">(Aston Martin)</span> — 31 pts</li>
-        <li>Yuki Tsunoda <span class="team-name rb">(Racing Bulls)</span> — 30 pts</li>
-        <li>Isack Hadjar <span class="team-name rb">(Racing Bulls)</span> — 28 pts</li>
-        <li>Pierre Gasly <span class="team-name alpine">(Alpine)</span> — 26 pts</li>
-        <li>Jack Doohan <span class="team-name alpine">(Alpine)</span> — 20 pts</li>
-        <li>Oliver Bearman <span class="team-name haas">(Haas)</span> — 18 pts</li>
-        <li>Alex Albon <span class="team-name williams">(Williams)</span> — 16 pts</li>
-        <li>Nico Hülkenberg <span class="team-name sauber">(Kick Sauber)</span> — 12 pts</li>
-        <li>Gabriel Bortoleto <span class="team-name sauber">(Kick Sauber)</span> — 0 pts</li>
+        <li>Lance Stroll — 32 pts</li>
+        <li>Carlos Sainz — 31 pts</li>
+        <li>Fernando Alonso — 30 pts</li>
+        <li>Liam Lawson — 30 pts</li>
+        <li>Esteban Ocon — 28 pts</li>
+        <li>Yuki Tsunoda — 20 pts</li>
+        <li>Pierre Gasly — 20 pts</li>
+        <li>Gabriel Bortoleto — 18 pts</li>
+        <li>Oliver Bearman — 16 pts</li>
+        <li>Franco Colapinto — 0 pts</li>
       </ol>
     </div>
   </div>
 </div>
 
+ <style>
+
+.upcoming-races-card {
+  position: relative;
+  background: #0b0b10;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border: 1px solid #1f2130;
+  grid-column: 1 / -1; /* Full width across grid */
+  z-index: 1;
+  overflow: hidden;
+}
+
+.card.upcoming-races::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  background-image: url('logos/singaporeflag.webp');
+  background-repeat: no-repeat;
+  background-size: cover; /* or 'cover' if you want full fill */
+  background-position: center;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+.upcoming-races-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.upcoming-races-card h2 {
+font-family: 'Orbitron', system-ui, sans-serif;
+font-size: 1.25rem;
+margin: 0 0 0.75rem;
+letter-spacing: 0.02em;
+}
+
+.races-table-wrap {
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+}
+
+.races-table {
+width: 100%;
+border-collapse: collapse;
+table-layout: fixed; /* Prevents column drift/migration */
+background: #0b0b10;
+color: #e8e8ef;
+border: 1px solid #1f2130;
+border-radius: 8px;
+overflow: hidden;
+}
+
+.races-table thead th {
+text-align: left;
+font-weight: 700;
+font-size: 0.85rem;
+padding: 0.65rem 0.75rem;
+background: #141625;
+border-bottom: 1px solid #24273a;
+white-space: nowrap;
+}
+
+.races-table tbody td {
+padding: 0.65rem 0.75rem;
+border-bottom: 1px solid #1b1e2e;
+vertical-align: middle;
+font-size: 0.92rem;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap; /* Keeps GP name/date from wrapping into other columns */
+}
+
+.races-table tbody tr:last-child td {
+border-bottom: none;
+}
+
+.col-flag,
+.td-flag {
+text-align: center;
+}
+
+.td-flag .flag {
+font-size: 1.25rem;
+display: inline-block;
+width: 1.75rem;
+}
+
+.td-gp .gp-name {
+font-weight: 600;
+letter-spacing: 0.01em;
+}
+
+.td-date time {
+color: #cfd3ff;
+font-variant-numeric: tabular-nums;
+}
+
+.td-loc {
+color: #c5c8d4;
+}
+
+.td-ctd .countdown {
+font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+font-weight: 600;
+color: #8ef0a6;
+background: #11331c;
+border: 1px solid #1d5a31;
+padding: 0.2rem 0.45rem;
+border-radius: 6px;
+display: inline-block;
+min-width: 7.5rem;
+text-align: center;
+}
+
+/* Hover state */
+.races-table tbody tr:hover td {
+background: #101324;
+}
+
+/* Responsive: stack columns on very narrow screens */
+@media (max-width: 600px) {
+.races-table thead {
+display: none;
+}
+.races-table,
+.races-table tbody,
+.races-table tr,
+.races-table td {
+display: block;
+width: 100%;
+}
+.races-table tbody tr {
+border-bottom: 1px solid #1b1e2e;
+padding: 0.5rem 0.25rem;
+}
+.races-table tbody td {
+border: none;
+white-space: normal; /* allow wrapping within the cell on mobile */
+padding: 0.35rem 0.5rem;
+}
+.td-flag { order: 1; }
+.td-gp { order: 2; }
+.td-date { order: 3; }
+.td-loc { order: 4; }
+.td-ctd { order: 5; margin-top: 0.25rem; }
+}
+  .upcoming-races-card {
+  background: #0b0b10;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border: 1px solid #1f2130;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  width: 100%;
+  max-width: none;
+}
+
+
+.races-table {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+/* Fix card styling and remove visual artifact */
+.upcoming-races-card {
+  background: #0b0b10;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border: 1px solid #1f2130;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Remove any pseudo-elements that might be causing watermark */
+.upcoming-races-card::before,
+.upcoming-races-card::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Table styling to match card and nest cleanly */
+.races-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: transparent;
+  color: #e8e8ef;
+  border: none;
+  border-radius: 0;
+}
+
+/* Optional: subtle padding for scroll container */
+.races-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+}
+
+</style>
+
 <script>
 const UPCOMING_RACES = [
   {
-    flag: "us.webp",
+    flag: "singapore.png",
+    name: "Singapore Grand Prix",
+    date: "2025-10-05T20:00:00+08:00",
+    location: "Marina Bay Street Circuit"
+  },
+  {
+    flag: "usa.png",
     name: "United States Grand Prix",
-    date: "2025-10-19T00:00:00",
+    date: "2025-10-19T15:00:00-05:00",
     location: "Circuit of The Americas, Austin"
   },
   {
-    flag: "mexico.webp",
+    flag: "mexico.png",
     name: "Mexico City Grand Prix",
-    date: "2025-10-26T00:00:00",
+    date: "2025-10-26T14:00:00-06:00",
     location: "Autódromo Hermanos Rodríguez"
-  },
-  {
-    flag: "brazil.webp",
-    name: "Brazilian Grand Prix",
-    date: "2025-11-09T00:00:00",
-    location: "Interlagos, São Paulo"
   }
 ];
 
-function getCountdown(dateString) {
+function getCountdown(targetDate) {
   const now = new Date();
-  const raceDate = new Date(dateString);
+  const raceDate = new Date(targetDate);
   const diff = raceDate - now;
 
   if (diff <= 0) return "Race weekend underway!";
@@ -812,10 +1012,12 @@ function updateRaceTable() {
   });
 }
 
+// Initial render
 updateRaceTable();
+
+// Refresh every 60 seconds
 setInterval(updateRaceTable, 60000);
 </script>
-
 
 </div>
 
@@ -843,52 +1045,62 @@ setInterval(updateRaceTable, 60000);
 </div>
 
 <div class="card tech-talk">
-  <h2 class="card-title">🔧 Tech Talk – United States Grand Prix Preview</h2>
+  <h2 class="card-title">🔧 Tech Talk – Singapore Grand Prix Preview</h2>
   <ul>
-    <li><strong>Circuit:</strong> Circuit of the Americas (COTA)</li>
-    <li><strong>Length:</strong> 5.513 km | <strong>Laps:</strong> 56 | <strong>Race Distance:</strong> ~308.41 km</li>
-    <li><strong>Character:</strong> Hybrid circuit with sweeping corners, elevation changes, and wide overtaking zones. Sector 1 mimics Suzuka’s S-curves; Sector 3 channels Hockenheim.</li>
+    <li><strong>Circuit:</strong> Marina Bay Street Circuit</li>
+    <li><strong>Length:</strong> 4.94 km | <strong>Laps:</strong> 62 | <strong>Race Distance:</strong> ~306.14 km</li>
+    <li><strong>Character:</strong> Street circuit with 19 corners, tight barriers, and minimal runoff. First-ever F1 night race—still the most physically demanding.</li>
     <li><strong>Setup Notes:</strong>
       <ul>
-        <li>Medium–high downforce for balance across sectors</li>
-        <li>Suspension tuned for elevation shifts and kerb strikes</li>
-        <li>Cooling systems upgraded—mandatory driver cooling now enforced</li>
-        <li>ERS deployment key on long straights and uphill exits</li>
+        <li>High downforce essential for cornering grip</li>
+        <li>Suspension softened to absorb bumps and kerbs</li>
+        <li>Cooling critical—cars run max venting due to heat soak</li>
+        <li>Brake wear high; energy recovery systems pushed to the limit</li>
       </ul>
     </li>
-    <li><strong>Tyres:</strong> Pirelli C2–C4 (Hard–Soft)  
+    <li><strong>Tyres:</strong> Pirelli C3–C5 (Hard–Soft)  
       <ul>
-        <li>Two-stop strategy expected due to high degradation</li>
-        <li>Surface is abrasive—rear tire wear especially critical</li>
-        <li>Rain unlikely, but gusty winds may affect aero balance</li>
+        <li>One-stop likely, but Safety Cars often shake up strategy</li>
+        <li>High wear due to traction zones and surface abrasiveness</li>
+        <li>Intermediates and wets may come into play—rain risk is real</li>
       </ul>
     </li>
     <li><strong>Weather Watch:</strong>
       <ul>
-        <li>Temps: 22–28°C with low humidity</li>
-        <li>Rain chance: <5%, but wind gusts up to 30 km/h</li>
-        <li>Track temp swings may impact tire warm-up windows</li>
+        <li>Temps: 27–31°C with humidity >75%</li>
+        <li>Rain chance: 60–78% across the weekend</li>
+        <li>Thunderstorms possible during qualifying and race</li>
       </ul>
     </li>
     <li><strong>Sections to Spotlight:</strong>
       <ul>
-        <li><strong>Turn 1:</strong> Iconic uphill hairpin—wide entry invites divebombs</li>
-        <li><strong>Sector 1:</strong> High-speed direction changes test aero grip</li>
-        <li><strong>Back straight:</strong> DRS zone with heavy braking into Turn 12</li>
-        <li><strong>Final sector:</strong> Technical sequence—precision and traction key</li>
+        <li><strong>Turn 1–3:</strong> Heavy braking and quick direction changes</li>
+        <li><strong>Anderson Bridge:</strong> Narrow, bumpy, and easy to misjudge</li>
+        <li><strong>Esplanade stretch:</strong> Flat-out section with DRS activation</li>
+        <li><strong>Final sector:</strong> Demands precision under fatigue</li>
       </ul>
     </li>
   </ul>
 </div>
+</section>
 
-<div class="bottom-link">
-  <a href="https://www.facebook.com/f1gpbreakdown" target="_blank" rel="noopener noreferrer" class="fb-button">
-    🔎 Follow F1 GP Breakdown on FB
-  </a>
-</div>
+<script type="text/plain">
+(function(){
+  /* script content unchanged */
+  function addHelmetIconToTitle(titleEl) { /* ... */ }
+  function initHelmetIcons(root) { /* ... */ }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){ initHelmetIcons(); });
+  } else {
+    initHelmetIcons();
+  }
+  var mo = new MutationObserver(function(mutations) { /* ... */ });
+  mo.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+
 </body>
 </html>
-
 
 
 
