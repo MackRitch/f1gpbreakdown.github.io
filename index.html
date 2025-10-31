@@ -651,32 +651,26 @@ body {
 <img src="images/logos/hadjar.png" alt="Isack Hadjar" style="width:100%; border-radius:8px; margin-top:10px;">
 </div>
 
-
-<!-- Upcoming Races Section -->
-<section class="upcoming-races-section">
-  <h2 class="section-title">Upcoming Races</h2>
-
-  <div class="race-card">
-    <h3>🇧🇷 São Paulo Grand Prix</h3>
-    <p><strong>Date:</strong> November 9, 2025</p>
-    <p><strong>Location:</strong> Autódromo José Carlos Pace, São Paulo, Brazil</p>
-    <p><strong>Laps:</strong> 71</p>
+<!-- Upcoming Races Card -->
+<div class="upcoming-races-card">
+  <h2>Upcoming Races</h2>
+  <div class="races-table-wrap">
+    <table class="races-table">
+      <thead>
+        <tr>
+          <th class="col-flag">Flag</th>
+          <th class="td-gp">Grand Prix</th>
+          <th class="td-date">Date</th>
+          <th class="td-loc">Location</th>
+          <th class="td-ctd">Countdown</th>
+        </tr>
+      </thead>
+      <tbody id="races-body">
+        <!-- Populated by JavaScript -->
+      </tbody>
+    </table>
   </div>
-
-  <div class="race-card">
-    <h3>🇺🇸 Las Vegas Grand Prix</h3>
-    <p><strong>Date:</strong> November 22, 2025</p>
-    <p><strong>Location:</strong> Las Vegas Strip Circuit, Las Vegas, NV, USA</p>
-    <p><strong>Laps:</strong> 50</p>
-  </div>
-
-  <div class="race-card">
-    <h3>🇶🇦 Qatar Grand Prix</h3>
-    <p><strong>Date:</strong> November 30, 2025</p>
-    <p><strong>Location:</strong> Lusail International Circuit, Doha, Qatar</p>
-    <p><strong>Laps:</strong> 57</p>
-  </div>
-</section>
+</div>
 
 <div class="card race-recap">
   <h2>🏁 United States GP 2025 Recap</h2>
@@ -953,22 +947,22 @@ padding: 0.35rem 0.5rem;
 <script>
 const UPCOMING_RACES = [
   {
-    flag: "singapore.png",
-    name: "Singapore Grand Prix",
-    date: "2025-10-05T20:00:00+08:00",
-    location: "Marina Bay Street Circuit"
+    flag: "brazil.png",
+    name: "São Paulo Grand Prix",
+    date: "2025-11-09T14:00:00-03:00",
+    location: "Autódromo José Carlos Pace"
   },
   {
-    flag: "usa.png",
-    name: "United States Grand Prix",
-    date: "2025-10-19T15:00:00-05:00",
-    location: "Circuit of The Americas, Austin"
+    flag: "vegas.png",
+    name: "Las Vegas Grand Prix",
+    date: "2025-11-22T22:00:00-08:00",
+    location: "Las Vegas Strip Circuit"
   },
   {
-    flag: "mexico.png",
-    name: "Mexico City Grand Prix",
-    date: "2025-10-26T14:00:00-06:00",
-    location: "Autódromo Hermanos Rodríguez"
+    flag: "qatar.png",
+    name: "Qatar Grand Prix",
+    date: "2025-11-30T18:00:00+03:00",
+    location: "Lusail International Circuit"
   }
 ];
 
