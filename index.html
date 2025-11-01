@@ -179,6 +179,33 @@ text-align: left;
   gap: 1.25rem;
   align-items: start;
 }
+.card-body.two-column {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.standings-group {
+  flex: 1 1 300px;
+  min-width: 250px;
+}
+
+.standings-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.standings-group li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: Orbitron, sans-serif;
+  color: #fff;
+}
+
+.standings-group li:last-child {
+  border-bottom: none;
+}
   
 .standings-subtitle {
   margin-top: 1rem;
