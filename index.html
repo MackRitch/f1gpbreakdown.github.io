@@ -143,12 +143,18 @@ text-align: left;
 }
 .card.driver-standings {
   position: relative;
-  background-color: #0b0b10; /* Changed from transparent */
+  background-color: #0b0b10;
   border: 1px solid #2a2a2a;
   border-radius: 10px;
   padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   grid-column: 1 / -1;
+}
+
+  .card.driver-standings .card-body {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05); /* subtle contrast */
+  border-radius: 6px;
 }
 
 .card.driver-standings::before {
