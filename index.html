@@ -22,65 +22,106 @@
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+  /* 🖼️ Photo Dump Section */
+  .photo-dump {
+    padding: 2rem;
+    background-color: #f8f8f8;
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 
-/* New styles for the Tech Talk card font & layout */
-.tech-talk.card {
-  font-family: 'Orbitron', sans-serif !important;
-}
+  .photo-dump h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #222;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+  }
 
-.tech-talk.card h2,
-.tech-talk.card h3 {
-font-family: 'Orbitron', sans-serif;
-}
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 0 1rem;
+  }
 
-.tech-talk h2 { 
-margin: 0 0 .5rem; 
-font-size: 1.5rem; 
-font-weight: 600;
-}
-.tech-talk h3 {
-margin : 1rem 0 .25rem;
-font-size : 1.1rem;
-font-weight : 600;
-}
-/* Circuit Overview */
-.track-overview.tech-section {
-  border-left: 6px solid #e10600; /* Ferrari red */
-  background: linear-gradient(to right, #1c1c1c, #0b0b10);
-}
+  .gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-.baku-layout-image.tech-section {
-  border-left: 6px solid #ffcc00;
-  background: #0b0b10;
-}
+  .gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
 
-.circuit-layout.tech-section img {
-  width: 100%;
-  max-width: none;
-  margin-left: -0.75rem;
-  margin-right: -0.75rem;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
-}
+  /* 🧠 Tech Talk Section */
+  .tech-talk .card {
+    font-family: 'Orbitron', sans-serif !important;
+  }
 
+  .tech-talk .card h2,
+  .tech-talk .card h3 {
+    font-family: 'Orbitron', sans-serif;
+  }
 
-/* Technical & Tyre Notes */
-.tech-tyres.tech-section {
-  border-left: 6px solid #00bfff; /* Blue for engineering focus */
-  background: #0b0b10;
-}
+  .tech-talk h2 {
+    margin: 0 0 .5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
 
-/* Weather Watch */
-.weather-watch.tech-section {
-  border-left: 6px solid #8ef0a6; /* Green for weather */
-  background: #0b0b10;
-}
+  .tech-talk h3 {
+    margin: 1rem 0 .25rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
 
-/* Sections to Spotlight */
-.spotlight-sections.tech-section {
-  border-left: 6px solid #ff2b2b; /* Bright red for corner analysis */
-  background: #0b0b10;
-}
+  /* 🏎️ Circuit Overview */
+  .track-overview.tech-section {
+    border-left: 6px solid #e10600;
+    background: linear-gradient(to right, #1c1c1c, #0b0b10);
+  }
 
+  .baku-layout-image.tech-section {
+    border-left: 6px solid #ffcc00;
+    background: #0b0b10;
+  }
+
+  .circuit-layout.tech-section img {
+    width: 100%;
+    max-width: none;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  }
+
+  /* ⚙️ Technical & Tyre Notes */
+  .tech-tyres.tech-section {
+    border-left: 6px solid #00bfff;
+    background: #0b0b10;
+  }
+
+  /* 🌦️ Weather Watch */
+  .weather-watch.tech-section {
+    border-left: 6px solid #8ef0a6;
+    background: #0b0b10;
+  }
+
+  /* 🔍 Spotlight Sections */
+  .spotlight-sections.tech-section {
+    border-left: 6px solid #ff2b2b;
+    background: #0b0b10;
+  }
+</style>
+  
+  <style>
 /* ▼ New table layout rules ▼ */
 /* Upcoming Races table: lock columns and prevent overlap */
 .upcoming-races-card table {
