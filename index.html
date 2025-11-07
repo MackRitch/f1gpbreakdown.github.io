@@ -39,18 +39,35 @@
       padding: 0 1rem;
     }
 
-    .gallery img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
     .gallery img:hover {
       transform: scale(1.03);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+   
     }
+    
+    .photo-card {
+  background-color: #0b0b10;
+  border-left: 6px solid #ff2b2b;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.photo-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: none; /* already handled by .photo-card */
+}
+
+.caption {
+  margin-top: 0.5rem;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.95rem;
+  color: #f0f0f0;
+}
+  
   </style>
 </head>
 
@@ -61,12 +78,13 @@
   </div>
 
   <!-- 🖼️ Photo Dump Section -->
-  <section class="photo-dump">
-    <h2>🇧🇷 São Paulo GP – Race Weekend Gallery</h2>
-    <div class="gallery">
-       <img src="logos/mac brazil sprint.webp" alt="Brazil Sprint Recap">
+ <section class="photo-dump">
+  <h2>📸 Photo Dump</h2>
+  <div class="gallery">
+    <div class="photo-card">
+      <img src="logos/mac brazil sprint.webp" alt="Brazil Sprint Recap">
       <p class="caption">Brazil Sprint Recap</p>
-  </div>
+    </div>
       <img src="images/spa2.jpg" alt="Rainy qualifying session">
       <img src="images/spa3.jpg" alt="Hadjar overtaking in Turn 7">
     </div>
