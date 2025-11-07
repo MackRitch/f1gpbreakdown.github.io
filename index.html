@@ -54,19 +54,27 @@
   text-align: center;
 }
 
-.photo-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  box-shadow: none; /* already handled by .photo-card */
-}
-
 .caption {
   margin-top: 0.5rem;
   font-family: 'Exo 2', sans-serif;
   font-size: 0.95rem;
   color: #f0f0f0;
 }
+
+    .photo-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.photo-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
   
   </style>
 </head>
@@ -81,10 +89,14 @@
  <section class="photo-dump">
   <h2>📸 Photo Dump</h2>
   <div class="gallery">
+  <div class="photo-wrapper">
+    <img src="logos/mac brazil sprint.webp" alt="Brazil Sprint Recap">
     <div class="photo-card">
-      <img src="logos/mac brazil sprint.webp" alt="Brazil Sprint Recap">
       <p class="caption">Brazil Sprint Recap</p>
     </div>
+  </div>
+</div>
+
       <img src="images/spa2.jpg" alt="Rainy qualifying session">
       <img src="images/spa3.jpg" alt="Hadjar overtaking in Turn 7">
     </div>
