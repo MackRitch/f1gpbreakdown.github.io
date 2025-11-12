@@ -741,20 +741,22 @@ body {
   </div>
 </div>
 
-  <div class="card constructor-standings">
+<div class="card constructor-standings">
   <h2 class="section-title">Constructor Standings</h2>
   <div class="card-body two-column">
     <div class="standings-group">
       <h3 class="standings-subtitle">Positions 1–5</h3>
       <ol>
-        <li>McLaren — 756 pts</li>
+        <li>
+          McLaren — 756 pts 
+          <span class="title-icon">🏆</span>
+        </li>
         <li>Red Bull Racing — 562 pts</li>
         <li>Mercedes — 476 pts</li>
         <li>Ferrari — 424 pts</li>
         <li>Williams — 108 pts</li>
       </ol>
     </div>
-
     <div class="standings-group">
       <h3 class="standings-subtitle">Positions 6–10</h3>
       <ol start="6">
@@ -768,7 +770,7 @@ body {
   </div>
 </div>
 
- <style>
+  <style>
 
 .card.constructor-standings {
   background-color: #0b0b10;       /* dark background to match your theme */
@@ -782,6 +784,12 @@ body {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+    .title-icon {
+  margin-left: 8px;
+  font-size: 1.2em;
+  color: gold;        /* highlight the trophy */
 }
 
 .constructor-standings .section-title {
