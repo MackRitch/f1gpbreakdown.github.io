@@ -741,7 +741,76 @@ body {
   </div>
 </div>
 
+  <div class="card constructor-standings">
+  <h2 class="section-title">Constructor Standings</h2>
+  <div class="card-body two-column">
+    <div class="standings-group">
+      <h3 class="standings-subtitle">Positions 1–5</h3>
+      <ol>
+        <li>McLaren — 756 pts</li>
+        <li>Red Bull Racing — 562 pts</li>
+        <li>Mercedes — 476 pts</li>
+        <li>Ferrari — 424 pts</li>
+        <li>Williams — 108 pts</li>
+      </ol>
+    </div>
+
+    <div class="standings-group">
+      <h3 class="standings-subtitle">Positions 6–10</h3>
+      <ol start="6">
+        <li>Alpine — 50 pts</li>
+        <li>Aston Martin — 70 pts</li>
+        <li>RB — 48 pts</li>
+        <li>Haas — 43 pts</li>
+        <li>Kick Sauber — 18 pts</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
  <style>
+
+   .card.constructor-standings {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.constructor-standings .section-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.constructor-standings .card-body {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.constructor-standings .standings-group {
+  flex: 1;
+  min-width: 220px;
+}
+
+.constructor-standings .standings-subtitle {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.constructor-standings ol {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.constructor-standings li {
+  margin-bottom: 6px;
+  font-weight: 500;
+  line-height: 1.4;
+}
 
 .upcoming-races-card {
   position: relative;
