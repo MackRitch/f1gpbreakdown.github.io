@@ -770,12 +770,15 @@ body {
 
  <style>
 
-   .card.constructor-standings {
+ .card.constructor-standings {
   background-color: #f9f9f9;
   border-radius: 12px;
   padding: 20px;
   margin-top: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  width: 100%;              /* full width */
+  max-width: 100%;          /* prevent shrinking */
+  box-sizing: border-box;   /* keep padding inside width */
 }
 
 .constructor-standings .section-title {
@@ -786,13 +789,14 @@ body {
 
 .constructor-standings .card-body {
   display: flex;
+  justify-content: space-between; /* spread groups evenly */
   gap: 40px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;              /* keep groups side by side */
 }
 
 .constructor-standings .standings-group {
-  flex: 1;
-  min-width: 220px;
+  flex: 1;                        /* each group takes equal width */
+  min-width: 300px;               /* ensures readability */
 }
 
 .constructor-standings .standings-subtitle {
