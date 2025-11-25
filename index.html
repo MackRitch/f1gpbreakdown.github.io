@@ -742,7 +742,27 @@ body {
   </div>
 </div>
 
+<div class="card upcoming-races-card">
+  <h2>📅 Upcoming Races</h2>
+  <div class="races-table-wrap">
+    <table class="races-table">
+      <thead>
+        <tr>
+          <th class="col-flag">Flag</th>
+          <th>Grand Prix</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Countdown</th>
+        </tr>
+      </thead>
+      <tbody id="races-body">
+        <!-- Rows auto-populated by updateRaceTable() -->
+      </tbody>
+    </table>
+  </div>
+</div>
 
+  
 <div class="card constructor-standings">
   <h2 class="section-title">Constructor Standings</h2>
   <div class="card-body two-column">
@@ -1040,24 +1060,19 @@ padding: 0.35rem 0.5rem;
 <script>
 const UPCOMING_RACES = [
   {
-    flag: "brazil flag.png",
-    name: "São Paulo Grand Prix",
-    date: "2025-11-09T14:00:00-03:00",
-    location: "Autódromo José Carlos Pace"
-  },
-  {
-    flag: "vegas.png",
-    name: "Las Vegas Grand Prix",
-    date: "2025-11-22T22:00:00-08:00",
-    location: "Las Vegas Strip Circuit"
-  },
-  {
     flag: "qatar.png",
     name: "Qatar Grand Prix",
     date: "2025-11-30T18:00:00+03:00",
     location: "Lusail International Circuit"
+  },
+  {
+    flag: "abudhabi.png",
+    name: "Abu Dhabi Grand Prix",
+    date: "2025-12-07T17:00:00+04:00",
+    location: "Yas Marina Circuit"
   }
 ];
+
 
 function getCountdown(targetDate) {
   const now = new Date();
