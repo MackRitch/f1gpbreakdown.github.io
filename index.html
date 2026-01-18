@@ -1060,22 +1060,29 @@ padding: 0.35rem 0.5rem;
 
 <script>
 const UPCOMING_RACES = [
+  
   {
-    flag: "Qatarflag.webp",
-    name: "Qatar Grand Prix",
-    date: "2025-11-30T18:00:00+03:00",
-    location: "Lusail International Circuit"
+    flag: "🇧🇭",
+    name: "Sakhir Testing – Day 1",
+    date: "2026-02-18",
+    location: "Bahrain International Circuit"
   },
   {
-    flag: "abudhabi.png",
-    name: "Abu Dhabi Grand Prix",
-    date: "2025-12-07T17:00:00+04:00",
-    location: "Yas Marina Circuit"
+    flag: "🇧🇭",
+    name: "Sakhir Testing – Day 2",
+    date: "2026-02-19",
+    location: "Bahrain International Circuit"
+  },
+  {
+    flag: "🇧🇭",
+    name: "Sakhir Testing – Day 3",
+    date: "2026-02-20",
+    location: "Bahrain International Circuit"
   }
 ];
 
 
-function getCountdown(targetDate) {
+  function getCountdown(targetDate) {
   const now = new Date();
   const raceDate = new Date(targetDate);
   const diff = raceDate - now;
